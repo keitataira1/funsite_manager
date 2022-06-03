@@ -1,0 +1,131 @@
+body {
+    width: 100%;
+}
+
+main {
+    max-width: 1000px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top :1px;
+}
+nav {
+    width: 100%;
+    margin: 0;
+}
+nav ul {
+    width :100%;
+    padding: 0;
+    margin: 0;
+}
+nav ul li {
+    padding: 0;
+    margin: 0;
+    float: left;
+    width :16%;
+    list-style: none;
+    text-align: center;
+}
+.clear {
+    padding: 0;
+    margin: 0;
+    width: 0;
+    float: none;
+    clear: left;
+}
+nav ul a {
+    text-decoration: none;
+}
+nav ul a:hover {
+    color: #ddd;
+}
+header{
+    width: 100%;
+}
+header img {
+    width: 100%;
+}
+header img:hover {
+    opacity: 0.5;
+}
+main ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+main ul li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 25%;
+    float: left;
+}
+main ul li div a {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+main ul li div a :hover {
+    opacity: 0.5;
+}
+main ul li div a img {
+    width: 100%;
+}
+main div,main form,div {
+    margin-top: 50px;
+    width:100%;
+    text-align: center;
+}
+main div div {
+    margin: auto;
+}
+table {
+    width: 100%;
+}
+table,tr,th,td {
+    border-collapse: collapse;
+    border-bottom:dashed 1px #ccc;
+}
+textarea {
+    padding: 9px;
+}
+p {
+    padding: 5px;
+}
+footer {
+    margin-top: 30px;
+    padding-top: 1px;
+    background-color: #333;
+    width: 100%;
+    height: 200px;
+}
+footer div{
+    width: 200px;
+    height: 10px;
+    color: #eee;
+    margin: 80px auto auto auto;
+}
+
+@media(max-width: 800px) {
+
+    main ul li {
+        width: 33%;
+    }
+
+}
+@media(max-width: 320px) {
+
+    main ul li {
+        width: 100%;
+    }
+    nav ul li {
+        padding: 0;
+        margin: 0;
+        float: none;
+        width :100%;
+        list-style: none;
+        text-align: center;
+    }
+
+}

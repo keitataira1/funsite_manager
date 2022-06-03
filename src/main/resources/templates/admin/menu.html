@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/security/tags">
+<head>
+<meta charset="utf-8" />
+<title>メニュー</title>
+<link rel="stylesheet" href="../css/common.css" />
+</head>
+<body>
+	<nav>
+		<ul>
+			<li>メニュー</li>
+			<li><form role="form" id="logout" th:action="@{/admin/logout}"
+					method="post">
+					<button type="submit">ログアウト</button>
+				</form></li>
+			<li class="clear"></li>
+		</ul>
+	</nav>
+	<main>
+		<div>
+			<div style="width: 150px;">
+				<ol>
+					<li><a href="player/list.html">選手管理機能</a></li>
+					<li><a href="user/list.html">会員管理機能</a></li>
+				</ol>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>フィルアップロード完了画面</title>
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+<script th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<div style="margin: 10px;">
+			<h3>ファイルアップロード完了</h3>
+		</div>
+		<div style="margin: 10px;">
+			<p>ファイルアップロードが完了しました。</p>
+		</div>
+		<div style="margin: 10px;">
+			<img style="width: 300px" th:src="@{'/upload_img/' + ${fileName}}" />
+		</div>
+	</div>
+</body>
+</html>

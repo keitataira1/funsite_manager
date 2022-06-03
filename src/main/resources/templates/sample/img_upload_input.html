@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ファイルアップロード画面</title>
+<link rel="stylesheet"	th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+<script th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<div style="margin: 10px;">
+			<h3>ファイルアップロードサンプル</h3>
+		</div>
+		<hr />
+		<div th:if="${message}" style="color: red;">[[${message}]]</div>
+		<form class="form-group" th:action="@{/upload}" method="post" th:object="${file}" enctype="multipart/form-data">
+			<div style="margin: 10px;">
+				<input class="form-control-file" type="file" th:field="*{file}" />
+			</div>
+			<hr />
+			<div style="margin: 10px;">
+				<input class="btn btn-primary" type="submit" value="アップロード" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

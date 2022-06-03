@@ -1,0 +1,144 @@
+
+.line-bc {
+    padding: 20px 10px;
+    max-width: 1000px;
+    margin: 15px auto;
+    text-align: right;
+    font-size: 14px;
+    background: #7da4cd;
+  
+  }
+  
+  /*以下、②左側のコメント*/
+  .balloon6 {
+    width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+  }
+  
+  .balloon6 .faceicon {
+    float: left;
+    margin-right: -50px;
+    width: 40px;
+  }
+  
+  .balloon6 .faceicon img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  .balloon6 .chatting {
+    width: 100%;
+    text-align: left;
+  }
+  .says {
+    display: inline-block;
+    position: relative; 
+    margin: 0 0 0 50px;
+    padding: 10px;
+    max-width: 250px;
+    border-radius: 12px;
+    background: #edf1ee;
+  }
+  
+  .says:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 3px; 
+    left: -19px;
+    border: 8px solid transparent;
+    border-right: 18px solid #edf1ee;
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+  }
+  .says p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /*以下、③右側の緑コメント*/
+  .mycomment {
+    margin: 10px 0;
+  }
+  .mycomment p {
+    display: inline-block;
+    position: relative; 
+    margin: 0 10px 0 700px;
+    padding: 8px;
+    max-width: 250px;
+    border-radius: 12px;
+    background: #30e852;
+    font-size: 15px;
+  }
+  
+  .mycomment p:after {
+    content: "";
+    position: absolute;
+    top: 3px; 
+    right: -19px;
+    border: 8px solid transparent;
+    border-left: 18px solid #30e852;
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+  }
+  
+  
+  .line__container {
+    padding:0;
+    background: #7494c0;
+    overflow: hidden;
+    /* max-width: 400px; ←コメントアウト */
+    margin: 20px auto;
+    font-size: 80%;
+  }
+  /*見出し用コメント*/
+  h1 {
+    position: relative;
+    color: black;
+    background: #d0ecff;
+    line-height: 1.4;
+    margin: 2em 0 0.5em;
+    border-radius: 0 5px 5px 5px;
+  }
+  
+  h1:after {
+    /*タブ*/
+    position: absolute;
+    font-family: "Font Awesome 5 Free",'Quicksand','Avenir','Arial',sans-serif;
+    content: '\f00c topic';
+    background: #2196F3;
+    color: #fff;
+    left: 0px;
+    bottom: 100%;
+    border-radius: 5px 5px 0 0;
+    padding: 3px 7px 1px;
+    font-size: 0.7em;
+    line-height: 1;
+    letter-spacing: 0.05em
+  }
+  
+  .btn{
+    position: relative;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #30e852;
+    text-align: center;
+    color: white;
+    width: 100px;
+    font-size: 15px;
+  }
+  .btn:after{
+    display: block;
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 6px;
+    height: 6px;
+    margin: -4px 0 0 0;
+    border-top: solid 2px #fff;
+    border-right: solid 2px #fff;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
