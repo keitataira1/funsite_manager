@@ -11,7 +11,7 @@ import jp.co.taxis.funsite.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	@Query(nativeQuery = true, value = "SELECT * FROM topic WHERE login_id = :loginId")
+	@Query(nativeQuery = true, value = "SELECT * FROM operation_user WHERE login_id = :loginId")
 	public User getUser(@Param("loginId") String loginId);
 
 }
