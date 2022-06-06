@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
@@ -10,9 +10,9 @@
 <body>
     <main>
         <div style="text-align: left;">
-            ○○　○○選手のトピック管理
+            [${name}]]選手のトピック管理
         </div>
-        <form action="complete.html">
+        <form th:action="@{/admin/player/update/confirm}" method="post" th:object="${topic}">
             <div>
                 <table>
                     <tr>
@@ -24,7 +24,7 @@
                     </tr>
                 </table>
                 <div>
-                    <a href="input.html">キャンセル</a><input type="submit" value="更新" />
+                    <a th:href="@{/admin/topic/update/input(id=${topic.id})}">キャンセル</a><input type="submit" value="更新" />
                 </div>
             </div>
         </form>

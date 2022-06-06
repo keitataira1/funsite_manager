@@ -11,10 +11,10 @@
     <nav>
         <ul>
             <li>
-                <a th:href="@/topic/menu.html">メニュー</a>
+                <a th:href="@/admin/menu.html">メニュー</a>
             </li>
             <li>
-                <a th:href="@/topic/login.html">ログアウト</a>
+                <a th:href="@/admin/login.html">ログアウト</a>
             </li>
             <li class="clear">
             </li>
@@ -22,7 +22,7 @@
     </nav>
     <main>
         <div style="text-align: right;">
-            <a th:href="@{/topic/insert/input}">登録</a>
+            <a th:href="@{/admin/topic/insert/input}">登録</a>
         </div>
         <div style="text-align: left;">
             [${name}]]選手のトピック管理
@@ -42,19 +42,19 @@
                     <td>
                         [${name}]]選手大好きな人集まれー！
                     </td>
-                    <td><a th:href="@{/topic/update/input(id=${topic.id})}">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
                 </tr>
                 <tr>
                     <td>
                         ガイナーレの心臓！[${name}]]を語ろう。
                     </td>
-                    <td><a th:href="@{/topic/update/input(id=${topic.id})}">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
                 </tr>
                 <tr>
                     <td>
                         これまでの[${name}]]のプレーで、一番しべれるやつ
                     </td>
-                    <td><a th:href="@{/topic/update/input(id=${topic.id})}">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
                 </tr>
             </table>
         </div>
