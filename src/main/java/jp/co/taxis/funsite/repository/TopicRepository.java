@@ -11,8 +11,6 @@ import jp.co.taxis.funsite.entity.User;
 
 @Repository
 public interface TopicRepository extends JpaRepository<Topic, Integer> {
-
 	@Query(nativeQuery = true, value = "SELECT * FROM operation_user WHERE player_id = :player")
 	public User getTopic(@Param("player") Player player);
-
 }

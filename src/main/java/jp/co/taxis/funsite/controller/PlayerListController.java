@@ -31,7 +31,6 @@ public class PlayerListController {
 	@RequestMapping(value = "player/list", method = { RequestMethod.GET })
 	public String list(Model model) {
 		List<Player> playerList = playerService.selectAll();
-
 		if (playerList.isEmpty()) {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);

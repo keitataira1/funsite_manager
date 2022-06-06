@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="utf-8" />
@@ -25,6 +25,7 @@
             <a href="insert/input.html">登録</a>
         </div>
         <div style="width:100%;">
+<span th:if="message">[[${message}]]</span>
             <table>
                 <tr>
                     <td>
@@ -46,65 +47,12 @@
                         トピック
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        ○○　○○
-                    </td>
-                    <td>
-                        2011生3月3日
-                    </td>
-                    <td>
-                        フォワード
-                    </td>
-                    <td><a href="update/input.html">更新</a></td>
-                    <td><a href="delete/confirm.html">削除</a></td>
-                    <td>
-                        <a href="../topic/list.html">トピック</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        ○○　○○
-                    </td>
-                    <td>
-                        2011生3月3日
-                    </td>
-                    <td>
-
-                        ディフェンス
-                    </td>
-                    <td><a href="update/input">更新</a></td>
-                    <td><a href="delete/confirm">削除</a></td>
-                    <td>
-                        <a href="../topic/list.html">トピック</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        ○○　○○
-                    </td>
-                    <td>
-                        2011生3月3日
-                    </td>
-                    <td>
-                        ミッドフィルダー
-                    </td>
-                    <td><a href="update/input">更新</a></td>
-                    <td><a href="delete/confirm">削除</a></td>
-                    <td>
-                        <a href="../topic/list.html">トピック</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        ○○　○○
-                    </td>
-                    <td>
-                        2011生3月3日
-                    </td>
-                    <td>
-                        キーパー
-                    </td>
+                </table>
+                <table th:if="${!#lists.isEmpty(playerList)}" border="1">
+		<tr th:each="player : ${playerList}">
+			<td th:text="${player.name}"></td>
+			<td th:text="${player.birthday}"></td>
+			<td th:text="${player.position}"></td>
                     <td><a href="update/input">更新</a></td>
                     <td><a href="delete/confirm">削除</a></td>
                     <td>
