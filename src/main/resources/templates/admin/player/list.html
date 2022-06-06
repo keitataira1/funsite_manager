@@ -47,8 +47,6 @@
                         トピック
                     </td>
                 </tr>
-                </table>
-                <table th:if="${!#lists.isEmpty(playerList)}" border="1">
 		<tr th:each="player : ${playerList}">
 			<td th:text="${player.name}"></td>
 			<td th:text="${player.birthday}"></td>
