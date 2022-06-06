@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
@@ -12,7 +12,7 @@
         <div style="text-align: left;">
             [${name}]]選手のトピック管理
         </div>
-        <form action="complete.html">
+        <form th:action="@{/admin/player/insert/confirm}" method="post" th:object="${topic}">
             <div>
                 <table>
                     <tr>
@@ -24,7 +24,7 @@
                     </tr>
                 </table>
                 <div>
-                    <a href="input.html">キャンセル</a><input type="submit" value="登録" />
+                    <a th:href="@{/admin/topic/insert/input(id=${topic.id})}">キャンセル</a><input type="submit" value="登録" />
                 </div>
             </div>
         </form>

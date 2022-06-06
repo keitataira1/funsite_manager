@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="utf-8" />
@@ -11,10 +11,10 @@
     <nav>
         <ul>
             <li>
-                <a href="../menu.html">メニュー</a>
+                <a th:href="@/admin/menu.html">メニュー</a>
             </li>
             <li>
-                <a href="../login.html">ログアウト</a>
+                <a th:href="@/admin/login.html">ログアウト</a>
             </li>
             <li class="clear">
             </li>
@@ -22,10 +22,10 @@
     </nav>
     <main>
         <div style="text-align: right;">
-            <a href="insert/input.html">登録</a>
+            <a th:href="@{/admin/topic/insert/input}">登録</a>
         </div>
         <div style="text-align: left;">
-            ○○　○○選手のトピック管理
+            [${name}]]選手のトピック管理
         </div>
         <div style="width:100%;">
 
@@ -40,21 +40,21 @@
                 </tr>
                 <tr>
                     <td>
-                        ○○選手大好きな人集まれー！
+                        [${name}]]選手大好きな人集まれー！
                     </td>
-                    <td><a href="./update/input.html">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
                 </tr>
                 <tr>
                     <td>
-                        ガイナーレの心臓！○○を語ろう。
+                        ガイナーレの心臓！[${name}]]を語ろう。
                     </td>
-                    <td><a href="./update/input.html">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
                 </tr>
                 <tr>
                     <td>
-                        これまでのXXのプレーで、一番しべれるやつ
+                        これまでの[${name}]]のプレーで、一番しべれるやつ
                     </td>
-                    <td><a href="./update/input.html">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
                 </tr>
             </table>
         </div>

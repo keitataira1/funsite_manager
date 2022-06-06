@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
@@ -21,8 +21,8 @@
         </ul>
     </nav>
     <main>
-        <div>○○　○○選手のトピック管理</div>
-        <div>「これまでのXXのプレーで、一番しゃべれるやつ」の更新が完了しました。</div>
+        <div>[${name}]]選手のトピック管理</div>
+        <div>「[${topic}]]」の更新が完了しました。</div>
         <div><a href="../list.html" target="_blank">トピック一覧</a></div>
     </main>
 </body>
