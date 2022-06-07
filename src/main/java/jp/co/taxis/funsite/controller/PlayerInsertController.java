@@ -68,7 +68,14 @@ public class PlayerInsertController {
 		Player player = new Player();
 		player.setId(playerForm.getId());
 		player.setName(playerForm.getName());
+<<<<<<< HEAD
+		
+		
+		
+		player.setBirthday(playerForm.getBirthday());
+=======
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
+>>>>>>> branch 'master' of git@github.com:keitataira1/funsite_manager.git
 		player.setComment(playerForm.getComment());
 
 		// 登録処理
