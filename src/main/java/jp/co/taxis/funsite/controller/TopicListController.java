@@ -14,7 +14,7 @@ import jp.co.taxis.funsite.form.TopicForm;
 public class TopicListController {
 
 	/**
-	 * トピックのハンドラメソッド
+	 * 一覧画面
 	 * 
 	 * @return
 	 */
