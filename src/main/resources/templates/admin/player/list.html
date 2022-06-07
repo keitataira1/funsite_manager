@@ -23,7 +23,7 @@ xmlns:sec="http://www.thymeleaf.org/security/tags">
     </nav>
     <main>
         <div style="text-align: right;">
-            <a href="insert/input.html">登録</a>
+            <a th:href="@{/player/insert/input}">登録</a>
         </div>
         <div style="width:100%;">
 <span th:if="message">[[${message}]]</span>
