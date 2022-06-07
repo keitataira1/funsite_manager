@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.taxis.funsite.entity.Player;
-import jp.co.taxis.funsite.service.PlayerService;
+import jp.co.taxis.funsite.service.PlayerListService;
 
 @Controller
 @RequestMapping(value = "admin")
 public class PlayerListController {
 
 	@Autowired
-	private PlayerService playerService;
+	private PlayerListService playerListService;
 
 	@Autowired
 	private MessageSource messageSource;
@@ -30,7 +30,7 @@ public class PlayerListController {
 
 	@RequestMapping(value = "player/list", method = { RequestMethod.GET })
 	public String list(Model model) {
-		List<Player> playerList = playerService.selectAll();
+		List<Player> playerList = playerListService.selectAll();
 		if (playerList.isEmpty()) {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
