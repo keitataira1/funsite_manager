@@ -23,7 +23,7 @@ xmlns:sec="http://www.thymeleaf.org/security/tags">
     </nav>
     <main>
         <div style="text-align: right;">
-            <a href="insert/input.html">登録</a>
+            <a th:href="@{/admin/player/insert/input}">登録</a>
         </div>
         <div style="width:100%;">
 <span th:if="message">[[${message}]]</span>
@@ -52,8 +52,8 @@ xmlns:sec="http://www.thymeleaf.org/security/tags">
 			<td th:text="${player.name}"></td>
 			<td th:text="${player.birthday}"></td>
 			<td th:text="${player.position}"></td>
-                    <td><a href="update/input">更新</a></td>
-                    <td><a href="delete/confirm">削除</a></td>
+                    <td><a th:href="@{/admin/player/update/input}">更新</a></td>
+                    <td><a th:href="@{/admin/player/delete/confirm}">削除</a></td>
                     <td>
                         <a href="../topic/list.html">トピック</a>
                     </td>

@@ -17,6 +17,11 @@ public class TopicUpdateService {
 	@Autowired
 	private TopicRepository topicRepository;
 	
+	public Topic getTopic(Integer id) {
+		Topic topic = topicRepository.findById(id).orElse(null);
+		return topic;
+	}
+	
 	public void update(Topic topic) {
 
 		try {

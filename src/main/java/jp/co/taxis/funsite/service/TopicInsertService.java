@@ -15,6 +15,11 @@ public class TopicInsertService {
 	@Autowired
 	private TopicRepository topicRepository;
 	
+	public Topic getTopic(Integer id) {
+		Topic topic = topicRepository.findById(id).orElse(null);
+		return topic;
+	}
+	
 	public Topic insert(Topic topic) {
 		Topic result = topicRepository.save(topic);
 		return result;

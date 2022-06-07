@@ -16,6 +16,11 @@ public class TopicListService {
 	
 	@Autowired
 	private TopicRepository topicRepository;
+	
+	public Topic getTopic(Integer id) {
+		Topic topic = topicRepository.findById(id).orElse(null);
+		return topic;
+	}
 
 	public List<Topic> selectAll() {
 		List<Topic> topicList = topicRepository.findAll();

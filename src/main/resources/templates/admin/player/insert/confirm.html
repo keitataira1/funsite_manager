@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
 
 <body>
     <main>
-        <form action="complete.html">
+        <form th:action="@{/admin/player/insert/confirm}" method="post" th:object="${topic}">
             <div>
                 <table>
                     <tr>
