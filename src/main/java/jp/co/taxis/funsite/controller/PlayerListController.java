@@ -37,7 +37,7 @@ public class PlayerListController {
 		}
 
 		model.addAttribute("playerList", playerList);
-		return "player/list";
+		return "admin/player/list";
 
 	}
 
