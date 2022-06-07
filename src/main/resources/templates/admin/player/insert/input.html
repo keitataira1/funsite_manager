@@ -21,39 +21,43 @@
         </ul>
     </nav>
     <main>
-        <form th:action="@{/admin/player/insert/input}" method="post" th:object="${player}">
+        <form th:action="@{/player/insert/confirm}" method="post" th:object="${player}">
             <div>
                 <table>
                     <tr>
                         <td>
                             選手名
                         </td>
-                        <td style="text-align: left;"><input type="text" /></td>
+                        <td style="text-align: left;"><input type="text" th:field="*{name}"/></td>
 
                     </tr>
                     <tr>
                         <td>
                             生年月日
                         </td>
-                        <td style="text-align: left;"><input type="date" /></td>
+                        <td style="text-align: left;"><input type="date" th:field="*{birthday}"/></td>
 
                     </tr>
                     <tr>
                         <td>
                             コメント
                         </td>
-                        <td style="text-align: left;"><textarea cols="50" rows="10"></textarea></td>
+                        <td style="text-align: left;"><textarea cols="50" rows="10"th:field="*{comment}"></textarea></td>
 
                     </tr>
                     <tr>
                         <td>
                             写真
                         </td>
-                        <td style="text-align: left;"><input type="file" /></td>
+                        <td style="text-align: left;"><input type="file" th:field="*{image}"/></td>
 
                     </tr>
 
                 </table>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{birthday}"></div>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{comment}"></div>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{image}"></div>
                 <div>
                     <input type="submit" value="確認" />
                 </div>
