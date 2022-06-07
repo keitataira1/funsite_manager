@@ -11,7 +11,7 @@ import jp.co.taxis.funsite.form.TopicForm;
 
 @Controller
 @RequestMapping("topic")
-public class TopicController {
+public class TopicListController {
 
 	/**
 	 * トピックのハンドラメソッド
