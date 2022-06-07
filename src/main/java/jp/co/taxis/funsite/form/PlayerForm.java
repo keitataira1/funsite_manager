@@ -1,4 +1,4 @@
-package form;
+package jp.co.taxis.funsite.form;
 
 import java.time.LocalDate;
 

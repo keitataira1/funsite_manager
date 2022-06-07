@@ -1,4 +1,4 @@
-package form;
+package jp.co.taxis.funsite.form;
 
 import jp.co.taxis.funsite.entity.Player;
 import lombok.AllArgsConstructor;

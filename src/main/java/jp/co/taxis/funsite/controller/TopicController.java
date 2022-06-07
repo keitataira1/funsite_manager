@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import form.TopicForm;
+import jp.co.taxis.funsite.form.TopicForm;
 
 @Controller
 @RequestMapping("topic")
