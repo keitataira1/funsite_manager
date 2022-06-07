@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
@@ -11,14 +11,15 @@
     <nav>
         <ul>
             <li>
-                <a href="../menu.html">メニュー</a>
+                 <a th:href="@{/admin/menu}">メニュー</a>
             </li>
             <li>
-                <a href="../login.html">ログアウト</a>
+                <a th:href="@{/admin/login}">ログアウト</a>
             </li>
             <li class="clear">
             </li>
         </ul>
+    </nav>
     <main>
         <form action="list.html">
 
