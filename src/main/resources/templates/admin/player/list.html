@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/security/tags">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/security/tags">
 
 <head>
-    <meta charset="utf-8" />
-    <title>選手検索</title>
-    <link rel="stylesheet" href="../../css/common.css" />
+<meta charset="utf-8" />
+<title>選手検索</title>
+<link rel="stylesheet" href="../../css/common.css" />
 </head>
 
 <body>
+<<<<<<< HEAD
+	<nav>
+		<ul>
+			<li><a href="../menu.html">メニュー</a></li>
+			<li><a href="../login.html">ログアウト</a></li>
+			<li class="clear"></li>
+		</ul>
+	</nav>
+	<main>
+		<div style="text-align: right;">
+=======
     <nav>
         <ul>
             <li>
@@ -23,46 +33,33 @@ xmlns:sec="http://www.thymeleaf.org/security/tags">
     </nav>
     <main>
         <div style="text-align: right;">
+>>>>>>> branch 'master' of git@github.com:keitataira1/funsite_manager.git
 
-            <a th:href="@{/player/insert/input}">登録</a>
+			<a th:href="@{/admin/player/insert/input}">登録</a>
 
-        </div>
-        <div style="width:100%;">
-<span th:if="message">[[${message}]]</span>
-            <table>
-                <tr>
-                    <td>
-                        選手名
-                    </td>
-                    <td>
-                        生年月日
-                    </td>
-                    <td>
-                        ポジション
-                    </td>
-                    <td>
-                        更新
-                    </td>
-                    <td>
-                        削除
-                    </td>
-                    <td>
-                        トピック
-                    </td>
-                </tr>
-		<tr th:each="player : ${playerList}">
-			<td th:text="${player.name}"></td>
-			<td th:text="${player.birthday}"></td>
-			<td th:text="${player.position}"></td>
-                    <td><a th:href="@{/admin/player/update/input}">更新</a></td>
-                    <td><a th:href="@{/admin/player/delete/confirm}">削除</a></td>
-                    <td>
-                        <a th:href="@{/admin/topic/list}">トピック</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </main>
+		</div>
+		<div style="width: 100%;">
+			<span th:if="message">[[${message}]]</span>
+			<table>
+				<tr>
+					<td>選手名</td>
+					<td>生年月日</td>
+					<td>ポジション</td>
+					<td>更新</td>
+					<td>削除</td>
+					<td>トピック</td>
+				</tr>
+				<tr th:each="player : ${playerList}">
+					<td th:text="${player.name}"></td>
+					<td th:text="${player.birthday}"></td>
+					<td th:text="${player.position}"></td>
+					<td><a th:href="@{/admin/player/update/input}">更新</a></td>
+					<td><a th:href="@{/admin/player/delete/confirm}">削除</a></td>
+					<td><a th:href="@{/admin/topic/list}">トピック</a></td>
+				</tr>
+			</table>
+		</div>
+	</main>
 
 </body>
 
