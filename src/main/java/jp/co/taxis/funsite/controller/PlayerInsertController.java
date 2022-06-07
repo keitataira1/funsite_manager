@@ -1,8 +1,6 @@
 
 package jp.co.taxis.funsite.controller;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -68,10 +66,13 @@ public class PlayerInsertController {
 		Player player = new Player();
 		player.setId(playerForm.getId());
 		player.setName(playerForm.getName());
+<<<<<<< HEAD
 
 		player.setBirthday(playerForm.getBirthday());
 		
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
+=======
+>>>>>>> branch 'master' of git@github.com:keitataira1/funsite_manager.git
 		player.setComment(playerForm.getComment());
 
 		// 登録処理
