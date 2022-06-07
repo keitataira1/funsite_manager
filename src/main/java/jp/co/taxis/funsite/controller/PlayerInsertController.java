@@ -17,7 +17,6 @@ import jp.co.taxis.funsite.service.PlayerInsertService;
 @Controller
 @RequestMapping("admin")
 public class PlayerInsertController {
-
 	
 	@Autowired
 	private PlayerInsertService playerInsertService;
