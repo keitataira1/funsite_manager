@@ -58,6 +58,7 @@ public class PlayerInsertController {
 		if (result.hasErrors()) {
 			return "admin/player/insert/input";
 		}
+		
 
 		// フォームからエンティティへの変換
 		Player player = new Player();
