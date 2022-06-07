@@ -1,7 +1,5 @@
 package jp.co.taxis.funsite.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +12,11 @@ import jp.co.taxis.funsite.repository.TopicRepository;
 
 @Transactional
 @Service
-public class TopicService {
+public class TopicUpdateService {
 	
 	@Autowired
 	private TopicRepository topicRepository;
-
-	public Topic insert(Topic topic) {
-		Topic result = topicRepository.save(topic);
-		return result;
-	}
-
-	public Topic getTopic(Integer id) {
-		Topic topic = topicRepository.findById(id).orElse(null);
-		return topic;
-	}
-
+	
 	public void update(Topic topic) {
 
 		try {
@@ -36,16 +24,6 @@ public class TopicService {
 		} catch (OptimisticLockingFailureException e) {
 			throw new ApplicationException("optimistic.locking.error");
 		}
-	}
-
-	public void delete(Integer id) {
-		Topic target = getTopic(id);
-		topicRepository.delete(target);
-	}
-
-	public List<Topic> selectAll() {
-		List<Topic> topicList = topicRepository.findAll();
-		return topicList;
 	}
 
 }
