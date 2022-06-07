@@ -68,14 +68,10 @@ public class PlayerInsertController {
 		Player player = new Player();
 		player.setId(playerForm.getId());
 		player.setName(playerForm.getName());
-<<<<<<< HEAD
-		
-		
-		
+
 		player.setBirthday(playerForm.getBirthday());
-=======
+		
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
->>>>>>> branch 'master' of git@github.com:keitataira1/funsite_manager.git
 		player.setComment(playerForm.getComment());
 
 		// 登録処理
@@ -92,9 +88,9 @@ public class PlayerInsertController {
 	 * 
 	 * @return View
 	 */
-	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.GET })
-	public String complete() {
-
+	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.POST})
+	public String complete(@ModelAttribute("player")  @Validated PlayerForm playerForm) {
+		
 		// 画面を表示するだけ
 		return "admin/player/insert/complete";
 	}
