@@ -58,3 +58,4 @@ public class PlayerDeleteController {
 			return "admin/player/delete/complete";
 		}}
 
+//completeメソッドが必要かも？
