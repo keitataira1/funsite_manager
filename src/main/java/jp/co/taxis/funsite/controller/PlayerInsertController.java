@@ -73,8 +73,9 @@ public class PlayerInsertController {
 		playerInsertService.insert(player);
 		playerForm.setId(player.getId());
 
-
 		return "admin/player/insert/complete";
+
+		
 	}
 
 	/**
