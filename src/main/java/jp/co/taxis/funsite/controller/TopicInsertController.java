@@ -50,7 +50,7 @@ public class TopicInsertController {
 	/**
 	 * 登録入力画面（DBに送る）
 	 * 
-	 * @return redirect
+	 * @return
 	 */
 	@RequestMapping(value = "/topic/insert/insert", method = { RequestMethod.POST })
 	public String insert(@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result) {
@@ -61,7 +61,10 @@ public class TopicInsertController {
 
 		// フォームからエンティティへの変換
 		Topic topic = new Topic();
+		topic.setId(topicForm.getId());
+		topic.setPlayer(topicForm.getPlayer());
 		topic.setTopic(topicForm.getTopic());
+		topic.setInvalidFlg(topicForm.getInvalidFlg());
 
 		// 登録処理
 		topicInsertService.insert(topic);

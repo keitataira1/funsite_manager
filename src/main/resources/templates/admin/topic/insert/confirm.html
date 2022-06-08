@@ -12,19 +12,21 @@
         <div style="text-align: left;">
             [${name}]]選手のトピック管理
         </div>
-        <form th:action="@{/admin/topic/insert/confirm}" method="post" th:object="${topic}">
+        <form th:action="@{/admin/topic/insert/insert}" method="post" th:object="${topic}">
             <div>
                 <table>
                     <tr>
                         <td>
                             トピック
                         </td>
-                        <td style="text-align: left;">[${topic}]]</td>
+                        <td style="text-align: left;"><span th:text="*{topic}"></span></td>
 
                     </tr>
                 </table>
                 <div>
-                    <a th:href="@{/admin/topic/insert/input(id=${topic.id})}">キャンセル</a><input type="submit" value="登録" />
+                    <input type="hidden" th:field="*{topic}" />
+                    
+                    <a th:href="@{/admin/topic/insert/input}">キャンセル</a><input type="submit" value="登録" />
                 </div>
             </div>
         </form>
