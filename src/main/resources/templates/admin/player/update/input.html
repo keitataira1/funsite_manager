@@ -1,68 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
-    <title>選手入力</title>
-    <link rel="stylesheet" href="../../../css/common.css" />
+<meta charset="utf-8" />
+<title>選手入力</title>
+<link rel="stylesheet" href="../../../css/common.css" />
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li>
-                <a th:href="@{/admin/menu}">メニュー</a>
-            </li>
-            <li>
-                <a th:href="@{/admin/login}">ログアウト</a>
-            </li>
-            <li class="clear">
-            </li>
-        </ul>
-    </nav>
-    <main>
-        <form action="confirm.html">
-            <div>
-                <table>
-                    <tr>
-                        <td>
-                            選手名
-                        </td>
-                        <td style="text-align: left;"><input type="text" value="○○　○○" /></td>
+	<nav>
+		<ul>
+			<li><a th:href="@{/admin/menu}">メニュー</a></li>
+			<li><a th:href="@{/admin/login}">ログアウト</a></li>
+			<li class="clear"></li>
+		</ul>
+	</nav>
+	<main>
+		<form th:action="@{/admin/player/update/confirm}" method="post"
+			th:object="${player}">
+			<div>
+				<table>
+					<tr>
+						<td>選手名</td>
+						<td style="text-align: left;"><input type="text"
+							th:field="*{name}" /></td>
 
-                    </tr>
-                    <tr>
-                        <td>
-                            生年月日
-                        </td>
-                        <td style="text-align: left;"><input type="date" value="2001年3月3日" /></td>
+					</tr>
+					<tr>
+						<td>生年月日</td>
+						<td style="text-align: left;"><input type="date"
+							th:field="*{birthday}" /></td>
 
-                    </tr>
-                    <tr>
-                        <td>
-                            コメント
-                        </td>
-                        <td style="text-align: left;"><textarea cols="50" rows="10">みなさんの応援にこらえられるよう
-生懸命頑張りたいです。
-特に今シーズンは・・・
-                        </textarea></td>
+					</tr>
+					<tr>
+						<td>コメント</td>
+						<td style="text-align: left;"><textarea cols="50" rows="10"
+								th:field="*{comment}"></textarea></td>
 
-                    </tr>
-                    <tr>
-                        <td>
-                            写真
-                        </td>
-                        <td style="text-align: left;"><input type="file" /></td>
+					</tr>
+					<tr>
+						<td>写真</td>
+						<td style="text-align: left;"><input type="file"
+							th:field="*{image}" /></td>
 
-                    </tr>
+					</tr>
 
-                </table>
-                <div>
-                    <input type="submit" value="確認" />
-                </div>
-            </div>
-        </form>
-    </main>
+				</table>
+				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+				<div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div>
+				<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+				<div th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
+
+
+				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="*{version}" />
+				
+				<div>
+					<input type="submit" value="確認" />
+				</div>
+			</div>
+		</form>
+	</main>
 </body>
 
 </html>

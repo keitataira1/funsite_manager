@@ -20,9 +20,6 @@ public class PlayerInsertService {
 
 	}
 	
-	public Player getPlayer(Integer id) {
-		Player player = playerRepository.findById(id).orElse(null);
-		return player;
-	}
+	
 	
 }
