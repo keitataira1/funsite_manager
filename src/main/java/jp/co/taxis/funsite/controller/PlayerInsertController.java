@@ -55,7 +55,7 @@ public class PlayerInsertController {
 	 * 
 	 * @return redirect
 	 */
-	@RequestMapping(value = "/player/insert/insert", method = { RequestMethod.POST })
+	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.POST })
 	public String insert(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result) {
 
 		if (result.hasErrors()) {
@@ -65,7 +65,7 @@ public class PlayerInsertController {
 		// フォームからエンティティへの変換
 		PlayerEntity player = new PlayerEntity();
 		player.setId(playerForm.getId());
-		player.setName(playerForm.getName());	
+		player.setName(playerForm.getName());
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
 		player.setComment(playerForm.getComment());
 
@@ -75,19 +75,6 @@ public class PlayerInsertController {
 
 		return "admin/player/insert/complete";
 
-		
-	}
-
-	/**
-	 * 登録完了画面.
-	 * 
-	 * @return View
-	 */
-	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.POST})
-	public String complete(@ModelAttribute("player")  @Validated PlayerForm playerForm) {
-		
-		// 画面を表示するだけ
-		return "admin/player/insert/complete";
 	}
 
 }

@@ -19,10 +19,9 @@ import jp.co.taxis.funsite.service.PlayerUpdateService;
 @RequestMapping(value = "admin")
 public class PlayerUpdateController {
 
-	
 	@Autowired
 	private PlayerUpdateService playerUpdateService;
-	
+
 	@Autowired
 	MessageSource messagesource;
 
@@ -34,16 +33,14 @@ public class PlayerUpdateController {
 
 		PlayerEntity player = playerUpdateService.getPlayer(playerForm.getId());
 		playerForm.setName(player.getName());
-		//playerForm.setBirthday(LocalDate.parse(player.getBirthday()));
+		// playerForm.setBirthday(LocalDate.parse(player.getBirthday()));
 		playerForm.setComment(player.getComment());
 		playerForm.setImage(player.getImage());
 		playerForm.setVersion(player.getVersion());
-	
-
 
 		return "admin/player/update/input";
 	}
-	
+
 	/**
 	 * 確認画面表示メソッド.
 	 * 
@@ -65,7 +62,7 @@ public class PlayerUpdateController {
 	 * 
 	 * @return redirect
 	 */
-	@RequestMapping(value = "/player/update/update", method = { RequestMethod.POST })
+	@RequestMapping(value = "/player/update/complete", method = { RequestMethod.POST })
 	public String update(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result) {
 
 		if (result.hasErrors()) {
@@ -80,20 +77,12 @@ public class PlayerUpdateController {
 		player.setComment(playerForm.getComment());
 		player.setImage(playerForm.getImage());
 		player.setVersion(playerForm.getVersion());
-		
-	
-			//更新処理
+
+		// 更新処理
 		playerUpdateService.update(player);
-			
 
 		return "admin/player/update/complete";
-	
-	}
 
-	// 画面表示メソッド
-	@RequestMapping(value = "/player/update/complete", method = { RequestMethod.POST })
-	public String complete() {
-		return "admin/player/update/complete";
 	}
 
 }
