@@ -25,7 +25,7 @@
             <a th:href="@{/admin/topic/insert/input}">登録</a>
         </div>
         <div style="text-align: left;">
-                        [[${player}]]選手のトピック管理
+                        [[${name}]]選手のトピック管理
         </div>
         <div style="width:100%;">
 
@@ -40,23 +40,28 @@
                 </tr>
                 <tr>
                     <td>
-                        [[${player}]]選手大好きな人集まれー！
+                        <span th:text="*{topic}"></span>
                     </td>
-                    <td><a th:href="@{/admin/topic/update/input}">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
                 </tr>
                 <tr>
                     <td>
-                        ガイナーレの心臓！[[${player}]]を語ろう。
+                        <span th:text="*{topic}"></span>
                     </td>
-                    <td><a th:href="@{/admin/topic/update/input}">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
                 </tr>
                 <tr>
                     <td>
-                        これまでの[[${player}]]のプレーで、一番しべれるやつ
+                        <span th:text="*{topic}"></span>
                     </td>
-                    <td><a th:href="@{/admin/topic/update/input}">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
                 </tr>
-            </table>
+                </table>
+                <input type="hidden" th:field="*{topic}" />
+                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{player}" />
+                <input type="hidden" th:field="*{invalidFlg}" />
+				<input type="hidden" th:field="*{version}" />
         </div>
     </main>
 

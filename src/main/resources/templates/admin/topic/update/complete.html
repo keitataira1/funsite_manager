@@ -20,10 +20,15 @@
             </li>
         </ul>
     </nav>
+                <input type="hidden" th:field="*{topic}" />
+                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{player}" />
+                <input type="hidden" th:field="*{invalidFlg}" />
+				<input type="hidden" th:field="*{version}" />
     <main>
-        <div>[${name}]]選手のトピック管理</div>
-        <div>「[${topic}]]」の更新が完了しました。</div>
-        <div><a href="../list.html" target="_blank">トピック一覧</a></div>
+        <div>[[${name}]]選手のトピック管理</div>
+        <div>「[[${topic}]]」の更新が完了しました。</div>
+        <div><a th:href="{/admin/topic/list}" target="_blank">トピック一覧</a></div>
     </main>
 </body>
 

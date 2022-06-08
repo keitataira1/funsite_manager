@@ -24,7 +24,7 @@
         <div style="text-align: left;">
             [${name}]]選手のトピック管理
         </div>
-        <form th:action="@{/admin/player/update/input}" method="post" th:object="${topic}">
+        <form th:action="@{/admin/player/update/confirm}" method="post" th:object="${topic}">
             <div>
                 <table style="text-align: left;">
                     <tr>
@@ -32,13 +32,20 @@
                             トピック
                         </td>
                         <td style="text-align: left;"><input type="text" style="width: 600px;"
-                                value="これまでのXXのプレーで、一番しゃべれるやつ" /></td>
+                                th:field="*{topic}" /></td>
                     </tr>
                     <tr>
                         <td>無効</td>
                         <td><input type="checkbox" /></td>
                     </tr>
                 </table>
+                <div th:if="${#fields.hasErrors('topic')}" th:errors="*{topic}"></div>
+                
+                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{player}" />
+                <input type="hidden" th:field="*{invalidFlg}" />
+				<input type="hidden" th:field="*{version}" />
+				
                 <div>
                     <input type="submit" value="確認" />
                 </div>
