@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "support_message")
-public class SupportMessage {
+public class SupportMessageEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -28,11 +28,11 @@ public class SupportMessage {
 
 	@ManyToOne
 	@JoinColumn(name="topic_id", referencedColumnName = "id")
-	private Topic topic;
+	private TopicEntity topic;
 
 	@ManyToOne
 	@JoinColumn(name="member_id", referencedColumnName = "id")
-	private Member member;
+	private MemberEntity member;
 
 	@Column(name = "send_datetime")
 	private LocalDateTime sendDatetime;

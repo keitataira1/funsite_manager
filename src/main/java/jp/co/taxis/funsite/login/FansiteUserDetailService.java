@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import jp.co.taxis.funsite.entity.User;
+import jp.co.taxis.funsite.entity.UserEntity;
 import jp.co.taxis.funsite.service.UserService;
 
 @Service
@@ -17,7 +17,7 @@ public class FansiteUserDetailService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
-		User user = userService.getUser(loginId);
+		UserEntity user = userService.getUser(loginId);
 		if (user == null) {
 			throw new UsernameNotFoundException(loginId + " is not found.");
 		}

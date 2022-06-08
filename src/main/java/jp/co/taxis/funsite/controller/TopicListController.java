@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.taxis.funsite.entity.Topic;
+import jp.co.taxis.funsite.entity.TopicEntity;
 import jp.co.taxis.funsite.service.TopicListService;
 
 @Controller
@@ -29,7 +29,7 @@ public class TopicListController {
 
 	@RequestMapping(value = "topic/list", method = { RequestMethod.GET })
 	public String list(Model model) {
-		List<Topic> topicList = topicListService.selectAll();
+		List<TopicEntity> topicList = topicListService.selectAll();
 		if (topicList.isEmpty()) {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);

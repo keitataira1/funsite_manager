@@ -5,13 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import jp.co.taxis.funsite.entity.User;
+import jp.co.taxis.funsite.entity.UserEntity;
 
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
 	@Query(nativeQuery = true, value = "SELECT * FROM operation_user WHERE login_id = :loginId")
-	public User getUser(@Param("loginId") String loginId);
+	public UserEntity getUser(@Param("loginId") String loginId);
 
 }

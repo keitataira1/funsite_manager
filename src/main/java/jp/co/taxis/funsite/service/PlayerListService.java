@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jp.co.taxis.funsite.entity.Player;
+import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.repository.PlayerRepository;
 
 
@@ -18,8 +18,8 @@ public class PlayerListService {
 	@Autowired
 	private PlayerRepository playerRepository;
 
-	public List<Player> selectAll() {
-		List<Player> playerList = playerRepository.findAll();
+	public List<PlayerEntity> selectAll() {
+		List<PlayerEntity> playerList = playerRepository.findAll();
 		return playerList;
 	}
 }

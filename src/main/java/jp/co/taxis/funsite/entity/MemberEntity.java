@@ -18,31 +18,38 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "player")
-public class Player {
+@Table(name = "member")
+public class MemberEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
+	@Column(name = "mail_address")
+	private String mailAddress;
+
+	@Column(name = "password")
+	private String password;
+
 	@Column(name = "name")
 	private String name;
+
+	@Column(name = "display_name")
+	private String displayName;
 
 	@Column(name = "birthday")
 	private LocalDate birthday;
 
-	@Column(name = "position")
-	private String position;
+	@Column(name = "post_number")
+	private String postNumber;
 
-	@Column(name = "comment")
-	private String comment;
+	@Column(name = "address")
+	private String address;
 
-	@Column(name = "image")
-	private String image;
+	@Column(name = "invalid_flg")
+	private Boolean invalidFlg;
 
-	@Column(name = "version")
+    @Column(name = "version")
     @Version
     private int version;
-
-
 }

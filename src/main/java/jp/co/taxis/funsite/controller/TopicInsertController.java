@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.taxis.funsite.entity.Topic;
+import jp.co.taxis.funsite.entity.TopicEntity;
 import jp.co.taxis.funsite.form.TopicForm;
 import jp.co.taxis.funsite.service.TopicInsertService;
 
@@ -60,7 +60,7 @@ public class TopicInsertController {
 		}
 
 		// フォームからエンティティへの変換
-		Topic topic = new Topic();
+		TopicEntity topic = new TopicEntity();
 		topic.setId(topicForm.getId());
 		topic.setPlayer(topicForm.getPlayer());
 		topic.setTopic(topicForm.getTopic());

@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.taxis.funsite.entity.Player;
+import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.service.PlayerListService;
 
 @Controller
@@ -30,7 +30,7 @@ public class PlayerListController {
 
 	@RequestMapping(value = "player/list", method = { RequestMethod.GET })
 	public String list(Model model) {
-		List<Player> playerList = playerListService.selectAll();
+		List<PlayerEntity> playerList = playerListService.selectAll();
 		if (playerList.isEmpty()) {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
