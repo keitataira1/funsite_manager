@@ -48,7 +48,7 @@ public class PlayerDeleteController {
 		 * @param redirectAttrs リダイレクト属性
 		 * @return View
 		 */
-		@RequestMapping(value = "player/delete/delete", method = { RequestMethod.POST })
+		@RequestMapping(value = "player/delete/complete", method = { RequestMethod.POST })
 		public String delete(@ModelAttribute("player") PlayerForm playerForm, Model model, RedirectAttributes redirectAttrs) {
 
 			// 削除処理
@@ -56,15 +56,5 @@ public class PlayerDeleteController {
 			
 
 			return "admin/player/delete/complete";
-		}
+		}}
 
-		/**
-		 * 削除完了画面.
-		 *
-		 * @return View
-		 */
-		@RequestMapping(value = "player/delete/complete", method = { RequestMethod.GET })
-		public String complete() {
-			return "admin/player/delete/complete";
-		}
-	}
