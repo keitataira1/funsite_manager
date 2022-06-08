@@ -40,7 +40,7 @@
 					<td th:text="${player.name}"></td>
 					<td th:text="${player.birthday}"></td>
 					<td th:text="${player.position}"></td>
-					<td><a th:href="@{/admin/player/update/input}">更新</a></td>
+					<td><a th:href="@{/admin/player/update/input(id=${player.id})}">更新</a></td>
 					<td><a th:href="@{/admin/player/delete/confirm}">削除</a></td>
 					<td><a th:href="@{/admin/topic/list}">トピック</a></td>
 				</tr>
