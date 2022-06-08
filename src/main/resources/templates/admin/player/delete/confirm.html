@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
-    <title>選手検索</title>
+    <title>選手削除確認</title>
     <link rel="stylesheet" href="../../../css/common.css" />
 </head>
 
@@ -11,10 +11,10 @@
     <nav>
         <ul>
             <li>
-                <a href="../../menu.html">メニュー</a>
+                <a th:href="@{/admin/menu}">メニュー</a>
             </li>
             <li>
-                <a href="../../login.html">ログアウト</a>
+                <a th:href="@{/admin/login}">ログアウト</a>
             </li>
             <li class="clear">
             </li>
@@ -22,10 +22,10 @@
     </nav>
     <main>
         <div>
-            ○○　○○選手を削除します。
+           [[${player.name}]]選手を削除します。
         </div>
         <div>
-            <form action="complete.html">
+           <form th:action="@{/admin/player/delete/delete}" method="post" th:object="${player}">
                 <input type="submit" value="削除" />
             </form>
         </div>

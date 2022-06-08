@@ -1,7 +1,5 @@
 package jp.co.taxis.funsite.controller;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +15,6 @@ import jp.co.taxis.funsite.service.PlayerDeleteService;
 @Controller
 @RequestMapping("admin")
 public class PlayerDeleteController {
-	
-	
-	public class ItemDeleteController {
 
 		@Autowired
 		private PlayerDeleteService playerDeleteService;
@@ -35,18 +30,14 @@ public class PlayerDeleteController {
 		public String confirm(@ModelAttribute("player") PlayerForm playerForm, Model model) {
 
 			Player player = playerDeleteService.getPlayer(playerForm.getId());
-			player.setId(playerForm.getId());
-			player.setName(playerForm.getName());
-			player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
-			player.setComment(playerForm.getComment());
+			playerForm.setName(player.getName());
+			//playerForm.setBirthday(LocalDate.parse(player.getBirthday()));
+			playerForm.setComment(player.getComment());
+			playerForm.setImage(player.getImage());
+			playerForm.setVersion(player.getVersion());
 			
 
-			return "player/delete/confirm";
-		}
-
-		@RequestMapping(value = "delete/cancel", method = { RequestMethod.POST })
-		public String confirmCancel() {
-			return "redirect:../list";
+			return "admin/player/delete/confirm";
 		}
 
 		/**
@@ -57,14 +48,14 @@ public class PlayerDeleteController {
 		 * @param redirectAttrs リダイレクト属性
 		 * @return View
 		 */
-		@RequestMapping(value = "delete/delete", method = { RequestMethod.POST })
+		@RequestMapping(value = "player/delete/delete", method = { RequestMethod.POST })
 		public String delete(@ModelAttribute("player") PlayerForm playerForm, Model model, RedirectAttributes redirectAttrs) {
 
 			// 削除処理
 			playerDeleteService.delete(playerForm.getId());
-			redirectAttrs.addFlashAttribute("id", playerForm.getId());
+			
 
-			return "redirect:complete";
+			return "admin/player/delete/complete";
 		}
 
 		/**
@@ -72,9 +63,8 @@ public class PlayerDeleteController {
 		 *
 		 * @return View
 		 */
-		@RequestMapping(value = "delete/complete", method = { RequestMethod.GET })
+		@RequestMapping(value = "player/delete/complete", method = { RequestMethod.GET })
 		public String complete() {
-			return "player/delete/complete";
+			return "admin/player/delete/complete";
 		}
 	}
-}
