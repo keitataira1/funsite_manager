@@ -19,22 +19,26 @@ import jp.co.taxis.funsite.service.PlayerUpdateService;
 @RequestMapping(value = "admin")
 public class PlayerUpdateController {
 
-	@Autowired
-	MessageSource messagesource;
 	
 	@Autowired
 	private PlayerUpdateService playerUpdateService;
+	
+	@Autowired
+	MessageSource messagesource;
 
 	/**
 	 * 入力画面表示メソッド.
 	 */
-	@RequestMapping(value = "/player/update/input", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/player/update/input", method = { RequestMethod.GET })
 	public String input(@ModelAttribute("player") PlayerForm playerForm) {
 
 		Player player = playerUpdateService.getPlayer(playerForm.getId());
-		player.setName(playerForm.getName());	
-		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
-		player.setComment(playerForm.getComment());
+		playerForm.setName(player.getName());
+		//playerForm.setBirthday(LocalDate.parse(player.getBirthday()));
+		playerForm.setComment(player.getComment());
+		playerForm.setImage(player.getImage());
+		playerForm.setVersion(player.getVersion());
+	
 
 
 		return "admin/player/update/input";
@@ -74,6 +78,8 @@ public class PlayerUpdateController {
 		player.setName(playerForm.getName());
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
 		player.setComment(playerForm.getComment());
+		player.setImage(playerForm.getImage());
+		player.setVersion(playerForm.getVersion());
 		
 	
 			//更新処理

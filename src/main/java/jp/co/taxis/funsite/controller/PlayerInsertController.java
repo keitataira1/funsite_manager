@@ -68,6 +68,7 @@ public class PlayerInsertController {
 		player.setName(playerForm.getName());	
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
 		player.setComment(playerForm.getComment());
+		player.setImage(playerForm.getImage());
 
 		// 登録処理
 		playerInsertService.insert(player);
