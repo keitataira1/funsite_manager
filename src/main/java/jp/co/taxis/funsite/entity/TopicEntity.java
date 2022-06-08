@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -16,25 +18,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "operation_user")
-public class User {
-
+@Table(name = "topic")
+public class TopicEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "login_id")
-	private String loginId;
+	@ManyToOne
+	@JoinColumn(name="player_id", referencedColumnName = "id")
+	private PlayerEntity player;
 
-	@Column(name = "password")
-	private String password;
+	@Column(name = "topic")
+	private String topic;
 
-	@Column(name = "role")
-	private int role;
+	@Column(name = "invalid_flg")
+	private Boolean invalidFlg;
 
 	@Column(name = "version")
 	@Version
-	private int version;
+	private Integer version;
 
 }

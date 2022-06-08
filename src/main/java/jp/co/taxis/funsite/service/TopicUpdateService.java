@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
-import jp.co.taxis.funsite.entity.Topic;
+import jp.co.taxis.funsite.entity.TopicEntity;
 import jp.co.taxis.funsite.exception.ApplicationException;
 import jp.co.taxis.funsite.repository.TopicRepository;
 
@@ -17,12 +17,12 @@ public class TopicUpdateService {
 	@Autowired
 	private TopicRepository topicRepository;
 	
-	public Topic getTopic(Integer id) {
-		Topic topic = topicRepository.findById(id).orElse(null);
+	public TopicEntity getTopic(Integer id) {
+		TopicEntity topic = topicRepository.findById(id).orElse(null);
 		return topic;
 	}
 	
-	public void update(Topic topic) {
+	public void update(TopicEntity topic) {
 
 		try {
 			topicRepository.save(topic);

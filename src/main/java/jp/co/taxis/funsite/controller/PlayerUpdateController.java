@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.taxis.funsite.entity.Player;
+import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.form.PlayerForm;
 import jp.co.taxis.funsite.service.PlayerUpdateService;
 
@@ -32,7 +32,7 @@ public class PlayerUpdateController {
 	@RequestMapping(value = "/player/update/input", method = { RequestMethod.GET })
 	public String input(@ModelAttribute("player") PlayerForm playerForm) {
 
-		Player player = playerUpdateService.getPlayer(playerForm.getId());
+		PlayerEntity player = playerUpdateService.getPlayer(playerForm.getId());
 		playerForm.setName(player.getName());
 		//playerForm.setBirthday(LocalDate.parse(player.getBirthday()));
 		playerForm.setComment(player.getComment());
@@ -73,7 +73,7 @@ public class PlayerUpdateController {
 		}
 
 		// フォームからエンティティへの変換
-		Player player = new Player();
+		PlayerEntity player = new PlayerEntity();
 		player.setId(playerForm.getId());
 		player.setName(playerForm.getName());
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));

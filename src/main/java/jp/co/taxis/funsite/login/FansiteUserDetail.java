@@ -6,18 +6,18 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jp.co.taxis.funsite.entity.User;
+import jp.co.taxis.funsite.entity.UserEntity;
 
 
 public class FansiteUserDetail implements UserDetails {
 
-	private final User user;
+	private final UserEntity user;
 
-	public FansiteUserDetail(User user) {
+	public FansiteUserDetail(UserEntity user) {
 		this.user = user;
 	}
 
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 

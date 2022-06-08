@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.taxis.funsite.entity.User;
+import jp.co.taxis.funsite.entity.UserEntity;
 import jp.co.taxis.funsite.service.UserListService;
 
 @Controller
@@ -29,7 +29,7 @@ public class UserListController {
 
 	@RequestMapping(value = "user/list", method = { RequestMethod.GET })
 	public String list(Model model) {
-		List<User> userList = userListService.selectAll();
+		List<UserEntity> userList = userListService.selectAll();
 		if (userList.isEmpty()) {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
