@@ -21,11 +21,14 @@
         </ul>
     </nav>
         <main>
+        <form th:action="@{/admin/user/list}" method="get">
             <div style="width:100%;">
                 <div>
                     <input type="text" />
                     <input type="submit" value="検索" />
+                     
                 </div>
+               
                 <div style="margin-top: 20px;">
                     <table>
                         <tr>
@@ -55,6 +58,7 @@
                     </table>
                 </div>
             </div>
+            </form>
         </main>
 
 </body>

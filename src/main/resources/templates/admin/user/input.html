@@ -21,14 +21,15 @@
         </ul>
     </nav>
     <main>
-        <form action="list.html">
+        <form th:action="@{/admin/user/list}" method="post"
+			th:object="${member}">
 
             <table>
                 <tr>
                     <td>
                         有効／無効
                     </td>
-                    <td style="text-align: left;" value="XXX@XXX.co.jp"><label>有効<input type="radio" checked
+                    <td style="text-align: left;"><label>有効<input type="radio" checked
                                 name="active_flg" /></label><label>無効<input type="radio" name="active_flg" /></label>
                     </td>
 
@@ -37,57 +38,62 @@
                     <td>
                         メールアドレス*
                     </td>
-                    <td style="text-align: left;" ><input type="text" value="XXX@XXX.co.jp" /></td>
-
+                    <td style="text-align: left;"><input type="text" 
+							th:field="*{mailAddress}" /></td>
                 </tr>
                 <tr>
                     <td>
                         パスワード*
                     </td>
-                    <td style="text-align: left;" value="abcd"><input type="password" value="abcd12345%" /></td>
-
+                    <td style="text-align: left;"><input type="password" 
+							th:field="*{password}" /></td>
                 </tr>
                 <tr>
                     <td>
                         氏名*
                     </td>
-                    <td style="text-align: left;" value="〇〇　〇〇"><input type="text" value="○○　○○" /></td>
-
+                    <td style="text-align: left;"><input type="text"
+							th:field="*{name}" /></td>
                 </tr>
                 <tr>
                     <td>
                         会員名（表示名）*
                     </td>
-                    <td style="text-align: left;" value="とかげ"><input type="text" value="hina" /></td>
-
+                    <td style="text-align: left;"><input type="text"
+							th:field="*{displayName}" /></td>
                 </tr>
                 <tr>
                     <td>
                         生年月日
                     </td>
-                    <td style="text-align: left;" value="2001-3-3"><input type="date" value="2000-03-03" /></td>
-
+                    <td style="text-align: left;"><input type="date"
+							th:field="*{birthday}" /></td>
                 </tr>
                 <tr>
                     <td>
                         郵便番号
                     </td>
-                    <td style="text-align: left;"><input type="text" value="2222222" /></td>
-
+                    <td style="text-align: left;"><input type="text"
+							th:field="*{postNumber}" /></td>
                 </tr>
                 <tr>
                     <td>
                         住所
                     </td>
                     <td style="text-align: left;"><input style="width: 100%;" type="text"
-                            value="第三東京ネオ中央区西仲町５－１３－１－００５" /></td>
-
+                           th:field="*{address}" /></td>
                 </tr>
 
             </table>
-            </div>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+				<div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div>
+				<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+				<div th:if="${#fields.hasErrors('displayName')}" th:errors="*{displayName}"></div>
+				<div th:if="${#fields.hasErrors('postNumber')}" th:errors="*{postNumber}"></div>
+				<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+				<div th:if="${#fields.hasErrors('mailAddress')}" th:errors="*{mailAddress}"></div>
             <div>
-                <a href="list.html">キャンセル</a><input type="submit" value="登録" />
+                <a th:href="@{/admin/user/list}">キャンセル</a><input type="submit" value="登録" />
             </div>
         </form>
     </main>

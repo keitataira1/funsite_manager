@@ -34,8 +34,8 @@ public class MemberListController {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
-
 		model.addAttribute("memberList", memberList);
+		
 		return "admin/user/list";
 
 	}

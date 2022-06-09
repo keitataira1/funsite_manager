@@ -21,4 +21,5 @@ public class MemberListService {
 			List<MemberEntity> memberList = memberRepository.findAll();
 			return memberList;
 		}
+	
 	}

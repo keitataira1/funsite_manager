@@ -6,5 +6,5 @@ import jp.co.taxis.funsite.entity.MemberEntity;
 
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Integer> {
-
+	
 }
