@@ -73,7 +73,7 @@ public class TopicUpdateController {
 		}
 
 	redirectAttrs.addFlashAttribute("topic", topicForm);
-	return"redirect:complete";
+	return"redirect:admin/topic/update/complete";
 	
 	}
 
