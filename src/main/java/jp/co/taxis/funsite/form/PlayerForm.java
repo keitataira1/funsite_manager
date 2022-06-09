@@ -19,7 +19,7 @@ public class PlayerForm {
 	@Pattern(regexp = ".{1,10}")
 	private String name;
 
-	@NotNull
+	
 	private String birthday;
 
 	@Pattern(regexp = ".{1,10}")
