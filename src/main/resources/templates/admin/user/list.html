@@ -45,18 +45,11 @@
                                 編集
                             </td>
                         </tr>
-                        <tr>
-                            <td>とかげ
-                            </td>
-                            <td>
-                                とかげ
-                            </td>
-                            <td>
-                                XXX@XXX.co.jp
-                            </td>
-                            <td>
-                                有効
-                            </td>
+                        <tr th:each="member : ${memberList}">
+                            <td th:text="${member.name}"></td>
+                            <td th:text="${member.displayName}"></td>
+                            <td th:text="${member.mailAddress}"></td>
+                            <td th:text="${member.invalidFlg}"></td>
                             <td><a th:href="@{/admin/user/input}">編集</a></td>
                         </tr>
                     </table>
