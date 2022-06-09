@@ -50,7 +50,7 @@
                             <td th:text="${member.displayName}"></td>
                             <td th:text="${member.mailAddress}"></td>
                             <td th:text="${member.invalidFlg}"></td>
-                            <td><a th:href="@{/admin/user/input}">編集</a></td>
+                            <td><a th:href="@{/admin/user/input(id=${member.id})}">編集</a></td>
                         </tr>
                     </table>
                 </div>
