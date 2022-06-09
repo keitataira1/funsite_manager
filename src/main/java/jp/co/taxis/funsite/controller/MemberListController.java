@@ -10,15 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.taxis.funsite.entity.UserEntity;
-import jp.co.taxis.funsite.service.UserListService;
+import jp.co.taxis.funsite.entity.MemberEntity;
+import jp.co.taxis.funsite.service.MemberListService;
 
 @Controller
 @RequestMapping(value = "admin")
-public class UserListController {
+public class MemberListController {
 
 	@Autowired
-	private UserListService userListService;
+	private MemberListService memberListService;
 
 	@Autowired
 	private MessageSource messageSource;
@@ -29,13 +29,13 @@ public class UserListController {
 
 	@RequestMapping(value = "user/list", method = { RequestMethod.GET })
 	public String list(Model model) {
-		List<UserEntity> userList = userListService.selectAll();
-		if (userList.isEmpty()) {
+		List<MemberEntity> memberList = memberListService.selectAll();
+		if (memberList.isEmpty()) {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
 
-		model.addAttribute("userList", userList);
+		model.addAttribute("memberList", memberList);
 		return "admin/user/list";
 
 	}

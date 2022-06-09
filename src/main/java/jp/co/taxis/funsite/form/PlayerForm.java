@@ -15,6 +15,7 @@ public class PlayerForm {
 
 	private Integer id;
 
+	@NotNull
 	@Pattern(regexp = ".{1,10}")
 	private String name;
 
