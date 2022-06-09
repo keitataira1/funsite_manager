@@ -22,4 +22,6 @@ public class PlayerListService {
 		List<PlayerEntity> playerList = playerRepository.findAll();
 		return playerList;
 	}
+	
+	
 }

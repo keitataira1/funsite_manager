@@ -33,7 +33,7 @@ public class PlayerUpdateController {
 
 		PlayerEntity player = playerUpdateService.getPlayer(playerForm.getId());
 		playerForm.setName(player.getName());
-		// playerForm.setBirthday(LocalDate.parse(player.getBirthday()));
+		//playerForm.setBirthday(LocalDate.parse(player.getBirthday()));
 		playerForm.setComment(player.getComment());
 		playerForm.setImage(player.getImage());
 		playerForm.setVersion(player.getVersion());

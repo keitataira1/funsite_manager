@@ -42,26 +42,22 @@
                     <td>
                         <span th:text="*{topic}"></span>
                     </td>
-                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input}">更新</a></td>
                 </tr>
                 <tr>
                     <td>
                         <span th:text="*{topic}"></span>
                     </td>
-                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input}">更新</a></td>
                 </tr>
                 <tr>
                     <td>
                         <span th:text="*{topic}"></span>
                     </td>
-                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a></td>
+                    <td><a th:href="@{/admin/topic/update/input}">更新</a></td>
                 </tr>
                 </table>
-                <input type="hidden" th:field="*{topic}" />
-                <input type="hidden" th:field="*{id}" />
-                <input type="hidden" th:field="*{player}" />
-                <input type="hidden" th:field="*{invalidFlg}" />
-				<input type="hidden" th:field="*{version}" />
+                
         </div>
     </main>
 
