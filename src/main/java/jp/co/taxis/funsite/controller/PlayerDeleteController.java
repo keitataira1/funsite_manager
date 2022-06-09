@@ -1,5 +1,7 @@
 package jp.co.taxis.funsite.controller;
 
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +33,7 @@ public class PlayerDeleteController {
 
 			PlayerEntity player = playerDeleteService.getPlayer(playerForm.getId());
 			playerForm.setName(player.getName());
-			//playerForm.setBirthday(LocalDate.parse(player.getBirthday()));
+			playerForm.setBirthday(player.getBirthday().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 			playerForm.setComment(player.getComment());
 			playerForm.setImage(player.getImage());
 			playerForm.setVersion(player.getVersion());

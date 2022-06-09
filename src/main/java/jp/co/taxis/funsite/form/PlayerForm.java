@@ -19,7 +19,6 @@ public class PlayerForm {
 	@Pattern(regexp = ".{1,10}")
 	private String name;
 
-	
 	private String birthday;
 
 	@Pattern(regexp = ".{1,10}")

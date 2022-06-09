@@ -30,12 +30,12 @@ public class PlayerListController {
 
 	@RequestMapping(value = "player/list", method = { RequestMethod.GET })
 	public String list(Model model) {
+
 		List<PlayerEntity> playerList = playerListService.selectAll();
 		if (playerList.isEmpty()) {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
-
 		model.addAttribute("playerList", playerList);
 		return "admin/player/list";
 

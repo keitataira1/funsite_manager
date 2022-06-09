@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>選手入力確認</title>
+    <title>選手更新確認</title>
     <link rel="stylesheet" href="../../../css/common.css" />
 </head>
 
@@ -40,11 +40,12 @@
                     </tr>
                 </table>
                 <div>
-              		<input type="hidden" th:field="*{id}" />
-					<input type="hidden" th:field="*{name}" />
-					<input type="hidden" th:field="*{birthday}" />
-					<input type="hidden" th:field="*{comment}" />
-					<input type="hidden" th:field="*{image}" />
+                	<input type="hidden" th:field="*{id}" />
+           			<input type="hidden" th:field="*{name}" />
+           			<input type="hidden" th:field="*{birthday}" />
+           			<input type="hidden" th:field="*{comment}" />
+              		<input type="hidden" th:field="*{image}" />
+              		<input type="hidden" th:field="*{version}" />
 		
                     <a th:href="@{/admin/player/update/input}">キャンセル</a><input type="submit" value="登録" />
                 </div>

@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.form.PlayerForm;
@@ -55,8 +56,9 @@ public class PlayerInsertController {
 	 * 
 	 * @return redirect
 	 */
-	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result) {
+	@RequestMapping(value = "/player/insert/insert", method = { RequestMethod.POST })
+	public String insert(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
+			RedirectAttributes redirectAttrs) {
 
 		if (result.hasErrors()) {
 			return "admin/player/insert/input";
@@ -68,13 +70,22 @@ public class PlayerInsertController {
 		player.setName(playerForm.getName());
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
 		player.setComment(playerForm.getComment());
+		player.setImage(playerForm.getImage());
 
 		// 登録処理
 		playerInsertService.insert(player);
 		playerForm.setId(player.getId());
 
-		return "admin/player/insert/complete";
+		redirectAttrs.addFlashAttribute("player", playerForm);
 
+		return "redirect:complete";
+
+	}
+
+	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.GET })
+	public String complete() {
+		// 画面を表示するだけなので処理はなし。
+		return "admin/player/insert/complete";
 	}
 
 }

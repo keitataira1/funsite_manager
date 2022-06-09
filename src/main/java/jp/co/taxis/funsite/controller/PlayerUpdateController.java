@@ -1,12 +1,14 @@
 package jp.co.taxis.funsite.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,12 +30,13 @@ public class PlayerUpdateController {
 	/**
 	 * 入力画面表示メソッド.
 	 */
-	@RequestMapping(value = "/player/update/input", method = { RequestMethod.GET })
+	@GetMapping("/player/update/input")
 	public String input(@ModelAttribute("player") PlayerForm playerForm) {
 
 		PlayerEntity player = playerUpdateService.getPlayer(playerForm.getId());
+		// entityからformに変換
 		playerForm.setName(player.getName());
-		//playerForm.setBirthday(LocalDate.parse(player.getBirthday()));
+		playerForm.setBirthday(player.getBirthday().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		playerForm.setComment(player.getComment());
 		playerForm.setImage(player.getImage());
 		playerForm.setVersion(player.getVersion());
