@@ -77,11 +77,12 @@ public class PlayerInsertController {
 		playerForm.setId(player.getId());
 
 		redirectAttrs.addFlashAttribute("player", playerForm);
-
 		return "redirect:complete";
 
 	}
-
+/**
+ * 登録完了画面
+ */
 	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.GET })
 	public String complete() {
 		// 画面を表示するだけなので処理はなし。

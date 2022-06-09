@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.entity.TopicEntity;
@@ -78,7 +79,8 @@ public class TopicInsertController {
 	 * @return
 	 */
 	@RequestMapping(value = "/topic/insert/insert", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result) {
+	public String insert(@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result,
+			RedirectAttributes redirectAttrs) {
 
 		if (result.hasErrors()) {
 			return "admin/topic/insert/input";
@@ -95,15 +97,14 @@ public class TopicInsertController {
 		topicInsertService.insert(topic);
 		topicForm.setId(topic.getId());
 
-		return "admin/topic/insert/complete";
+		redirectAttrs.addFlashAttribute("topic", topicForm);
+		return "redirect:complete";
 	}
 
 	/**
 	 * 登録完了画面.
-	 * 
-	 * @return View
 	 */
-	@RequestMapping(value = "/topic/insert/complete", method = { RequestMethod.POST })
+	@RequestMapping(value = "/topic/insert/complete", method = { RequestMethod.GET })
 	public String complete(@ModelAttribute("topic") @Validated TopicForm topicForm) {
 
 		// 画面を表示するだけ

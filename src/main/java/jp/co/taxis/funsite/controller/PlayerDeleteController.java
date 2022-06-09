@@ -18,46 +18,50 @@ import jp.co.taxis.funsite.service.PlayerDeleteService;
 @RequestMapping("admin")
 public class PlayerDeleteController {
 
-		@Autowired
-		private PlayerDeleteService playerDeleteService;
+	@Autowired
+	private PlayerDeleteService playerDeleteService;
 
-		/**
-		 * 削除確認画面.
-		 *
-		 * @param playerForm  選手
-		 * @param model モデル
-		 * @return View
-		 */
-		@RequestMapping(value = "player/delete/confirm", method = { RequestMethod.GET, RequestMethod.POST })
-		public String confirm(@ModelAttribute("player") PlayerForm playerForm, Model model) {
+	/**
+	 * 削除確認画面.
+	 *
+	 * @param playerForm 選手
+	 * @param model      モデル
+	 * @return View
+	 */
+	@RequestMapping(value = "player/delete/confirm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String confirm(@ModelAttribute("player") PlayerForm playerForm, Model model) {
 
-			PlayerEntity player = playerDeleteService.getPlayer(playerForm.getId());
-			playerForm.setName(player.getName());
-			playerForm.setBirthday(player.getBirthday().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-			playerForm.setComment(player.getComment());
-			playerForm.setImage(player.getImage());
-			playerForm.setVersion(player.getVersion());
-			
+		PlayerEntity player = playerDeleteService.getPlayer(playerForm.getId());
+		playerForm.setName(player.getName());
+		playerForm.setBirthday(player.getBirthday().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		playerForm.setComment(player.getComment());
+		playerForm.setImage(player.getImage());
+		playerForm.setVersion(player.getVersion());
 
-			return "admin/player/delete/confirm";
-		}
+		return "admin/player/delete/confirm";
+	}
 
-		/**
-		 * 削除処理.
-		 *
-		 * @param playerForm          選手
-		 * @param model         モデル
-		 * @param redirectAttrs リダイレクト属性
-		 * @return View
-		 */
-		@RequestMapping(value = "player/delete/complete", method = { RequestMethod.POST })
-		public String delete(@ModelAttribute("player") PlayerForm playerForm, Model model, RedirectAttributes redirectAttrs) {
+	/**
+	 * 削除処理.
+	 *
+	 * @param playerForm    選手
+	 * @param model         モデル
+	 * @param redirectAttrs リダイレクト属性
+	 * @return View
+	 */
+	@RequestMapping(value = "player/delete/delete", method = { RequestMethod.POST })
+	public String delete(@ModelAttribute("player") PlayerForm playerForm, Model model,
+			RedirectAttributes redirectAttrs) {
 
-			// 削除処理
-			playerDeleteService.delete(playerForm.getId());
-			
+		// 削除処理
+		playerDeleteService.delete(playerForm.getId());
+		
+		redirectAttrs.addFlashAttribute("name", playerForm.getName());
+		return "redirect:complete";
+	}
 
-			return "admin/player/delete/complete";
-		}}
-
-//completeメソッドが必要かも？
+	@RequestMapping(value = "player/delete/complete", method = { RequestMethod.GET })
+	public String complete() {
+		return "admin/player/delete/complete";
+	}
+}

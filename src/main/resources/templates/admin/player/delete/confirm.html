@@ -24,7 +24,7 @@
            [[${player.name}]]選手を削除します。
         </div>
         <div>
-           <form th:action="@{/admin/player/delete/complete}" method="post" th:object="${player}">
+           <form th:action="@{/admin/player/delete/delete}" method="post" th:object="${player}">
            	<input type="hidden" th:field="*{id}" />
            	<input type="hidden" th:field="*{name}" />
            	<input type="hidden" th:field="*{birthday}" />
