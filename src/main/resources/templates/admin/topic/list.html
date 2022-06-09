@@ -38,29 +38,18 @@
                         更新
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span th:text="*{topic}"></span>
+                <tr th:each="topic : ${topicList}">
+                    <td th:text="${topic.topic}"></td>
+                    <td><a th:href="@{/admin/topic/update/input(id=${topic.id})}">更新</a>
                     </td>
-                    <td><a th:href="@{/admin/topic/update/input}">更新</a></td>
-                </tr>
-                <tr>
-                    <td>
-                        <span th:text="*{topic}"></span>
-                    </td>
-                    <td><a th:href="@{/admin/topic/update/input}">更新</a></td>
-                </tr>
-                <tr>
-                    <td>
-                        <span th:text="*{topic}"></span>
-                    </td>
-                    <td><a th:href="@{/admin/topic/update/input}">更新</a></td>
-                </tr>
-                </table>
                 
+                
+                </table>
+               
         </div>
     </main>
 
 </body>
 
 </html>
+    
