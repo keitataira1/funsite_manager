@@ -49,7 +49,7 @@ public class TopicListController {
 
 		model.addAttribute("topicList", topicList);
 		model.addAttribute("playerList", playerList);
-		model.addAttribute("name", playerEntity.getName());
+		model.addAttribute("player", playerEntity);
 		return "admin/topic/list";
 
 	}

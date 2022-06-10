@@ -17,9 +17,9 @@ import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.entity.TopicEntity;
 import jp.co.taxis.funsite.form.TopicForm;
 import jp.co.taxis.funsite.service.PlayerListService;
+import jp.co.taxis.funsite.service.PlayerUpdateService;
 import jp.co.taxis.funsite.service.TopicInsertService;
 import jp.co.taxis.funsite.service.TopicListService;
-import jp.co.taxis.funsite.service.TopicUpdateService;
 
 @Controller
 @RequestMapping("admin")
@@ -27,7 +27,7 @@ public class TopicInsertController {
 
 	@Autowired
 	private TopicInsertService topicInsertService;
-	
+
 	@Autowired
 	private TopicListService topicListService;
 
@@ -35,25 +35,26 @@ public class TopicInsertController {
 	private PlayerListService playerListService;
 
 	@Autowired
-	private TopicUpdateService topicUpdateService;
+	private PlayerUpdateService playerUpdateService;
 
 	/**
 	 * 入力画面表示メソッド.
 	 * 
 	 * @return input.htmlにリターン
 	 */
-	@RequestMapping(value = "/topic/insert/input", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "topic/insert/input", method = { RequestMethod.GET, RequestMethod.POST })
 	public String input(@RequestParam("id") Integer playerId, Model model,
 			@ModelAttribute("topic") TopicForm topicForm) {
 
 		// 入力画面を出すだけ
 		List<TopicEntity> topicList = topicListService.selectAll();
 		List<PlayerEntity> playerList = playerListService.selectAll();
-		TopicEntity topicEntity = topicUpdateService.getTopic(playerId);
+		PlayerEntity playerEntity = playerUpdateService.getPlayer(playerId);
 
 		model.addAttribute("topicList", topicList);
 		model.addAttribute("playerList", playerList);
-		model.addAttribute("name", topicEntity.getPlayer());
+		model.addAttribute("player", playerEntity);
+
 		return "admin/topic/insert/input";
 	}
 
@@ -62,13 +63,17 @@ public class TopicInsertController {
 	 * 
 	 * @return confirm.htmlにリターン
 	 */
-	@RequestMapping(value = "/topic/insert/confirm", method = { RequestMethod.POST })
-	public String confirm(@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result) {
+	@RequestMapping(value = "topic/insert/confirm", method = { RequestMethod.POST })
+	public String confirm(@RequestParam("id") Integer playerId, Model model,
+			@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result) {
 
 		if (result.hasErrors()) {
 			return "admin/topic/insert/input";
 		}
 
+		PlayerEntity playerEntity = playerUpdateService.getPlayer(playerId);
+
+		model.addAttribute("player", playerEntity);
 		// 確認画面の表示だけ
 		return "admin/topic/insert/confirm";
 	}
@@ -78,7 +83,7 @@ public class TopicInsertController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/topic/insert/insert", method = { RequestMethod.POST })
+	@RequestMapping(value = "topic/insert/complete", method = { RequestMethod.POST })
 	public String insert(@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
@@ -89,9 +94,9 @@ public class TopicInsertController {
 		// フォームからエンティティへの変換
 		TopicEntity topic = new TopicEntity();
 		topic.setId(topicForm.getId());
-		topic.setPlayer(topicForm.getPlayer());
+		
 		topic.setTopic(topicForm.getTopic());
-		topic.setInvalidFlg(topicForm.getInvalidFlg());
+		
 
 		// 登録処理
 		topicInsertService.insert(topic);
@@ -104,9 +109,13 @@ public class TopicInsertController {
 	/**
 	 * 登録完了画面.
 	 */
-	@RequestMapping(value = "/topic/insert/complete", method = { RequestMethod.GET })
-	public String complete(@ModelAttribute("topic") @Validated TopicForm topicForm) {
+	@RequestMapping(value = "topic/insert/complete", method = { RequestMethod.GET })
+	public String complete(@RequestParam("id") Integer playerId, Model model,
+			@ModelAttribute("topic") @Validated TopicForm topicForm) {
 
+		PlayerEntity playerEntity = playerUpdateService.getPlayer(playerId);
+
+		model.addAttribute("player", playerEntity);
 		// 画面を表示するだけ
 		return "admin/topic/insert/complete";
 	}

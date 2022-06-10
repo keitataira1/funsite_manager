@@ -22,10 +22,10 @@
     </nav>
     <main>
         <div style="text-align: right;">
-            <a th:href="@{/admin/topic/insert/input}">登録</a>
+            <a th:href="@{/admin/topic/insert/input(id=${player.id})}">登録</a>
         </div>
         <div style="text-align: left;">
-                        [[${name}]]選手のトピック管理
+                        [[${player.name}]]選手のトピック管理
         </div>
         <div style="width:100%;">
 
