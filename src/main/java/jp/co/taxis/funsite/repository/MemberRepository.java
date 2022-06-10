@@ -10,6 +10,6 @@ import jp.co.taxis.funsite.entity.MemberEntity;
 
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Integer> {
-	@Query(nativeQuery = true, value = "SELECT * FROM member WHERE name and display_name LIKE :memberName")
+	@Query("SELECT m FROM MemberEntity m WHERE m.name LIKE :memberName and m.displayName LIKE :memberName")
 	public List<MemberEntity> selectLikeName(@Param("memberName") String memberName);
 }

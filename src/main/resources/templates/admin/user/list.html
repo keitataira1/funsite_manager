@@ -21,11 +21,17 @@
         </ul>
     </nav>
         <main>
-        <form th:action="@{/admin/user/list}" method="get">
+        <form th:action="@{/admin/user/list}" method="post" th:object="${member}">
             <div style="width:100%;">
                 <div>
                     <input type="text" />
                     <input type="submit" value="検索" />
+                    <!-- <tr th:each="member : ${memberSearchList}">
+                            <td th:text="${member.name}"></td>
+                            <td th:text="${member.displayName}"></td>
+                            <td th:text="${member.mailAddress}"></td>
+                            <td th:text="${member.invalidFlg}"></td> </tr> -->
+                   
                      
                 </div>
                
