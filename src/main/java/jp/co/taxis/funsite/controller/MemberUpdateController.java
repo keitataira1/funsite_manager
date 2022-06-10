@@ -41,7 +41,6 @@ public class MemberUpdateController {
 		memberForm.setPostNumber(member.getPostNumber());
 		memberForm.setAddress(member.getAddress());
 		memberForm.setVersion(member.getVersion());
-
 		return "admin/user/input";
 	}
 
