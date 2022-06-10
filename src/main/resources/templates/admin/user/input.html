@@ -21,7 +21,7 @@
         </ul>
     </nav>
     <main>
-        <form th:action="@{/admin/user/list}" method="post"
+        <form th:action="@{/admin/user/complete}" method="post"
 			th:object="${member}">
 
             <table>
@@ -29,8 +29,8 @@
                     <td>
                         有効／無効
                     </td>
-                    <td style="text-align: left;"><label>有効<input type="radio" checked
-                                name="active_flg" /></label><label>無効<input type="radio" name="active_flg" /></label>
+                    <td style="text-align: left;"><label>有効<input type="radio" 
+                                 th:field="*{invalidFlg}" value="valid"/></label><label>無効<input type="radio" th:field="*{invalidFlg}" value="invalid"/></label>
                     </td>
 
                 </tr>
@@ -92,6 +92,12 @@
 				<div th:if="${#fields.hasErrors('postNumber')}" th:errors="*{postNumber}"></div>
 				<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
 				<div th:if="${#fields.hasErrors('mailAddress')}" th:errors="*{mailAddress}"></div>
+				
+				
+				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="*{version}" />
+				
+				
             <div>
                 <a th:href="@{/admin/user/list}">キャンセル</a><input type="submit" value="登録" />
             </div>

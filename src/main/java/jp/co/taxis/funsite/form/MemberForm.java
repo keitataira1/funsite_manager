@@ -43,8 +43,8 @@ public class MemberForm {
 	private String address;
 
 	
-	private Boolean invalidFlg;
+	private String invalidFlg;
 
 
-    private int version;
+    private Integer version;
 }
