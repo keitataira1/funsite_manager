@@ -94,8 +94,6 @@ public class PlayerUpdateController {
 			redirectAttrs.addFlashAttribute("message", message);
 			return "redirect:../list";
 		}
-		// 更新処理
-		playerUpdateService.update(player);
 
 		redirectAttrs.addFlashAttribute("player", playerForm);
 		return "redirect:complete";
