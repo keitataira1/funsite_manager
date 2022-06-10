@@ -34,7 +34,13 @@ public class MemberListController {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
+		
+		List<MemberEntity> memberList2 = memberListService.selectLikeName();
+		
+		
+		
 		model.addAttribute("memberList", memberList);
+
 		
 		return "admin/user/list";
 
