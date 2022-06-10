@@ -1,9 +1,10 @@
 package jp.co.taxis.funsite.service;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.repository.PlayerRepository;
