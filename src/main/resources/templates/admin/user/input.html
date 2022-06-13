@@ -21,7 +21,7 @@
         </ul>
     </nav>
     <main>
-        <form th:action="@{/admin/user/complete}" method="post"
+        <form th:action="@{/admin/user/update}" method="post"
 			th:object="${member}">
 
             <table>
@@ -30,7 +30,8 @@
                         有効／無効
                     </td>
                     <td style="text-align: left;"><label>有効<input type="radio" 
-                                 th:field="*{invalidFlg}" value="valid"/></label><label>無効<input type="radio" th:field="*{invalidFlg}" value="invalid"/></label>
+                                 th:field="*{invalidFlg}" value="valid"/></label>
+                                 <label>無効<input type="radio" th:field="*{invalidFlg}" value="invalid"/></label>
                     </td>
 
                 </tr>

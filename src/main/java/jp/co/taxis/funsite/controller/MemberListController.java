@@ -37,7 +37,7 @@ public class MemberListController {
 	//htmlの検索フォームにはth:objectを利用
 
 	@RequestMapping(value = "user/list", method = { RequestMethod.GET })
-	public String list(@ModelAttribute("member") SearchForm searchForm, BindingResult result, Model model) {
+	public String list(@ModelAttribute("search") SearchForm searchForm, BindingResult result, Model model) {
 		List<MemberEntity> memberList = memberListService.selectAll();
 		if (memberList.isEmpty()) {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
@@ -51,6 +51,8 @@ public class MemberListController {
 		//model.addAttribute("memberSearchList", memberSearchList);
 		
 		return "admin/user/list";
+		
+		
 
 	}
 

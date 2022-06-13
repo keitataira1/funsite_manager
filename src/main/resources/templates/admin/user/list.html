@@ -34,6 +34,8 @@
                    
                      
                 </div>
+                
+                <div th:text="${text}"></div>
                
                 <div style="margin-top: 20px;">
                     <table>
@@ -58,7 +60,18 @@
                             <td th:text="${member.name}"></td>
                             <td th:text="${member.displayName}"></td>
                             <td th:text="${member.mailAddress}"></td>
-                            <td th:text="${member.invalidFlg}"></td>
+                            
+                            <script>
+                            
+                            if (${member.invalidFlg} == true){
+                            	 <td  text="無効"></td>
+                            }else {
+                            	 <td  text="有効"></td>
+                            }
+                            
+                            </script>
+                           
+                            
                             <td><a th:href="@{/admin/user/input(id=${member.id})}">編集</a></td>
                         </tr>
                     </table>
