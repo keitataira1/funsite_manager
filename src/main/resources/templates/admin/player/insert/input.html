@@ -38,6 +38,13 @@
                         <td style="text-align: left;"><input type="date" th:field="*{birthday}"/></td>
 
                     </tr>
+                     <tr>
+                        <td>
+                            ポジション
+                        </td>
+                        <td style="text-align: left;"><input type="text" th:field="*{position}"/></td>
+
+                    </tr>
                     <tr>
                         <td>
                             コメント
@@ -56,6 +63,7 @@
                 </table>
                 <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                 <div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div>
+                	 <div th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></div>
                 <div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
                 <div th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
                 <div>

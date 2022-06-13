@@ -25,6 +25,13 @@
                         </td>
                         <td style="text-align: left;"><span th:text="*{birthday}"></span></td>
                     </tr>
+                     <tr>
+                        <td>
+                            ポジション
+                        </td>
+                        <td style="text-align: left;"><span th:text="*{position}"></span></td>
+
+                    </tr>
                     <tr>
                         <td>
                             コメント
@@ -41,6 +48,7 @@
                 <div>
 					<input type="hidden" th:field="*{name}" />
 					<input type="hidden" th:field="*{birthday}" />
+					<input type="hidden" th:field="*{position}" />
 					<input type="hidden" th:field="*{comment}" />
 					<input type="hidden" th:field="*{image}" />
 		

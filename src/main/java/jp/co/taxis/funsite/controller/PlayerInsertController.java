@@ -69,6 +69,7 @@ public class PlayerInsertController {
 		player.setId(playerForm.getId());
 		player.setName(playerForm.getName());
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
+		player.setPosition(playerForm.getPosition());
 		player.setComment(playerForm.getComment());
 		player.setImage(playerForm.getImage());
 

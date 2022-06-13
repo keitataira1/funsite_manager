@@ -40,6 +40,7 @@ public class PlayerUpdateController {
 		// entityからformに変換
 		playerForm.setName(player.getName());
 		playerForm.setBirthday(player.getBirthday().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		playerForm.setPosition(player.getPosition());
 		playerForm.setComment(player.getComment());
 		playerForm.setImage(player.getImage());
 		playerForm.setVersion(player.getVersion());
@@ -81,6 +82,7 @@ public class PlayerUpdateController {
 		player.setId(playerForm.getId());
 		player.setName(playerForm.getName());
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
+		player.setPosition(playerForm.getPosition());
 		player.setComment(playerForm.getComment());
 		player.setImage(playerForm.getImage());
 		player.setVersion(playerForm.getVersion());
