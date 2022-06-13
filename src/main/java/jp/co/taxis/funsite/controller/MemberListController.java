@@ -44,6 +44,8 @@ public class MemberListController {
 			model.addAttribute("message", message);
 		}
 		
+		
+		
 		//List<MemberEntity> memberSearchList = memberListService.selectLikeName(searchForm.getName());
 		
 		model.addAttribute("memberList", memberList);

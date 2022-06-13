@@ -36,7 +36,7 @@ public class MemberUpdateController {
 	public String input(@ModelAttribute("member") MemberForm memberForm) {
 
 		MemberEntity member = memberUpdateService.getMember(memberForm.getId());
-		memberForm.setInvalidFlg(member.getInvalidFlg().equals(true) ? "valid" : "invalid");
+		memberForm.setInvalidFlg(member.getInvalidFlg().equals(true) ? "invalid" : "valid");
 		memberForm.setMailAddress(member.getMailAddress());
 		memberForm.setPassword(member.getPassword());
 		memberForm.setName(member.getName());
@@ -51,8 +51,6 @@ public class MemberUpdateController {
 
 	/**
 	 * 更新処理（DBに送る）
-	 * 
-	 * @return redirect
 	 */
 	@RequestMapping(value = "/user/update", method = { RequestMethod.POST })
 	public String update(@ModelAttribute("member") @Validated MemberForm memberForm, BindingResult result,
@@ -72,7 +70,7 @@ public class MemberUpdateController {
 		member.setBirthday(LocalDate.parse(memberForm.getBirthday()));
 		member.setPostNumber(memberForm.getPostNumber());
 		member.setAddress(memberForm.getAddress());
-		member.setInvalidFlg(memberForm.getInvalidFlg().equals("valid") ? true : false);
+		member.setInvalidFlg(memberForm.getInvalidFlg().equals("invalid") ? true : false);
 		member.setVersion(memberForm.getVersion());
 
 		try {
@@ -84,7 +82,7 @@ public class MemberUpdateController {
 			redirectAttrs.addFlashAttribute("message", message);
 			return "redirect:../list";
 		}
-		redirectAttrs.addFlashAttribute("text", "更新が完了しました。");
+		redirectAttrs.addFlashAttribute("completeMessage", "更新が完了しました。");
 		return "redirect:/admin/user/list";
 
 	}
