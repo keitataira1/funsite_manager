@@ -1,7 +1,5 @@
 package jp.co.taxis.funsite.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.entity.TopicEntity;
 import jp.co.taxis.funsite.form.TopicForm;
-import jp.co.taxis.funsite.service.PlayerListService;
 import jp.co.taxis.funsite.service.PlayerUpdateService;
 import jp.co.taxis.funsite.service.TopicInsertService;
-import jp.co.taxis.funsite.service.TopicListService;
+import jp.co.taxis.funsite.service.TopicUpdateService;
 
 @Controller
 @RequestMapping("admin")
@@ -29,13 +26,10 @@ public class TopicInsertController {
 	private TopicInsertService topicInsertService;
 
 	@Autowired
-	private TopicListService topicListService;
-
-	@Autowired
-	private PlayerListService playerListService;
-
-	@Autowired
 	private PlayerUpdateService playerUpdateService;
+
+	@Autowired
+	private TopicUpdateService topicUpdateService;
 
 	/**
 	 * 入力画面表示メソッド.
@@ -47,12 +41,8 @@ public class TopicInsertController {
 			@ModelAttribute("topic") TopicForm topicForm) {
 
 		// 入力画面を出すだけ
-		List<TopicEntity> topicList = topicListService.selectAll();
-		List<PlayerEntity> playerList = playerListService.selectAll();
 		PlayerEntity playerEntity = playerUpdateService.getPlayer(playerId);
 
-		model.addAttribute("topicList", topicList);
-		model.addAttribute("playerList", playerList);
 		model.addAttribute("player", playerEntity);
 
 		return "admin/topic/insert/input";
@@ -84,7 +74,8 @@ public class TopicInsertController {
 	 * @return
 	 */
 	@RequestMapping(value = "topic/insert/complete", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result,
+	public String insert(@RequestParam("id") Integer playerId, Model model,
+			@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
 		if (result.hasErrors()) {
@@ -93,10 +84,10 @@ public class TopicInsertController {
 
 		// フォームからエンティティへの変換
 		TopicEntity topic = new TopicEntity();
+
 		topic.setId(topicForm.getId());
-		
+		topic.setPlayer(playerUpdateService.getPlayer(playerId));
 		topic.setTopic(topicForm.getTopic());
-		
 
 		// 登録処理
 		topicInsertService.insert(topic);
@@ -110,12 +101,11 @@ public class TopicInsertController {
 	 * 登録完了画面.
 	 */
 	@RequestMapping(value = "topic/insert/complete", method = { RequestMethod.GET })
-	public String complete(@RequestParam("id") Integer playerId, Model model,
-			@ModelAttribute("topic") @Validated TopicForm topicForm) {
+	public String complete(Model model, @ModelAttribute("topic") TopicForm topicForm) {
 
-		PlayerEntity playerEntity = playerUpdateService.getPlayer(playerId);
+		TopicEntity topicEntity = topicUpdateService.getTopic(topicForm.getId());
 
-		model.addAttribute("player", playerEntity);
+		model.addAttribute("topic", topicEntity);
 		// 画面を表示するだけ
 		return "admin/topic/insert/complete";
 	}

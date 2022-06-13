@@ -17,13 +17,10 @@ public class TopicInsertService {
 	private TopicRepository topicRepository;
 
 	public TopicEntity insert(TopicEntity topic) {
+		topic.setInvalidFlg(false);
+		topic.setVersion(1);
 		TopicEntity result = topicRepository.save(topic);
 		return result;
 	}
-
-	public TopicEntity getTopic(Integer id) {
-		TopicEntity topic = topicRepository.findById(id).orElse(null);
-		return topic;
-	}
-
+	
 }

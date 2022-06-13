@@ -12,12 +12,12 @@ import jp.co.taxis.funsite.repository.TopicRepository;
 @Transactional
 @Service
 public class TopicListService {
-	
+
 	@Autowired
 	private TopicRepository topicRepository;
 
-	public List<TopicEntity> selectAll() {
-		List<TopicEntity> topicList = topicRepository.findAll();
+	public List<TopicEntity> selectByPlayerId(Integer playerId) {
+		List<TopicEntity> topicList = topicRepository.selectByPlayerId(playerId);
 		return topicList;
 	}
 

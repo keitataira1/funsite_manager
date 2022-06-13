@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.entity.TopicEntity;
-import jp.co.taxis.funsite.service.PlayerListService;
 import jp.co.taxis.funsite.service.PlayerUpdateService;
 import jp.co.taxis.funsite.service.TopicListService;
 
@@ -23,10 +22,7 @@ public class TopicListController {
 
 	@Autowired
 	private TopicListService topicListService;
-	
-	@Autowired
-	private PlayerListService playerListService;
-	
+
 	@Autowired
 	private PlayerUpdateService playerUpdateService;
 
@@ -38,9 +34,9 @@ public class TopicListController {
 	 */
 
 	@RequestMapping(value = "topic/list", method = { RequestMethod.GET })
-	public String list(@RequestParam("id") Integer playerId,Model model) {
-		List<TopicEntity> topicList = topicListService.selectAll();
-		List<PlayerEntity> playerList = playerListService.selectAll();
+	public String list(@RequestParam("id") Integer playerId, Model model) {
+		List<TopicEntity> topicList = topicListService.selectByPlayerId(playerId);
+
 		PlayerEntity playerEntity = playerUpdateService.getPlayer(playerId);
 		if (topicList.isEmpty()) {
 			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
@@ -48,7 +44,7 @@ public class TopicListController {
 		}
 
 		model.addAttribute("topicList", topicList);
-		model.addAttribute("playerList", playerList);
+
 		model.addAttribute("player", playerEntity);
 		return "admin/topic/list";
 
