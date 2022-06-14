@@ -11,8 +11,8 @@ import jp.co.taxis.funsite.entity.TopicEntity;
 
 @Repository
 public interface TopicRepository extends JpaRepository<TopicEntity, Integer> {
-	
+
 	@Query("SELECT t FROM TopicEntity t WHERE player_id = :playerId")
 	public List<TopicEntity> selectByPlayerId(@Param("playerId") Integer playerId);
-	
+
 }

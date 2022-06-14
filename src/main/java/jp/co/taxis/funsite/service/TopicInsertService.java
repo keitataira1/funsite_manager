@@ -14,6 +14,12 @@ public class TopicInsertService {
 	@Autowired
 	private TopicRepository topicRepository;
 
+	/**
+	 * insertメソッド
+	 * 
+	 * @param topic
+	 * @return
+	 */
 	public TopicEntity insert(TopicEntity topic) {
 		topic.setInvalidFlg(false);
 		topic.setVersion(1);

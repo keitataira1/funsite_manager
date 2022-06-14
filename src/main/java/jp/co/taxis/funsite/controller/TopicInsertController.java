@@ -92,6 +92,10 @@ public class TopicInsertController {
 		// 登録処理
 		topicInsertService.insert(topic);
 		topicForm.setId(topic.getId());
+		topicForm.setPlayer(topic.getPlayer());
+		topicForm.setTopic(topic.getTopic());
+		topicForm.setInvalidFlg(topic.getInvalidFlg());
+		topicForm.setVersion(topic.getVersion());
 
 		redirectAttrs.addFlashAttribute("topic", topicForm);
 		return "redirect:complete";

@@ -18,11 +18,22 @@ public class TopicUpdateService {
 	@Autowired
 	private TopicRepository topicRepository;
 	
+	/**
+	 * getTopicメソッド
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public TopicEntity getTopic(Integer id) {
 		TopicEntity topic = topicRepository.findById(id).orElse(null);
 		return topic;
 	}
 	
+	/**
+	 * updateメソッド
+	 * 
+	 * @param topic
+	 */
 	public void update(TopicEntity topic) {
 
 		try {
