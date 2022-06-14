@@ -1,4 +1,4 @@
-package jp.co.taxis.funsite;
+package jp.co.taxis.funsite.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
