@@ -10,6 +10,6 @@ import jp.co.taxis.funsite.entity.MemberEntity;
 
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Integer> {
-	@Query("SELECT m FROM MemberEntity m WHERE m.name LIKE :memberName and m.displayName LIKE :memberName")
-	public List<MemberEntity> selectLikeName(@Param("memberName") String memberName);
+	@Query("SELECT m FROM MemberEntity m WHERE m.name LIKE :searchName OR m.displayName LIKE :searchName")
+	public List<MemberEntity> selectLikeName(@Param("searchName") String searchName);
 }
