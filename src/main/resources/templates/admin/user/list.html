@@ -21,22 +21,15 @@
         </ul>
     </nav>
         <main>
-        <form th:action="@{/admin/user/list}" method="post" th:object="${member}">
+        <form th:action="@{/admin/user/search}" method="post" th:object="${search}">
             <div style="width:100%;">
                 <div>
-                    <input type="text" />
-                    <input type="submit" value="検索" />
-                    <!-- <tr th:each="member : ${memberSearchList}">
-                            <td th:text="${member.name}"></td>
-                            <td th:text="${member.displayName}"></td>
-                            <td th:text="${member.mailAddress}"></td>
-                            <td th:text="${member.invalidFlg}"></td> </tr> -->
-                   
-                     
-                </div>
                 
+                    <input type="text" th:field="*{searchWord}"/>
+                    <input type="submit" value="検索" />
+                    
                 <div th:text="${completeMessage}"></div>
-               
+                    
                 <div style="margin-top: 20px;">
                     <table>
                         <tr>
@@ -62,11 +55,24 @@
                             <td th:text="${member.mailAddress}"></td>                                                        
                             <td th:text="${member.invalidFlg==true}? 無効:有効"></td>                                                       
                             <td><a th:href="@{/admin/user/input(id=${member.id})}">編集</a></td>
-                        </tr>
+                        </tr>                                                    
+                    
+                    
+                    	<tr th:each="search : ${searchList}">
+                            <td th:text="${search.name}"></td>
+                            <td th:text="${search.displayName}"></td>
+                            <td th:text="${search.mailAddress}"></td>                                                        
+                            <td th:text="${search.invalidFlg==true}? 無効:有効"></td>                                                       
+                            <td><a th:href="@{/admin/user/input(id=${search.id})}">編集</a></td>
+                    	</tr>
                     </table>
+                </div>    
                 </div>
-            </div>
-            </form>
+                
+                
+            </div> 
+        </form>       
+               
         </main>
 
 </body>

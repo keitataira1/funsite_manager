@@ -21,9 +21,9 @@ public class MemberListService {
 			return memberList;
 		}
 	
-		public List<MemberEntity> selectLikeName(String searchCondition) {
-			List<MemberEntity> member = memberRepository.selectLikeName("%" + searchCondition + "%");
-			return member;
+		public List<MemberEntity> selectLikeName(String searchWord) {
+			List<MemberEntity> searchList = memberRepository.selectLikeName("%"+searchWord+"%");
+			return searchList;
 		}
 		
 	}
