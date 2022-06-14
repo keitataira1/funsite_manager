@@ -15,6 +15,7 @@ public class PlayerInsertService {
 	private PlayerRepository playerRepository;
 
 	public PlayerEntity insert(PlayerEntity player) {
+		player.setVersion(1);
 		PlayerEntity result = playerRepository.save(player);
 		return result;
 
