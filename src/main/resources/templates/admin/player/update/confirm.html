@@ -55,7 +55,7 @@
               		<input type="hidden" th:field="*{image}" />
               		<input type="hidden" th:field="*{version}" />
 		
-                    <a th:href="@{/admin/player/update/input}">キャンセル</a><input type="submit" value="登録" />
+                    <a th:href="@{/admin/player/update/input(id=${player.id})}">キャンセル</a><input type="submit" value="登録" />
                 </div>
             </div>
         </form>
