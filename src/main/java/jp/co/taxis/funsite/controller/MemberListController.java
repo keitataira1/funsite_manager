@@ -29,13 +29,6 @@ public class MemberListController {
 	/**
 	 * 一覧画面
 	 */
-
-	// 平良さんコメント
-	// selectLikeName()の()内はgetで取得する
-	// 新しく検索用のFormクラスを作る
-	// memberList以外のmodeladdAttribute?を作ってThymeleafに渡す
-	// htmlの検索フォームにはth:objectを利用
-
 	@RequestMapping(value = "/user/list", method = { RequestMethod.GET })
 	public String list(@ModelAttribute("search") SearchForm searchForm,Model model) {
 
