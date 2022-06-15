@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.taxis.funsite.entity.UserEntity;
 
-
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
