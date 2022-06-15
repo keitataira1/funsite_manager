@@ -10,9 +10,9 @@
 <body>
     <main>
         <div style="text-align: left;">
-            [[${name}]]選手のトピック管理
+            [[${player.name}]]選手のトピック管理
         </div>
-        <form th:action="@{/admin/player/update/update}" method="post" th:object="${topic}">
+        <form th:action="@{/admin/topic/update/update}" method="post" th:object="${topic}">
             <div>
                 <table>
                     <tr>
@@ -23,14 +23,15 @@
 
                     </tr>
                 </table>
-                <input type="hidden" th:field="*{topic.topic}" />
-                <input type="hidden" th:field="*{id}" />
-                <input type="hidden" th:field="*{player}" />
-                <input type="hidden" th:field="*{invalidFlg}" />
-				<input type="hidden" th:field="*{version}" />
-				
                 <div>
-                    <a th:href="@{/admin/topic/update/input}">キャンセル</a><input type="submit" value="更新" />
+                    
+                    <input type="hidden" th:field="*{id}" />
+                    <input type="hidden" th:field="*{player}" />
+                    <input type="hidden" th:field="*{topic}" />
+				    <input type="hidden" th:field="*{invalidFlg}" />
+                    <input type="hidden" th:field="*{version}" />
+                    
+                    <a th:href="@{/admin/topic/update/input(id=${topic.id})}">キャンセル</a><input type="submit" value="更新" />
                 </div>
             </div>
         </form>

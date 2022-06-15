@@ -27,7 +27,7 @@ public class TopicForm {
 	@NotNull
 	private String topic;
 	
-	private Boolean invalidFlg;
+	private String invalidFlg;
 
 	private Integer version;
 

@@ -1,7 +1,5 @@
 package jp.co.taxis.funsite.service;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
@@ -14,10 +12,10 @@ import jp.co.taxis.funsite.repository.TopicRepository;
 @Transactional
 @Service
 public class TopicUpdateService {
-	
+
 	@Autowired
 	private TopicRepository topicRepository;
-	
+
 	/**
 	 * getTopicメソッド
 	 * 
@@ -28,11 +26,12 @@ public class TopicUpdateService {
 		TopicEntity topic = topicRepository.findById(id).orElse(null);
 		return topic;
 	}
-	
+
 	/**
 	 * updateメソッド
 	 * 
 	 * @param topic
+	 * @return
 	 */
 	public void update(TopicEntity topic) {
 
@@ -41,6 +40,7 @@ public class TopicUpdateService {
 		} catch (OptimisticLockingFailureException e) {
 			throw new ApplicationException("optimistic.locking.error");
 		}
+
 	}
 
 }
