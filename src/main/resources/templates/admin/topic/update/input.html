@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>トピック入力</title>
+    <title>トピック更新入力</title>
     <link rel="stylesheet" href="../../../css/common.css" />
 </head>
 
@@ -22,9 +22,9 @@
     </nav>
     <main>
         <div style="text-align: left;">
-            [[${name}]]選手のトピック管理
+            [[${topic.player.name}]]選手のトピック管理
         </div>
-        <form th:action="@{/admin/player/update/confirm}" method="post" th:object="${topic}">
+        <form th:action="@{/admin/topic/update/confirm}" method="post" th:object="${topic}">
             <div>
                 <table style="text-align: left;">
                     <tr>
@@ -36,20 +36,21 @@
                     </tr>
                     <tr>
                         <td>無効</td>
-                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" th:field="*{invalidFlg}" value="invalid"/></td>
                     </tr>
                 </table>
-                <div th:if="${#fields.hasErrors('topic')}" th:errors="*{topic}"></div>
-                
-                <input type="hidden" th:field="*{id}" />
-                <input type="hidden" th:field="*{player}" />
-                <input type="hidden" th:field="*{invalidFlg}" />
-				<input type="hidden" th:field="*{version}" />
+                <div th:if="${#fields.hasErrors('topic')}" th:errors="*{topic}"></div>                              
 				
                 <div>
                     <input type="submit" value="確認" />
                 </div>
             </div>
+              
+                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{player}" />
+                <input type="hidden" th:field="*{version}" />
+                
+                
         </form>
     </main>
 </body>
