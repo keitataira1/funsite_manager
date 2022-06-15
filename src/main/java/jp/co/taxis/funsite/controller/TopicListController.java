@@ -39,7 +39,7 @@ public class TopicListController {
 
 		PlayerEntity playerEntity = playerUpdateService.getPlayer(playerId);
 		if (topicList.isEmpty()) {
-			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
+			String message = messageSource.getMessage("topic.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
 

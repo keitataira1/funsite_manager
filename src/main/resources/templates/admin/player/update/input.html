@@ -24,7 +24,6 @@
 						<td>選手名</td>
 						<td style="text-align: left;"><input type="text"
 							th:field="*{name}" /></td>
-
 					</tr>
 					<tr>
 						<td>生年月日</td>
@@ -58,9 +57,9 @@
 				<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
 				<div th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
 
-
-				<input type="hidden" th:field="*{id}" />
-				<input type="hidden" th:field="*{version}" />
+                    <input type="hidden" th:field="*{id}" />
+           			 <input type="hidden" th:field="*{version}" />
+				
 				
 				<div>
 					<input type="submit" value="確認" />
