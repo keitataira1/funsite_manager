@@ -1,6 +1,6 @@
 package jp.co.taxis.funsite.service;
 
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
@@ -25,11 +25,14 @@ public class PlayerUpdateService {
 
 	public void update(PlayerEntity player) {
 
+		List<PlayerEntity> searchList = playerRepository.searchSameName(player.getName());
+		if (!searchList.isEmpty()) {
+			throw new ApplicationException("player.samename.error");
+		}
 		try {
 			playerRepository.save(player);
 		} catch (OptimisticLockingFailureException e) {
 			throw new ApplicationException("optimistic.locking.error");
 		}
-
 	}
 }
