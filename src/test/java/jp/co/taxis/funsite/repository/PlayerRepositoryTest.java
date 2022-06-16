@@ -1,4 +1,4 @@
-package jp.co.taxis.funsite.Repository;
+package jp.co.taxis.funsite.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
