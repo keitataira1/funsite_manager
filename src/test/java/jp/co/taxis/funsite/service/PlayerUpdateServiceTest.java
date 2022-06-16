@@ -3,6 +3,8 @@ package jp.co.taxis.funsite.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -51,15 +53,17 @@ import jp.co.taxis.funsite.repository.PlayerRepository;
 		
 		@Test
 		void testUpdate_002_異常系() {
+			
+			PlayerEntity mockArg1 = new PlayerEntity(1, "山田太郎", null, "test", "aaa", null, 1);
 
 			// モックの引数
-			PlayerEntity mockArg1 = new PlayerEntity(1, "山田太郎", null, "test", "aaa", null, 1);
+			List<PlayerEntity> test = playerRepository.searchSameName(mockArg1.getName());
 			// モックの設定
-			when(playerRepository.save(mockArg1))
+			when(!test.isEmpty())
 			.thenThrow(new ApplicationException("player.samename.error"));
 
 			// テスト対象の引数
-			PlayerEntity targetArg1 = new PlayerEntity(1, "山田太郎", null, "test", "aaa", null, 1);
+			PlayerEntity targetArg1 = new PlayerEntity(2, "山田太郎", null, "test2", "bbb", null, 1);
 
 			// 期待値
 			String expected = "player.samename.error";
