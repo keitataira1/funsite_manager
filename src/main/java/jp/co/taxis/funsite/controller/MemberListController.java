@@ -47,7 +47,7 @@ public class MemberListController {
 	
 
 	@RequestMapping(value = "/user/search", method = { RequestMethod.POST })
-	public String list(@ModelAttribute("search") SearchForm searchForm, BindingResult result, Model model) {
+	public String searchList(@ModelAttribute("search") SearchForm searchForm, BindingResult result, Model model) {
 		
 		if (result.hasErrors()) {
 			return "/admin/user/list";
