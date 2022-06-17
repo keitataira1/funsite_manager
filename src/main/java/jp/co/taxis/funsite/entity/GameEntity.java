@@ -27,8 +27,8 @@ public class GameEntity {
 	@Column(name = "datetime")
 	private LocalDate datetime;
 
-	@Column(name = "team")
-	private String team;
+	@Column(name = "match_team")
+	private String matchTeam;
 
 	@Column(name = "place")
 	private String place;

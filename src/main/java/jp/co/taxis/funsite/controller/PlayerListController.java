@@ -26,8 +26,8 @@ public class PlayerListController {
 
 	/**
 	 * 一覧画面
+	 * 
 	 */
-
 	@RequestMapping(value = "player/list", method = { RequestMethod.GET })
 	public String list(Model model) {
 
