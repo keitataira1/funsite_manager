@@ -16,15 +16,15 @@ public class PlayerForm {
 	private Integer id;
 
 	@NotNull
-	@Pattern(regexp = ".{0,10}")
+	@Pattern(regexp = ".{1,10}")
 	private String name;
 
 	private String birthday;
 
-	@Pattern(regexp = ".{0,10}")
+	@Pattern(regexp = ".{1,10}")
 	private String position;
 
-	@Pattern(regexp = ".{0,100}")
+	@Pattern(regexp = ".{1,100}")
 	private String comment;
 
 	private String image;

@@ -80,7 +80,7 @@ public class MemberUpdateController {
 			String messageKey = e.getMessage();
 			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
 			redirectAttrs.addFlashAttribute("message", message);
-			return "redirect:../list";
+			return "redirect:/admin/user/input";
 		}
 		redirectAttrs.addFlashAttribute("completeMessage", "更新が完了しました。");
 		return "redirect:/admin/user/list";

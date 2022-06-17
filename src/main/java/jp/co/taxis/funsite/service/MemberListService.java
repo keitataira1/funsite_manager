@@ -26,4 +26,6 @@ public class MemberListService {
 			return searchList;
 		}
 		
+		
+		
 	}

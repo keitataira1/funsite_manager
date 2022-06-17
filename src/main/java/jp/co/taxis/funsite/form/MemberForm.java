@@ -39,7 +39,7 @@ public class MemberForm {
 	@Pattern(regexp = ".{1,10}")
 	private String postNumber;
 
-	@Pattern(regexp = ".{0,50}")
+	@Pattern(regexp = ".{1,50}")
 	private String address;
 
 	

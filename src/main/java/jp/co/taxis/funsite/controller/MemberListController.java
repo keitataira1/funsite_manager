@@ -34,7 +34,7 @@ public class MemberListController {
 
 		List<MemberEntity> memberList = memberListService.selectAll();
 		if (memberList.isEmpty()) {
-			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
+			String message = messageSource.getMessage("memberList.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
 
@@ -55,7 +55,12 @@ public class MemberListController {
 
 		List<MemberEntity> searchList = memberListService.selectLikeName(searchForm.getSearchWord());
 		if (searchList.isEmpty()) {
-			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
+			String message = messageSource.getMessage("memberSearch.empty.error", null, Locale.getDefault());
+			model.addAttribute("message", message);
+		}
+		if(searchList.size()>100) {
+			searchList = null;
+			String message = messageSource.getMessage("memberSearchOver.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
 

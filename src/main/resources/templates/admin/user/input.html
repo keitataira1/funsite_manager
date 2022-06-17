@@ -86,7 +86,7 @@
                 </tr>
 
             </table>
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+            	<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 				<div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div>
 				<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 				<div th:if="${#fields.hasErrors('displayName')}" th:errors="*{displayName}"></div>
@@ -98,9 +98,10 @@
 				<input type="hidden" th:field="*{id}" />
 				<input type="hidden" th:field="*{version}" />
 				
+				<span th:if="message">[[${message}]]</span>
 				
             <div>
-                <a th:href="@{/admin/user/list}">キャンセル</a><input type="submit" value="登録" />
+                <a th:href="@{/admin/user/list}">キャンセル</a><input type="submit" value="更新" />
             </div>
         </form>
     </main>

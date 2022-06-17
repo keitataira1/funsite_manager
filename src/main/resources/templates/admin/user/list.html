@@ -23,6 +23,7 @@
         <main>
         <form th:action="@{/admin/user/search}" method="post" th:object="${search}">
             <div style="width:100%;">
+            <span th:if="message">[[${message}]]</span>
                 <div>
                 
                     <input type="text" th:field="*{searchWord}"/>
