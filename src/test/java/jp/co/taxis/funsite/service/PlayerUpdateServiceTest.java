@@ -57,13 +57,13 @@ import jp.co.taxis.funsite.repository.PlayerRepository;
 			PlayerEntity mockArg1 = new PlayerEntity(1, "山田太郎", null, "test", "aaa", null, 1);
 
 			// モックの引数
-			List<PlayerEntity> test = playerRepository.searchSameName(mockArg1.getName());
+			List<PlayerEntity> test = playerRepository.searchSameNameId(mockArg1.getName(),mockArg1.getId());
 			// モックの設定
 			when(!test.isEmpty())
 			.thenThrow(new ApplicationException("player.samename.error"));
 
 			// テスト対象の引数
-			PlayerEntity targetArg1 = new PlayerEntity(2, "山田太郎", null, "test2", "bbb", null, 1);
+			PlayerEntity targetArg1 = new PlayerEntity(1, "山田太郎", null, "test2", "bbb", null, 1);
 
 			// 期待値
 			String expected = "player.samename.error";

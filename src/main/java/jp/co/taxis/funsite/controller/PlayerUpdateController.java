@@ -6,7 +6,9 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,7 +72,7 @@ public class PlayerUpdateController {
 	 * @return redirect
 	 */
 	@RequestMapping(value = "/player/update/update", method = { RequestMethod.POST })
-	public String update(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
+	public String update(Model model,@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
 		if (result.hasErrors()) {
@@ -90,11 +92,16 @@ public class PlayerUpdateController {
 		try {
 			// 更新処理
 			playerUpdateService.update(player);
-		} catch (ApplicationException e) {
+		} catch (OptimisticLockingFailureException e) {
 			String messageKey = e.getMessage();
 			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
 			redirectAttrs.addFlashAttribute("message", message);
 			return "redirect:../list";
+		}catch (ApplicationException e) {
+			String messageKey = e.getMessage();
+			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+			model.addAttribute("message", message);
+			return "admin/player/update/input";
 		}
 		
 

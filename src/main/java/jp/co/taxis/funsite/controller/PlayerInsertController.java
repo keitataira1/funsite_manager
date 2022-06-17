@@ -25,7 +25,7 @@ public class PlayerInsertController {
 
 	@Autowired
 	private PlayerInsertService playerInsertService;
-	
+
 	@Autowired
 	MessageSource messageSource;
 
@@ -80,7 +80,7 @@ public class PlayerInsertController {
 		player.setImage(playerForm.getImage());
 
 		// 登録処理
-		
+
 		try {
 			// 更新処理
 			playerInsertService.insert(player);
@@ -91,15 +91,15 @@ public class PlayerInsertController {
 			redirectAttrs.addFlashAttribute("message", message);
 			return "redirect:../list";
 		}
-		
 
 		redirectAttrs.addFlashAttribute("player", playerForm);
 		return "redirect:complete";
 
 	}
-/**
- * 登録完了画面
- */
+
+	/**
+	 * 登録完了画面
+	 */
 	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.GET })
 	public String complete() {
 		// 画面を表示するだけなので処理はなし。

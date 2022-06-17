@@ -56,6 +56,7 @@
 				<div th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></div>
 				<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
 				<div th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
+				<span th:if="message">[[${message}]]</span>
 
                     <input type="hidden" th:field="*{id}" />
            			 <input type="hidden" th:field="*{version}" />
