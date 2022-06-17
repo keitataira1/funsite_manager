@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/security/tags">
+<head>
+<meta charset="UTF-8">
+<title>商品一覧</title>
+    <link rel="stylesheet" href="../../css/common.css" />
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a th:href="@{/admin/menu}">メニュー</a>
+            </li>
+            <li>
+                <a th:href="@{/admin/login}">ログアウト</a>
+            </li>
+            <li class="clear">
+            </li>
+        </ul>
+    </nav>
+        <main>
+        <form th:action="@{/admin/item/search}" method="post" th:object="${search}">
+            <div style="width:100%;">
+            <span th:if="message">[[${message}]]</span>
+                <div>
+                
+                    <input type="text" th:field="*{searchItem}"/>
+                    <input type="submit" value="検索" />
+                    
+                <div th:text="${completeMessage}"></div>
+                    
+                <div style="margin-top: 20px;">
+                    <table>
+                        <tr>
+                            <td>
+                                氏名
+                            </td>
+                            <td>
+                                会員名
+                            </td>
+                            <td>
+                                メールアドレス
+                            </td>
+                            <td>
+                                有効／無効
+                            </td>
+                            <td>
+                                編集
+                            </td>
+                        </tr>
+                        <tr th:each="member : ${memberList}">
+                            <td th:text="${member.name}"></td>
+                            <td th:text="${member.displayName}"></td>
+                            <td th:text="${member.mailAddress}"></td>                                                        
+                            <td th:text="${member.invalidFlg==true}? 無効:有効"></td>                                                       
+                            <td><a th:href="@{/admin/user/input(id=${member.id})}">編集</a></td>
+                        </tr>                                                    
+                    
+                    
+                    	<tr th:each="search : ${searchList}">
+                            <td th:text="${search.name}"></td>
+                            <td th:text="${search.displayName}"></td>
+                            <td th:text="${search.mailAddress}"></td>                                                        
+                            <td th:text="${search.invalidFlg==true}? 無効:有効"></td>                                                       
+                            <td><a th:href="@{/admin/user/input(id=${search.id})}">編集</a></td>
+                    	</tr>
+                    </table>
+                </div>    
+                </div>
+                
+                
+            </div> 
+        </form>       
+               
+        </main>
+
+</body>
+
+</html>
