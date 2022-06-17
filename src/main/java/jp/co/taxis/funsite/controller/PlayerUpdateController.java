@@ -69,7 +69,7 @@ public class PlayerUpdateController {
 	 * 
 	 * @return redirect
 	 */
-	@RequestMapping(value = "/player/update/update", method = { RequestMethod.POST })
+	@RequestMapping(value = "/player/update/complete", method = { RequestMethod.POST })
 	public String update(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
