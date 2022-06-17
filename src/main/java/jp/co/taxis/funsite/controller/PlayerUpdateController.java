@@ -71,13 +71,8 @@ public class PlayerUpdateController {
 	 * 
 	 * @return redirect
 	 */
-<<<<<<< HEAD
 	@RequestMapping(value = "/player/update/update", method = { RequestMethod.POST })
 	public String update(Model model,@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
-=======
-	@RequestMapping(value = "/player/update/complete", method = { RequestMethod.POST })
-	public String update(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
->>>>>>> branch 'master' of git@github.com:keitataira1/funsite_manager.git
 			RedirectAttributes redirectAttrs) {
 
 		if (result.hasErrors()) {
