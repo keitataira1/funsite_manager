@@ -75,7 +75,7 @@ public class TopicUpdateController {
 	 * 
 	 * @return redirect
 	 */
-	@RequestMapping(value = "topic/update/update", method = { RequestMethod.POST })
+	@RequestMapping(value = "topic/update/complete", method = { RequestMethod.POST })
 	public String update(@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 

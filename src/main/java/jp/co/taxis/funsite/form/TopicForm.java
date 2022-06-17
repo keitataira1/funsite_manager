@@ -20,13 +20,13 @@ import lombok.NoArgsConstructor;
 public class TopicForm {
 
 	private Integer id;
-	
+
 	private PlayerEntity player;
 
-	@Pattern(regexp = ".{1,30}")
 	@NotNull
+	@Pattern(regexp = ".{1,30}")
 	private String topic;
-	
+
 	private String invalidFlg;
 
 	private Integer version;

@@ -6,7 +6,9 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,7 +55,7 @@ public class MemberUpdateController {
 	 * 更新処理（DBに送る）
 	 */
 	@RequestMapping(value = "/user/update", method = { RequestMethod.POST })
-	public String update(@ModelAttribute("member") @Validated MemberForm memberForm, BindingResult result,
+	public String update(Model model,@ModelAttribute("member") @Validated MemberForm memberForm, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
 		if (result.hasErrors()) {
@@ -76,12 +78,18 @@ public class MemberUpdateController {
 		try {
 			// 更新処理
 			memberUpdateService.update(member);
-		} catch (ApplicationException e) {
+		} catch (OptimisticLockingFailureException e) {
 			String messageKey = e.getMessage();
 			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
 			redirectAttrs.addFlashAttribute("message", message);
-			return "redirect:/admin/user/input";
+			return "redirect:/admin/user/list";
+		}catch (ApplicationException e) {
+			String messageKey = e.getMessage();
+			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+			model.addAttribute("message", message);
+			return "/admin/user/input";
 		}
+		
 		redirectAttrs.addFlashAttribute("completeMessage", "更新が完了しました。");
 		return "redirect:/admin/user/list";
 
