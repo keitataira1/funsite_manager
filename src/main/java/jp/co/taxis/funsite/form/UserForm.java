@@ -7,28 +7,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//手直し・追加必要？
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlayerForm {
-
+public class UserForm {
 	private Integer id;
 
 	@NotNull
+	@Pattern(regexp = ".{0,20}")
+	private String login_id;
+
+	@NotNull
 	@Pattern(regexp = ".{0,10}")
-	private String name;
+	private String password;
 
-	private String birthday;
+	@NotNull
+	private String role;
 
-	@Pattern(regexp = ".{0,10}")
-	private String position;
-
-	@Pattern(regexp = ".{0,100}")
-	private String comment;
-
-	private String image;
-
-	private Integer version;
-
+	@NotNull
+    private Integer version;
 }
+

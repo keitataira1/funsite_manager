@@ -62,7 +62,7 @@ public class PlayerInsertController {
 	 * 
 	 * @return redirect
 	 */
-	@RequestMapping(value = "/player/insert/insert", method = { RequestMethod.POST })
+	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.POST })
 	public String insert(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
