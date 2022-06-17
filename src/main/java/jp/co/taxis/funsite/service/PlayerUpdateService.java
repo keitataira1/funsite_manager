@@ -25,7 +25,7 @@ public class PlayerUpdateService {
 
 	public void update(PlayerEntity player) {
 
-		List<PlayerEntity> searchList = playerRepository.searchSameName(player.getName());
+		List<PlayerEntity> searchList = playerRepository.searchSameNameId(player.getName(),player.getId());
 		if (!searchList.isEmpty()) {
 			throw new ApplicationException("player.samename.error");
 		}
