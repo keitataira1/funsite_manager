@@ -34,6 +34,5 @@ public class MemberUpdateService {
 		} catch (OptimisticLockingFailureException e) {
 			throw new ApplicationException("optimistic.locking.error");
 		}
-		
 	}
 }
