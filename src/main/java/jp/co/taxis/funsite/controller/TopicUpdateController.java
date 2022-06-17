@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -75,8 +76,8 @@ public class TopicUpdateController {
 	 * 
 	 * @return redirect
 	 */
-	@RequestMapping(value = "topic/update/complete", method = { RequestMethod.POST })
-	public String update(@ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result,
+	@RequestMapping(value = "topic/update/update", method = { RequestMethod.POST })
+	public String update(Model model, @ModelAttribute("topic") @Validated TopicForm topicForm, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
 		if (result.hasErrors()) {
@@ -95,11 +96,18 @@ public class TopicUpdateController {
 		try {
 			// 更新処理
 			topicUpdateService.update(topic);
-		} catch (ApplicationException e) {
+
+		} catch (OptimisticLockingFailureException e) {
 			String messageKey = e.getMessage();
 			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
 			redirectAttrs.addFlashAttribute("message", message);
 			return "redirect:../list";
+		} catch (ApplicationException e) {
+			String messageKey = e.getMessage();
+			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+			model.addAttribute("message", message);
+			return "admin/topic/update/input";
+
 		}
 
 		redirectAttrs.addFlashAttribute("topic", topicForm);

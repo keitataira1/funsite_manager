@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>選手入力確認</title>
+    <title>トピック更新確認</title>
     <link rel="stylesheet" href="../../../css/common.css" />
 </head>
 
@@ -12,7 +12,7 @@
         <div style="text-align: left;">
             [[${player.name}]]選手のトピック管理
         </div>
-        <form th:action="@{/admin/topic/update/complete}" method="post" th:object="${topic}">
+        <form th:action="@{/admin/topic/update/update}" method="post" th:object="${topic}">
             <div>
                 <table>
                     <tr>

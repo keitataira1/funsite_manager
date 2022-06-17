@@ -50,7 +50,7 @@
                 <input type="hidden" th:field="*{player}" />
                 <input type="hidden" th:field="*{version}" />
                 
-                
+                <span th:if="message">[[${message}]]</span>
         </form>
     </main>
 </body>
