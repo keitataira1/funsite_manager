@@ -35,7 +35,7 @@ public class ItemListController {
 
 		List<ItemEntity> itemList = itemListService.selectAll();
 		if (itemList.isEmpty()) {
-			String message = messageSource.getMessage("list.empty.error", null, Locale.getDefault());
+			String message = messageSource.getMessage("itemList.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
 		model.addAttribute("itemList", itemList);
@@ -45,24 +45,19 @@ public class ItemListController {
 	
 
 	@RequestMapping(value = "/item/search", method = { RequestMethod.POST })
-	public String searchList(@ModelAttribute("search") SearchForm searchForm, BindingResult result, Model model) {
+	public String searchList(@ModelAttribute("itemSearch") SearchForm searchForm, BindingResult result, Model model) {
 		
 		if (result.hasErrors()) {
 			return "/admin/item/list";
 		}
 
-		List<ItemEntity> searchList = itemListService.selectLikeItem(searchForm.getSearchItem());
-		if (searchList.isEmpty()) {
+		List<ItemEntity> itemSearchList = itemListService.selectLikeItem(searchForm.getSearchItem());
+		if (itemSearchList.isEmpty()) {
 			String message = messageSource.getMessage("itemSearch.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
-		if(searchList.size()>100) {
-			searchList = null;
-			String message = messageSource.getMessage("itemSearchOver.empty.error", null, Locale.getDefault());
-			model.addAttribute("message", message);
-		}
 
-		model.addAttribute("searchList", searchList);
+		model.addAttribute("itemSearchList", itemSearchList);
 
 		return "/admin/item/list";
 
