@@ -51,7 +51,7 @@ public class ItemListController {
 			return "/admin/item/list";
 		}
 
-		List<ItemEntity> itemSearchList = itemListService.selectLikeItem(searchForm.getSearchItem());
+		List<ItemEntity> itemSearchList = itemListService.selectLikeItemName(searchForm.getSearchItem());
 		if (itemSearchList.isEmpty()) {
 			String message = messageSource.getMessage("itemSearch.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);

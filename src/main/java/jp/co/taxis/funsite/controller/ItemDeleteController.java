@@ -26,9 +26,10 @@ public class ItemDeleteController {
 	public String confirm(@ModelAttribute("item") ItemForm itemForm, Model model) {
 
 		ItemEntity item = itemDeleteService.getItem(itemForm.getId());
-		item.setName(itemForm.getName());
-		item.setPrice(itemForm.getPrice());
-		item.setGame(itemForm.getGame());
+		itemForm.setId(item.getId());
+		itemForm.setName(item.getName());
+		itemForm.setPrice(item.getPrice());
+		itemForm.setGame(item.getGame());
 
 		return "admin/item/delete";
 	}

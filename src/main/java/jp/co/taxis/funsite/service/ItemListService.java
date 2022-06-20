@@ -17,13 +17,13 @@ public class ItemListService {
 	private ItemRepository itemRepository;
 
 	public List<ItemEntity> selectAll() {
-		List<ItemEntity> ItemList = itemRepository.findAll();
-		return ItemList;
+		List<ItemEntity> itemList = itemRepository.findAll();
+		return itemList;
 	}
 	
-	public List<ItemEntity> selectLikeItem(String searchItem) {
-		List<ItemEntity> searchList = itemRepository.searchItem("%"+searchItem+"%");
-		return searchList;
+	public List<ItemEntity> selectLikeItemName(String searchItem) {
+		List<ItemEntity> itemSearchList = itemRepository.selectLikeItemName("%"+searchItem+"%");
+		return itemSearchList;
 	}
 	
 }

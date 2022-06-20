@@ -12,6 +12,6 @@ import jp.co.taxis.funsite.entity.ItemEntity;
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity, Integer>{
 	@Query("SELECT i FROM ItemEntity i WHERE i.name LIKE :searchItem")
-	public List<ItemEntity> searchItem(@Param("searchItem") String searchItem);
+	public List<ItemEntity> selectLikeItemName(@Param("searchItem") String searchItem);
 
 }
