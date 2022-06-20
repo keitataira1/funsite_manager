@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>商品削除</title>
+	<link rel="stylesheet" href="../../../css/common.css" />
 </head>
+
 <body>
+    <nav>
+        <ul>
+            <li>
+                <a th:href="@{/admin/menu}">メニュー</a>
+            </li>
+            <li>
+                <a th:href="@{/admin/login}">ログアウト</a>
+            </li>
+            <li class="clear">
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div>
+           [[${item.name}]]を削除します。
+        </div>
+        <div>
+           <form th:action="@{/admin/item/delete/delete}" method="post" th:object="${item}">
+           	<input type="hidden" th:field="*{id}" />
+           	<input type="hidden" th:field="*{name}" />
+           	<input type="hidden" th:field="*{price}" />
+           	<input type="hidden" th:field="*{game}" />
+           			
+                <a th:href="@{/admin/item/list}">キャンセル</a><input type="submit" value="削除" />
+            </form>
+        </div>
+    </main>
 
 </body>
+
 </html>

@@ -46,7 +46,6 @@
                         <tr th:each="item : ${itemList}">
                             <td th:text="${item.name}"></td>
                             <td th:text="${item.price}"></td>                                               
-                            <td><a th:href="@{/admin/item/input(id=${item.id})}">更新</a></td>
                             <td><a th:href="@{/admin/item/delete(id=${item.id})}">削除</a></td>
                         </tr>                                                    
                     
