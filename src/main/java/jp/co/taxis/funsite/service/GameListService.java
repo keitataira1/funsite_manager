@@ -22,8 +22,8 @@ public class GameListService {
 	}
 
 	public List<GameEntity> selectLikeMatchTeam(String searchMatchTeam) {
-		List<GameEntity> searchGameList = gameRepository.searchGameMatchTeam("%" + searchMatchTeam + "%");
-		return searchGameList;
+		List<GameEntity> searchList = gameRepository.searchGameMatchTeam("%" + searchMatchTeam + "%");
+		return searchList;
 	}
 
 }

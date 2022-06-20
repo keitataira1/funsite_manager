@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <title>会員一覧</title>
+    <link rel="stylesheet" href="../../css/common.css" />
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a th:href="@{/admin/menu}">メニュー</a>
+            </li>
+            <li>
+                <a th:href="@{/admin/login}">ログアウト</a>
+            </li>
+            <li class="clear">
+            </li>
+        </ul>
+    </nav>
+        <main>
+            <div style= "text-align: right;">
+			<a th:href="@{/admin/game/insert/input}">登録</a>
+			</div>
+        <form th:action="@{/admin/game/search}" method="post" th:object="${searchMatchTeam}">
+            <div style="width:100%;">
+            <span th:if="message">[[${message}]]</span>
+                <div>
+                
+                    <input type="text" th:field="*{searchMatchTeam}"/>
+                    <input type="submit" value="検索" />
+                    
+                <div th:text="${completeMessage}"></div>
+                    
+                <div style="margin-top: 20px;">
+                    <table>
+                        <tr>
+                            <td>
+                                試合日
+                            </td>
+                            <td>
+                                相手チーム
+                            </td>
+                            <td>
+                                会場
+                            </td>
+                        </tr>
+                        <tr th:each="game : ${gameList}">
+                            <td th:text="${game.datetime}"></td>
+                            <td th:text="${game.matchTeam}"></td>
+                            <td th:text="${game.place}"></td>                                                                                                               
+                            <td><a th:href="@{/admin/game/input(id=${game.id})}">登録</a></td>
+                        </tr>                                                    
+                    
+                    
+                    	<tr th:each="searchMatchTeam : ${searchGameList}">
+                            <td th:text="${searchMatchTeam.matchTeam}"></td>                                                       
+                    	</tr>
+                    </table>
+                </div>    
+                </div>
+                
+                
+            </div> 
+        </form>       
+               
+        </main>
+
+</body>
+
+</html>

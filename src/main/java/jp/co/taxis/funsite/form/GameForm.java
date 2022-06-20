@@ -28,7 +28,7 @@ public class GameForm {
 
 	@NotNull
 	@Pattern(regexp = ".{1,20}")
-	private String team;
+	private String matchTeam;
 
 	@NotNull
 	@Pattern(regexp = ".{1,20}")
