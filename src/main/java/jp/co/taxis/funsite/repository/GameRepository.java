@@ -13,5 +13,5 @@ import jp.co.taxis.funsite.entity.GameEntity;
 public interface GameRepository extends JpaRepository<GameEntity, Integer> {
 
 	@Query("SELECT g FROM GameEntity g WHERE g.matchTeam LIKE :searchMatchTeam")
-	public List<GameEntity> searchGameMatchTeam(@Param("searchMatchTeam") String searchMatchTeam);
+	public List<GameEntity> searchMatchTeam(@Param("searchMatchTeam") String searchMatchTeam);
 }

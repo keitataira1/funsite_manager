@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <title>会員一覧</title>
     <link rel="stylesheet" href="../../css/common.css" />
 </head>
@@ -48,10 +48,10 @@
                             </td>
                         </tr>
                         <tr th:each="game : ${gameList}">
-                            <td th:text="${game.datetime}"></td>
+                            <td th:text="${game.matchDate}"></td>
                             <td th:text="${game.matchTeam}"></td>
-                            <td th:text="${game.place}"></td>                                                                                                               
-                            <td><a th:href="@{/admin/game/input(id=${game.id})}">登録</a></td>
+                            <td th:text="${game.place}"></td>   
+                            <td><a th:href="@{/admin/game/delete(id=${game.id})}">削除</a></td>                                                                                                           
                         </tr>                                                    
                     
                     

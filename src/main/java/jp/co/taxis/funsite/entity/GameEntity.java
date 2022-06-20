@@ -24,8 +24,8 @@ public class GameEntity {
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "datetime")
-	private LocalDate datetime;
+	@Column(name = "match_date")
+	private LocalDate matchDate;
 
 	@Column(name = "match_team")
 	private String matchTeam;

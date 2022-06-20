@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="UTF-8" />
+    <title>試合入力確認</title>
+    <link rel="stylesheet" href="../../../css/common.css" />
+</head>
+
+<body>
+    <main>
+        <form th:action="@{/admin/game/insert/insert}" method="post" th:object="${game}">
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            試合日
+                        </td>
+                        <td style="text-align: left;"><span th:text="*{matchDate}"></span></td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            試合チーム
+                        </td>
+                        <td style="text-align: left;"><span th:text="*{matchTeam}"></span></td>
+                    </tr>
+                     <tr>
+                        <td>
+                            会場
+                        </td>
+                        <td style="text-align: left;"><span th:text="*{place}"></span></td>
+
+                    </tr>
+                
+                </table>
+                <div>
+					<input type="hidden" th:field="*{matchDate}" />
+					<input type="hidden" th:field="*{matchTeam}" />
+					<input type="hidden" th:field="*{place}" />
+					
+                    <a th:href="@{/admin/game/insert/input}">キャンセル</a><input type="submit" value="登録" />
+                </div>
+            </div>
+        </form>
+    </main>
 </body>
+
 </html>

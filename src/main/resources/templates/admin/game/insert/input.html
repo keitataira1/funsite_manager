@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="UTF-8" />
+    <title>試合入力</title>
+    <link rel="stylesheet" href="../../../css/common.css" />
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a th:href="@{/admin/menu}">メニュー</a>
+            </li>
+            <li>
+                <a th:href="@{/admin/login}">ログアウト</a>
+            </li>
+            <li class="clear">
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <form th:action="@{/admin/game/insert/confirm}" method="post" th:object="${game}">
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            試合日
+                        </td>
+                        <td style="text-align: left;"><input type="date" th:field="*{matchDate}"/></td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            試合チーム
+                        </td>
+                        <td style="text-align: left;"><input type="text" th:field="*{matchTeam}"/></td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            会場
+                        </td>
+                        <td style="text-align: left;"><input type="text" th:field="*{place}"/></td>
+
+                    </tr>
+
+                </table>
+                <div th:if="${#fields.hasErrors('matchDate')}" th:errors="*{matchDate}"></div>
+                <div th:if="${#fields.hasErrors('matchTeam')}" th:errors="*{matchTeam}"></div>
+                <div th:if="${#fields.hasErrors('place')}" th:errors="*{place}"></div>
+                
+                <div>
+                    <input type="submit" value="確認" />
+                </div>
+            </div>
+        </form>
+    </main>
 </body>
+
 </html>
