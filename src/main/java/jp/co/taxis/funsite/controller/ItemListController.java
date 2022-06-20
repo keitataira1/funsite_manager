@@ -30,8 +30,8 @@ public class ItemListController {
 	 * 一覧画面
 	 */
 
-	@RequestMapping(value = "item/list", method = { RequestMethod.GET })
-	public String list(Model model) {
+	@RequestMapping(value = "/item/list", method = { RequestMethod.GET })
+	public String list(@ModelAttribute("itemSearch") SearchForm searchForm,Model model) {
 
 		List<ItemEntity> itemList = itemListService.selectAll();
 		if (itemList.isEmpty()) {

@@ -20,12 +20,15 @@
         </ul>
     </nav>
         <main>
-        <form th:action="@{/admin/item/search}" method="post" th:object="${searchItem}">
+            <div style= "text-align: right;">
+			<a th:href="@{/admin/item/insert/input}">登録</a>
+			</div>
+        <form th:action="@{/admin/item/search}" method="post" th:object="${itemSearch}">
             <div style="width:100%;">
             <span th:if="message">[[${message}]]</span>
                 <div>
                 
-                    <input type="text" th:field="*{searchItem}"/>
+                    <input type="text" th:field="${itemSearch}"/>
                     <input type="submit" value="検索" />
                     
                 <div th:text="${completeMessage}"></div>
@@ -43,14 +46,14 @@
                         <tr th:each="item : ${itemList}">
                             <td th:text="${item.name}"></td>
                             <td th:text="${item.price}"></td>                                               
-                            <td><a th:href="@{/admin/user/input(id=${item.id})}">編集</a></td>
+                            <td><a th:href="@{/admin/item/input(id=${item.id})}">更新</a></td>
+                            <td><a th:href="@{/admin/item/delete(id=${item.id})}">削除</a></td>
                         </tr>                                                    
                     
                     
-                    	<tr th:each="search : ${searchList}">
-                            <td th:text="${search.name}"></td>
-                            <td th:text="${search.price}"></td>                                                 
-                            <td><a th:href="@{/admin/user/input(id=${search.id})}">編集</a></td>
+                    	<tr th:each="itemSearch : ${itemSearchList}">
+                            <td th:text="${itemSearch.name}"></td>
+                            <td th:text="${itemSearch.price}"></td>                                                 
                     	</tr>
                     </table>
                 </div>    
