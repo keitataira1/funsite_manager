@@ -11,9 +11,9 @@ import jp.co.taxis.funsite.entity.PlayerEntity;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<PlayerEntity, Integer> {
-	@Query("SELECT p FROM PlayerEntity p WHERE p.name LIKE :searchName")
+	@Query("SELECT p FROM PlayerEntity p WHERE p.name = :searchName")
 	public List<PlayerEntity> searchSameName(@Param("searchName") String searchName);
-	@Query("SELECT p FROM PlayerEntity p WHERE p.name LIKE :searchName AND p.id != :searchId")
+	@Query("SELECT p FROM PlayerEntity p WHERE p.name = :searchName AND p.id != :searchId")
 	public List<PlayerEntity> searchSameNameId(@Param("searchName") String searchName, @Param("searchId")Integer searchId);
 
 }

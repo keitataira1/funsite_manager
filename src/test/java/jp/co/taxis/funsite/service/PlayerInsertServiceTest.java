@@ -27,10 +27,9 @@ class PlayerInsertServiceTest {
 
 	@Test
 	void testInsert_001_異常系() {
-	
+		// モックの引数
 			PlayerEntity mockArg1 = new PlayerEntity(1, "山田太郎", null, "test", "aaa", null, 1);
-
-			// モックの引数
+			
 			List<PlayerEntity> test = playerRepository.searchSameName(mockArg1.getName());
 			// モックの設定
 			when(!test.isEmpty())
