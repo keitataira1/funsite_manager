@@ -26,6 +26,9 @@ public class ItemEntity {
 
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "item_explain")
+	private String itemExplain;
 
 	@Column(name = "price")
 	private Integer price;

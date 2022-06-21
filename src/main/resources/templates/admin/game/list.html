@@ -56,7 +56,9 @@
                     
                     
                     	<tr th:each="searchMatchTeam : ${searchGameList}">
-                            <td th:text="${searchMatchTeam.matchTeam}"></td>                                                       
+                    	    <td th:text="${searchMatchTeam.matchDate}"></td>
+                            <td th:text="${searchMatchTeam.matchTeam}"></td>
+                            <td th:text="${searchMatchTeam.place}"></td>                                           
                     	</tr>
                     </table>
                 </div>    

@@ -1,6 +1,6 @@
 package jp.co.taxis.funsite.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ public class GameEntity {
 	private Integer id;
 
 	@Column(name = "match_date")
-	private LocalDate matchDate;
+	private LocalDateTime matchDate;
 
 	@Column(name = "match_team")
 	private String matchTeam;

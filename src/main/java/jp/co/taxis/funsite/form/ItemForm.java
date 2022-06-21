@@ -17,6 +17,9 @@ public class ItemForm {
 	@NotNull
 	@Pattern(regexp = ".{1,20}")
 	private String name;
+	
+	@Pattern(regexp = ".{1,150}")
+	private String itemExplain;
 
 	@NotNull
 	private Integer price;
