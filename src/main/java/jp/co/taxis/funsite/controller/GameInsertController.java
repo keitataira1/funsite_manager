@@ -1,6 +1,7 @@
 package jp.co.taxis.funsite.controller;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +73,8 @@ public class GameInsertController {
 		// フォームからエンティティへの変換
 		GameEntity game = new GameEntity();
 		game.setId(gameForm.getId());
-		// game.setMatchDate(LocalDate.parse(gameForm.getMatchDate()));
-		game.setMatchDate(LocalDateTime.parse(gameForm.getMatchDate()));
+		// (どっちでもいいかも？) game.setMatchDate(LocalDateTime.parse(gameForm.getMatchDate()));
+		game.setMatchDate(LocalDateTime.parse(gameForm.getMatchDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 		game.setMatchTeam(gameForm.getMatchTeam());
 		game.setPlace(gameForm.getPlace());
 

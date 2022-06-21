@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>試合削除</title>
+	<link rel="stylesheet" href="../../../css/common.css" />
 </head>
+
 <body>
+    <nav>
+        <ul>
+            <li>
+                <a th:href="@{/admin/menu}">メニュー</a>
+            </li>
+            <li>
+                <a th:href="@{/admin/login}">ログアウト</a>
+            </li>
+            <li class="clear">
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div>
+           「[[${game.matchDate}]]」に行われる「[[${game.matchTeam}]]」戦を削除します。
+        </div>
+        <div>
+           <form th:action="@{/admin/game/delete/delete}" method="post" th:object="${game}">
+           	<input type="hidden" th:field="*{id}" />
+           	<input type="hidden" th:field="*{matchDate}" />
+           	<input type="hidden" th:field="*{matchTeam}" />
+           	<input type="hidden" th:field="*{place}" />
+           			
+                <a th:href="@{/admin/game/list}">キャンセル</a><input type="submit" value="削除" />
+            </form>
+        </div>
+    </main>
 
 </body>
+
 </html>
