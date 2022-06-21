@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,7 +46,7 @@ public class GameInsertController {
 	 * @return confirm.htmlにリターン
 	 */
 	@RequestMapping(value = "/game/insert/confirm", method = { RequestMethod.POST })
-	public String confirm(@ModelAttribute("game") GameForm gameForm, BindingResult result) {
+	public String confirm(@ModelAttribute("game") @Validated GameForm gameForm, BindingResult result) {
 
 		if (result.hasErrors()) {
 			return "admin/game/insert/input";
@@ -61,7 +62,7 @@ public class GameInsertController {
 	 * @return redirect
 	 */
 	@RequestMapping(value = "/game/insert/insert", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("game") GameForm gameForm, BindingResult result,
+	public String insert(@ModelAttribute("game") @Validated GameForm gameForm, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
 		if (result.hasErrors()) {

@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GameForm {
 
-	@NotNull
 	private Integer id;
 
 	@NotNull
