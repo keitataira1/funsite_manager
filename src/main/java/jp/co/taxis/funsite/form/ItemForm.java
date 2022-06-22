@@ -1,6 +1,6 @@
 package jp.co.taxis.funsite.form;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import jp.co.taxis.funsite.entity.GameEntity;
@@ -14,14 +14,14 @@ import lombok.NoArgsConstructor;
 public class ItemForm {
 	private Integer id;
 
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,20}")
 	private String name;
 	
 	@Pattern(regexp = ".{1,150}")
 	private String itemExplain;
 
-	@NotNull
+	@NotEmpty
 	private Integer price;
 
 	private GameEntity game;

@@ -1,6 +1,6 @@
 package jp.co.taxis.funsite.form;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
@@ -20,14 +20,14 @@ public class GameForm {
 
 	private Integer id;
 
-	@NotNull
+	@NotEmpty
 	private String matchDate;
 
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,20}")
 	private String matchTeam;
 
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,20}")
 	private String place;
 

@@ -1,6 +1,6 @@
 package jp.co.taxis.funsite.form;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
@@ -15,28 +15,29 @@ public class MemberForm {
 	private Integer id;
 
 	//半角大文字などの入力チェック必要
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,20}")
 	private String mailAddress;
 
 	//半角大文字などの入力チェック必要
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,10}")
 	private String password;
 
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,10}")
 	private String name;
 
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,10}")
 	private String displayName;
 
-	
+	@NotEmpty
 	private String birthday;
 
 	//半角数字の入力チェック
-	@Pattern(regexp = ".{1,10}")
+	@Pattern(regexp = ".{1,10}",message="郵便番号は10文字以内です。")
+	@Pattern(regexp = "[0-9]+",message="郵便番号は半角数字のみです。")
 	private String postNumber;
 
 	@Pattern(regexp = ".{1,50}")

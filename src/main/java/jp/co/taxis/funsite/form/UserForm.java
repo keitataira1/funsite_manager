@@ -1,6 +1,6 @@
 package jp.co.taxis.funsite.form;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
@@ -13,18 +13,18 @@ import lombok.NoArgsConstructor;
 public class UserForm {
 	private Integer id;
 
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,20}")
 	private String login_id;
 
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,10}")
 	private String password;
 
-	@NotNull
+	@NotEmpty
 	private String role;
 
-	@NotNull
+	@NotEmpty
     private Integer version;
 }
 

@@ -1,6 +1,6 @@
 package jp.co.taxis.funsite.form;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import jp.co.taxis.funsite.entity.PlayerEntity;
@@ -23,7 +23,7 @@ public class TopicForm {
 
 	private PlayerEntity player;
 
-	@NotNull
+	@NotEmpty
 	@Pattern(regexp = ".{1,30}")
 	private String topic;
 

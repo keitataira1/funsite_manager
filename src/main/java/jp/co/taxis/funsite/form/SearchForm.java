@@ -1,6 +1,6 @@
 package jp.co.taxis.funsite.form;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
@@ -12,16 +12,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SearchForm {
 		
-		//半角大文字などの入力チェック必要
-		@NotNull
+		@NotEmpty
 		@Pattern(regexp = ".{1,20}")
 		private String searchWord;
 		
-		@NotNull
+		@NotEmpty
 		@Pattern(regexp = ".{1,20}")
 		private String searchMatchTeam;
 		
-		@NotNull
+		@NotEmpty
 		@Pattern(regexp = ".{1,20}")
 		private String searchItem;
 		

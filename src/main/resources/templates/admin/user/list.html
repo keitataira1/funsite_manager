@@ -23,13 +23,14 @@
         <main>
         <form th:action="@{/admin/user/search}" method="post" th:object="${search}">
             <div style="width:100%;">
+                    <div th:if="${#fields.hasErrors('searchWord')}" th:errors="*{searchWord}"></div>
             <span th:if="message">[[${message}]]</span>
+                <div th:text="${completeMessage}"></div>
                 <div>
                 
                     <input type="text" th:field="*{searchWord}"/>
                     <input type="submit" value="検索" />
                     
-                <div th:text="${completeMessage}"></div>
                     
                 <div style="margin-top: 20px;">
                     <table>
