@@ -36,11 +36,11 @@ public class MemberForm {
 	private String birthday;
 
 	//半角数字の入力チェック
-	@Pattern(regexp = ".{1,10}",message="郵便番号は10文字以内です。")
+	@Pattern(regexp = ".{0,10}",message="郵便番号は10文字以内です。")
 	@Pattern(regexp = "[0-9]+",message="郵便番号は半角数字のみです。")
 	private String postNumber;
 
-	@Pattern(regexp = ".{1,50}")
+	@Pattern(regexp = ".{0,50}")
 	private String address;
 
 	

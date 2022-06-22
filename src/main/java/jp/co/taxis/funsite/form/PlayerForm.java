@@ -21,10 +21,10 @@ public class PlayerForm {
 	@NotEmpty
 	private String birthday;
 
-	@Pattern(regexp = ".{1,10}")
+	@Pattern(regexp = ".{0,10}")
 	private String position;
 
-	@Pattern(regexp = ".{1,100}")
+	@Pattern(regexp = ".{0,100}")
 	private String comment;
 
 	private String image;
