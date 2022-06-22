@@ -5,6 +5,7 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jp.co.taxis.funsite.entity.ItemEntity;
 import jp.co.taxis.funsite.exception.ApplicationException;
 import jp.co.taxis.funsite.form.ItemForm;
+import jp.co.taxis.funsite.service.GameInsertService;
 import jp.co.taxis.funsite.service.ItemInsertService;
 
 @Controller
@@ -25,6 +27,9 @@ public class ItemInsertController {
 	private ItemInsertService itemInsertService;
 	
 	@Autowired
+	private GameInsertService gameInsertService;
+	
+	@Autowired
 	MessageSource messageSource;
 
 	/**
@@ -33,8 +38,8 @@ public class ItemInsertController {
 	 * @return input.htmlにリターン
 	 */
 	@RequestMapping(value = "/item/insert/input", method = { RequestMethod.GET, RequestMethod.POST })
-	public String input(@ModelAttribute("item") ItemForm itemForm) {
-
+	public String input(Model model,@ModelAttribute("item") ItemForm itemForm) {
+		
 		// 入力画面を出すだけ
 		return "admin/item/insert/input";
 	}
@@ -45,12 +50,12 @@ public class ItemInsertController {
 	 * @return confirm.htmlにリターン
 	 */
 	@RequestMapping(value = "/item/insert/confirm", method = { RequestMethod.POST })
-	public String confirm(@ModelAttribute("item") @Validated ItemForm itemForm, BindingResult result) {
+	public String confirm(Model model,@ModelAttribute("item") @Validated ItemForm itemForm, BindingResult result) {
 
 		if (result.hasErrors()) {
 			return "admin/item/insert/input";
 		}
-
+		
 		// 確認画面の表示だけ
 		return "admin/item/insert/confirm";
 	}
@@ -72,6 +77,7 @@ public class ItemInsertController {
 		ItemEntity item = new ItemEntity();
 		item.setId(itemForm.getId());
 		item.setName(itemForm.getName());
+		item.setItemExplain(itemForm.getItemExplain());
 		item.setPrice(itemForm.getPrice());
 		item.setGame(itemForm.getGame());
 

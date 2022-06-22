@@ -19,5 +19,10 @@ public class GameInsertService {
 		return result;
 
 	}
+	
+	public GameEntity getGame(Integer id) {
+		GameEntity game = gameRepository.findById(id).orElse(null);
+		return game;
+	}
 
 }

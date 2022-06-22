@@ -40,11 +40,15 @@
                                 商品名
                             </td>
                             <td>
+                                商品説明
+                            </td>
+                            <td>
                                 価格
                             </td>
                         </tr>
                         <tr th:each="item : ${itemList}">
                             <td th:text="${item.name}"></td>
+                            <td th:text="${item.itemExplain}"></td>
                             <td th:text="${item.price}"></td>                                               
                             <td><a th:href="@{/admin/item/delete(id=${item.id})}">削除</a></td>
                         </tr>                                                    
@@ -52,6 +56,7 @@
                     
                     	<tr th:each="searchItem : ${itemSearchList}">
                             <td th:text="${searchItem.name}"></td>
+                            <td th:text="${search.itemExplain}"></td>
                             <td th:text="${searchItem.price}"></td>                                                 
                     	</tr>
                     </table>

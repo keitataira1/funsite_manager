@@ -23,6 +23,8 @@ public class ItemForm {
 
 	@NotEmpty
 	private Integer price;
+	
+	private String image;
 
 	private GameEntity game;
 

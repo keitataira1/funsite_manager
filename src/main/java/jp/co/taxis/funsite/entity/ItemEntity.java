@@ -32,6 +32,9 @@ public class ItemEntity {
 
 	@Column(name = "price")
 	private Integer price;
+	
+	@Column(name = "image")
+	private String image;
 
 	@ManyToOne
 	@JoinColumn(name = "game_id", referencedColumnName = "id")
