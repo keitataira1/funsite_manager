@@ -29,7 +29,7 @@ public class ItemDeleteController {
 		itemForm.setId(item.getId());
 		itemForm.setName(item.getName());
 		itemForm.setPrice(item.getPrice());
-		itemForm.setGame(item.getGame());
+		//itemForm.setGame(item.getGame());
 
 		return "admin/item/delete";
 	}

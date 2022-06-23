@@ -51,6 +51,16 @@
                         <td style="text-align: left;"><input type="file" th:field="*{image}"/></td>
 
                     </tr>
+                    <tr>
+                        <td>
+                            試合
+                        </td>
+                        <td style="text-align: left;">
+                        	<select name="gameId" onchange="changeDate(this.value)">
+                        		<option th:each="gameEntity : ${gameList}" th:value="${gameEntity.id}">[[${gameEntity.matchTeam}]]</option>
+                        	</select>
+                        </td>
+                    </tr>
 
                 </table>
                 <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>

@@ -1,5 +1,6 @@
 package jp.co.taxis.funsite.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jp.co.taxis.funsite.entity.GameEntity;
 import jp.co.taxis.funsite.entity.ItemEntity;
 import jp.co.taxis.funsite.exception.ApplicationException;
 import jp.co.taxis.funsite.form.ItemForm;
@@ -40,6 +42,9 @@ public class ItemInsertController {
 	@RequestMapping(value = "/item/insert/input", method = { RequestMethod.GET, RequestMethod.POST })
 	public String input(Model model,@ModelAttribute("item") ItemForm itemForm) {
 		
+		List<GameEntity> gameList = gameInsertService.getGameAll();
+	    model.addAttribute("gameList", gameList);
+	    
 		// 入力画面を出すだけ
 		return "admin/item/insert/input";
 	}
@@ -79,7 +84,7 @@ public class ItemInsertController {
 		item.setName(itemForm.getName());
 		item.setItemExplain(itemForm.getItemExplain());
 		item.setPrice(itemForm.getPrice());
-		item.setGame(itemForm.getGame());
+		//item.setGame(itemForm.getGameId());
 
 		// 登録処理
 
