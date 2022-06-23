@@ -59,7 +59,7 @@ public class TopicRepositoryTest {
 		playerEntity.setBirthday(LocalDate.parse("2001-11-09"));
 		playerEntity.setPosition("ディフェンス");
 		playerEntity.setComment("IDが1です。");
-		playerEntity.setImage("");
+		playerEntity.setImage(null);
 		playerEntity.setVersion(1);
 
 		expected.add(new TopicEntity(1, playerEntity, "好きな食べ物", false, 1));

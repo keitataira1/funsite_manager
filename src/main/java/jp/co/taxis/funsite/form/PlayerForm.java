@@ -3,6 +3,8 @@ package jp.co.taxis.funsite.form;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +29,7 @@ public class PlayerForm {
 	@Pattern(regexp = ".{0,100}")
 	private String comment;
 
-	private String image;
+	private MultipartFile image;
 
 	private Integer version;
 

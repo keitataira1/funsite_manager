@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.taxis.funsite.entity.PlayerEntity;
@@ -37,14 +38,17 @@ public class PlayerUpdateController {
 	 */
 	@GetMapping("/player/update/input")
 	public String input(@ModelAttribute("player") PlayerForm playerForm) {
-
+		
+		// ファイル名取得
+		MultipartFile file = playerForm.getImage();
+						
 		PlayerEntity player = playerUpdateService.getPlayer(playerForm.getId());
 		// entityからformに変換
 		playerForm.setName(player.getName());
 		playerForm.setBirthday(player.getBirthday().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		playerForm.setPosition(player.getPosition());
 		playerForm.setComment(player.getComment());
-		playerForm.setImage(player.getImage());
+		playerForm.setImage(file);
 		playerForm.setVersion(player.getVersion());
 
 		return "admin/player/update/input";
@@ -78,6 +82,17 @@ public class PlayerUpdateController {
 		if (result.hasErrors()) {
 			return "admin/player/update/input";
 		}
+		// ファイル名取得
+				MultipartFile file = playerForm.getImage();
+				String fileName = file.getOriginalFilename();
+				
+				// 拡張子のチェック
+				String extention = fileName.substring(fileName.lastIndexOf("."));
+				if (!extention.contentEquals(".jpg") &&  !extention.contentEquals(".png")) {
+					String message = messageSource.getMessage("file.extention.error", null, Locale.getDefault());
+					model.addAttribute("message", message);
+					return "admin/player/insert/input";
+				}
 
 		// フォームからエンティティへの変換
 		PlayerEntity player = new PlayerEntity();
@@ -86,7 +101,7 @@ public class PlayerUpdateController {
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
 		player.setPosition(playerForm.getPosition());
 		player.setComment(playerForm.getComment());
-		player.setImage(playerForm.getImage());
+		player.setImage(fileName);
 		player.setVersion(playerForm.getVersion());
 
 		try {

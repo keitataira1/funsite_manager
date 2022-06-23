@@ -1,22 +1,26 @@
 
 package jp.co.taxis.funsite.controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.exception.ApplicationException;
 import jp.co.taxis.funsite.form.PlayerForm;
+import jp.co.taxis.funsite.sample.FileUploadService;
 import jp.co.taxis.funsite.service.PlayerInsertService;
 
 @Controller
@@ -25,6 +29,9 @@ public class PlayerInsertController {
 
 	@Autowired
 	private PlayerInsertService playerInsertService;
+
+	@Autowired
+	private FileUploadService fileUploadService;
 
 	@Autowired
 	MessageSource messageSource;
@@ -47,9 +54,23 @@ public class PlayerInsertController {
 	 * @return confirm.htmlにリターン
 	 */
 	@RequestMapping(value = "/player/insert/confirm", method = { RequestMethod.POST })
-	public String confirm(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result) {
+	public String confirm(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
+			Model model) {
 
 		if (result.hasErrors()) {
+			return "admin/player/insert/input";
+		}
+
+		// ファイル名取得
+		MultipartFile file = playerForm.getImage();
+		String fileName = file.getOriginalFilename();
+		model.addAttribute("fileName",fileName );
+
+		// 拡張子のチェック
+		String extention = fileName.substring(fileName.lastIndexOf("."));
+		if (!extention.contentEquals(".jpg") && !extention.contentEquals(".png")) {
+			String message = messageSource.getMessage("file.extention.error", null, Locale.getDefault());
+			model.addAttribute("message", message);
 			return "admin/player/insert/input";
 		}
 
@@ -62,13 +83,13 @@ public class PlayerInsertController {
 	 * 
 	 * @return redirect
 	 */
-	@RequestMapping(value = "/player/insert/complete", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
-			RedirectAttributes redirectAttrs) {
+	@RequestMapping(value = "/player/insert/insert", method = { RequestMethod.POST })
+	public String insert(@ModelAttribute("player") @Validated PlayerForm playerForm,BindingResult result, RedirectAttributes redirectAttrs,
+			Model model) {
 
-		if (result.hasErrors()) {
-			return "admin/player/insert/input";
-		}
+		// ファイル名取得
+		MultipartFile file = playerForm.getImage();
+		String fileName = file.getOriginalFilename();
 
 		// フォームからエンティティへの変換
 		PlayerEntity player = new PlayerEntity();
@@ -77,9 +98,24 @@ public class PlayerInsertController {
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
 		player.setPosition(playerForm.getPosition());
 		player.setComment(playerForm.getComment());
-		player.setImage(playerForm.getImage());
+		player.setImage(fileName);
 
-		// 登録処理
+		try {
+			// 保存処理
+			fileUploadService.saveFile(fileName, file.getBytes());
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+			String messageKey = e.getMessage();
+			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+			model.addAttribute("message", message);
+			return "admin/player/insert/input";
+		} catch (IOException e) {
+			e.printStackTrace();
+			String messageKey = e.getMessage();
+			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+			model.addAttribute("message", message);
+			return "admin/player/insert/input";
+		}
 
 		try {
 			// 更新処理

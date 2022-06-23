@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.taxis.funsite.entity.PlayerEntity;
@@ -30,12 +31,15 @@ public class PlayerDeleteController {
 	 */
 	@RequestMapping(value = "player/delete/confirm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String confirm(@ModelAttribute("player") PlayerForm playerForm, Model model) {
+		
+		// ファイル名取得
+		MultipartFile file = playerForm.getImage();
 
 		PlayerEntity player = playerDeleteService.getPlayer(playerForm.getId());
 		playerForm.setName(player.getName());
 		playerForm.setBirthday(player.getBirthday().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		playerForm.setComment(player.getComment());
-		playerForm.setImage(player.getImage());
+		playerForm.setImage(file);
 		playerForm.setVersion(player.getVersion());
 
 		return "admin/player/delete/confirm";

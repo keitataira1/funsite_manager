@@ -13,15 +13,15 @@ import lombok.NoArgsConstructor;
 public class SearchForm {
 		
 		@NotEmpty
-		@Pattern(regexp = ".{1,20}")
+		@Pattern(regexp = ".{0,20}")
 		private String searchWord;
 		
 		@NotEmpty
-		@Pattern(regexp = ".{1,20}")
+		@Pattern(regexp = ".{0,20}")
 		private String searchMatchTeam;
 		
 		@NotEmpty
-		@Pattern(regexp = ".{1,20}")
+		@Pattern(regexp = ".{0,20}")
 		private String searchItem;
 		
 		
