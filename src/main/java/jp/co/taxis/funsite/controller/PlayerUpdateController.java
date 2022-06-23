@@ -1,5 +1,6 @@
 package jp.co.taxis.funsite.controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jp.co.taxis.funsite.entity.PlayerEntity;
 import jp.co.taxis.funsite.exception.ApplicationException;
 import jp.co.taxis.funsite.form.PlayerForm;
+import jp.co.taxis.funsite.sample.FileUploadService;
 import jp.co.taxis.funsite.service.PlayerUpdateService;
 
 @Controller
@@ -31,6 +33,9 @@ public class PlayerUpdateController {
 	private PlayerUpdateService playerUpdateService;
 
 	@Autowired
+	private FileUploadService fileUploadService;
+
+	@Autowired
 	MessageSource messageSource;
 
 	/**
@@ -38,17 +43,14 @@ public class PlayerUpdateController {
 	 */
 	@GetMapping("/player/update/input")
 	public String input(@ModelAttribute("player") PlayerForm playerForm) {
-		
-		// ファイル名取得
-		MultipartFile file = playerForm.getImage();
-						
+
 		PlayerEntity player = playerUpdateService.getPlayer(playerForm.getId());
 		// entityからformに変換
 		playerForm.setName(player.getName());
 		playerForm.setBirthday(player.getBirthday().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		playerForm.setPosition(player.getPosition());
 		playerForm.setComment(player.getComment());
-		playerForm.setImage(file);
+		playerForm.setImageFileName(player.getImage());
 		playerForm.setVersion(player.getVersion());
 
 		return "admin/player/update/input";
@@ -60,10 +62,45 @@ public class PlayerUpdateController {
 	 * @return confirm.htmlにリターン
 	 */
 	@RequestMapping(value = "/player/update/confirm", method = { RequestMethod.POST })
-	public String confirm(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result) {
+	public String confirm(@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
+			Model model) {
 
 		if (result.hasErrors()) {
 			return "admin/player/update/input";
+		}
+
+		// ファイルの入力があるときのみ保存処理を行う。
+		if (playerForm.getImage() != null) {
+
+			// ファイル名取得
+			MultipartFile file = playerForm.getImage();
+			String fileName = file.getOriginalFilename();
+			playerForm.setImageFileName(fileName);
+
+			// 拡張子のチェック
+			String extention = fileName.substring(fileName.lastIndexOf("."));
+			if (!extention.contentEquals(".jpg") && !extention.contentEquals(".png")) {
+				String message = messageSource.getMessage("file.extention.error", null, Locale.getDefault());
+				model.addAttribute("message", message);
+				return "admin/player/update/input";
+			}
+
+			try {
+				// 保存処理
+				fileUploadService.saveFile(fileName, file.getBytes());
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+				String messageKey = e.getMessage();
+				String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+				model.addAttribute("message", message);
+				return "admin/player/update/input";
+			} catch (IOException e) {
+				e.printStackTrace();
+				String messageKey = e.getMessage();
+				String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+				model.addAttribute("message", message);
+				return "admin/player/update/input";
+			}
 		}
 
 		// 確認画面の表示だけ
@@ -76,23 +113,8 @@ public class PlayerUpdateController {
 	 * @return redirect
 	 */
 	@RequestMapping(value = "/player/update/update", method = { RequestMethod.POST })
-	public String update(Model model,@ModelAttribute("player") @Validated PlayerForm playerForm, BindingResult result,
+	public String update(Model model, @ModelAttribute("player") @Validated PlayerForm playerForm,
 			RedirectAttributes redirectAttrs) {
-
-		if (result.hasErrors()) {
-			return "admin/player/update/input";
-		}
-		// ファイル名取得
-				MultipartFile file = playerForm.getImage();
-				String fileName = file.getOriginalFilename();
-				
-				// 拡張子のチェック
-				String extention = fileName.substring(fileName.lastIndexOf("."));
-				if (!extention.contentEquals(".jpg") &&  !extention.contentEquals(".png")) {
-					String message = messageSource.getMessage("file.extention.error", null, Locale.getDefault());
-					model.addAttribute("message", message);
-					return "admin/player/insert/input";
-				}
 
 		// フォームからエンティティへの変換
 		PlayerEntity player = new PlayerEntity();
@@ -101,7 +123,7 @@ public class PlayerUpdateController {
 		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
 		player.setPosition(playerForm.getPosition());
 		player.setComment(playerForm.getComment());
-		player.setImage(fileName);
+		player.setImage("/upload_img/" + playerForm.getImageFileName());
 		player.setVersion(playerForm.getVersion());
 
 		try {
@@ -112,19 +134,23 @@ public class PlayerUpdateController {
 			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
 			redirectAttrs.addFlashAttribute("message", message);
 			return "redirect:../list";
-		}catch (ApplicationException e) {
+		} catch (ApplicationException e) {
 			String messageKey = e.getMessage();
 			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
 			model.addAttribute("message", message);
 			return "admin/player/update/input";
 		}
-		
 
 		redirectAttrs.addFlashAttribute("player", playerForm);
 		return "redirect:complete";
 
 	}
 
+	/**
+	 * 更新完了画面ハンドラ
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "/player/update/complete", method = { RequestMethod.GET })
 	public String complete() {
 

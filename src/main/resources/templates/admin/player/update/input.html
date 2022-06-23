@@ -16,8 +16,7 @@
 		</ul>
 	</nav>
 	<main>
-		<form th:action="@{/admin/player/update/confirm}" method="post"
-			th:object="${player}">
+		<form th:action="@{/admin/player/update/confirm}" method="post"  th:object="${player}" enctype="multipart/form-data">
 			<div>
 				<table>
 					<tr>
@@ -29,27 +28,22 @@
 						<td>生年月日</td>
 						<td style="text-align: left;"><input type="date"
 							th:field="*{birthday}" /></td>
-
 					</tr>
 					<tr>
 						<td>ポジション</td>
 						<td style="text-align: left;"><input type="text"
 							th:field="*{position}" /></td>
-
 					</tr>
 					<tr>
 						<td>コメント</td>
 						<td style="text-align: left;"><textarea cols="50" rows="10"
 								th:field="*{comment}"></textarea></td>
-
 					</tr>
 					<tr>
 						<td>写真</td>
 						<td style="text-align: left;"><input type="file"
 							th:field="*{image}" /></td>
-
 					</tr>
-
 				</table>
 				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 				<div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div>
@@ -57,11 +51,9 @@
 				<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
 				<div th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
 				<span th:if="message">[[${message}]]</span>
-
-                    <input type="hidden" th:field="*{id}" />
-           			 <input type="hidden" th:field="*{version}" />
-				
-				
+				<input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{imageFileName}" />		
+                <input type="hidden" th:field="*{version}" />
 				<div>
 					<input type="submit" value="確認" />
 				</div>

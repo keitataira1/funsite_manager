@@ -11,6 +11,13 @@
 <body>
     <main>
         <form th:action="@{/admin/player/update/update}" method="post" th:object="${player}">
+        	<input type="hidden" th:field="*{id}" />
+           	<input type="hidden" th:field="*{name}" />
+           	<input type="hidden" th:field="*{birthday}" />
+           	<input type="hidden" th:field="*{position}" />
+           	<input type="hidden" th:field="*{comment}" />
+			<input type="hidden" th:field="*{imageFileName}" />
+            <input type="hidden" th:field="*{version}" />
             <div>
                 <table>
                     <tr>
@@ -43,18 +50,13 @@
                         <td>
                             写真
                         </td>
-                        <td style="text-align: left;"><span th:text="*{image}"></span></td>
+                        <td style="text-align: left;">
+                        	<div th:text="*{imageFileName}"></div>
+                        	<img th:src="@{'/upload_img/' + *{imageFileName}}" />
+                        </td>
                     </tr>
                 </table>
                 <div>
-                	<input type="hidden" th:field="*{id}" />
-           			<input type="hidden" th:field="*{name}" />
-           			<input type="hidden" th:field="*{birthday}" />
-           			<input type="hidden" th:field="*{position}" />
-           			<input type="hidden" th:field="*{comment}" />
-              		<input type="hidden" th:field="*{image}" />
-              		<input type="hidden" th:field="*{version}" />
-		
                     <a th:href="@{/admin/player/update/input(id=${player.id})}">キャンセル</a><input type="submit" value="登録" />
                 </div>
             </div>

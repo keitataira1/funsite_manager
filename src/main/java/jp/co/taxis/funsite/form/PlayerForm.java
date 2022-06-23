@@ -31,6 +31,8 @@ public class PlayerForm {
 
 	private MultipartFile image;
 
+	private String imageFileName;
+
 	private Integer version;
 
 }

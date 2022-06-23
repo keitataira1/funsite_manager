@@ -64,7 +64,7 @@ public class PlayerInsertController {
 		// ファイル名取得
 		MultipartFile file = playerForm.getImage();
 		String fileName = file.getOriginalFilename();
-		model.addAttribute("fileName",fileName );
+		playerForm.setImageFileName(fileName);
 
 		// 拡張子のチェック
 		String extention = fileName.substring(fileName.lastIndexOf("."));
@@ -73,32 +73,6 @@ public class PlayerInsertController {
 			model.addAttribute("message", message);
 			return "admin/player/insert/input";
 		}
-
-		// 確認画面の表示だけ
-		return "admin/player/insert/confirm";
-	}
-
-	/**
-	 * 登録入力画面（DBに送る）
-	 * 
-	 * @return redirect
-	 */
-	@RequestMapping(value = "/player/insert/insert", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("player") @Validated PlayerForm playerForm,BindingResult result, RedirectAttributes redirectAttrs,
-			Model model) {
-
-		// ファイル名取得
-		MultipartFile file = playerForm.getImage();
-		String fileName = file.getOriginalFilename();
-
-		// フォームからエンティティへの変換
-		PlayerEntity player = new PlayerEntity();
-		player.setId(playerForm.getId());
-		player.setName(playerForm.getName());
-		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
-		player.setPosition(playerForm.getPosition());
-		player.setComment(playerForm.getComment());
-		player.setImage(fileName);
 
 		try {
 			// 保存処理
@@ -116,6 +90,26 @@ public class PlayerInsertController {
 			model.addAttribute("message", message);
 			return "admin/player/insert/input";
 		}
+
+		// 確認画面の表示だけ
+		return "admin/player/insert/confirm";
+	}
+
+	/**
+	 * 登録処理（DBに送る）
+	 * 
+	 * @return redirect
+	 */
+	@RequestMapping(value = "/player/insert/insert", method = { RequestMethod.POST })
+	public String insert(@ModelAttribute("player") @Validated PlayerForm playerForm, RedirectAttributes redirectAttrs) {
+
+		// フォームからエンティティへの変換
+		PlayerEntity player = new PlayerEntity();
+		player.setName(playerForm.getName());
+		player.setBirthday(LocalDate.parse(playerForm.getBirthday()));
+		player.setPosition(playerForm.getPosition());
+		player.setComment(playerForm.getComment());
+		player.setImage("/upload_img/" + playerForm.getImageFileName());
 
 		try {
 			// 更新処理
