@@ -53,7 +53,7 @@ public class GameListController {
 			return "admin/game/list";
 		}
 
-		List<GameEntity> searchGameList = gameListService.selectLikeMatchTeam(searchForm.getSearchMatchTeam());
+		List<GameEntity> searchGameList = gameListService.selectLikeMatchTeam(searchForm.getSearchWord());
 		if (searchGameList.isEmpty()) {
 			String message = messageSource.getMessage("gameSearch.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);

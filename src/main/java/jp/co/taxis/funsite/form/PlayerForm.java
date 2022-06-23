@@ -17,7 +17,7 @@ public class PlayerForm {
 	private Integer id;
 
 	@NotEmpty
-	@Pattern(regexp = ".{1,10}")
+	@Pattern(regexp = ".{0,10}")
 	private String name;
 
 	@NotEmpty

@@ -32,6 +32,8 @@ public class MemberListController {
 	 */
 	@RequestMapping(value = "/user/list", method = { RequestMethod.GET })
 	public String list(@ModelAttribute("search") SearchForm searchForm,Model model) {
+		
+		
 
 		List<MemberEntity> memberList = memberListService.selectAll();
 		if (memberList.isEmpty()) {

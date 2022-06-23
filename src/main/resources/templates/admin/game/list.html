@@ -29,7 +29,7 @@
             <span th:if="message">[[${message}]]</span>
                 <div>
                 
-                    <input type="text" th:field="*{searchMatchTeam}"/>
+                    <input type="text" th:field="*{searchWord}"/>
                     <input type="submit" value="検索" />
                     
                 <div th:text="${completeMessage}"></div>
@@ -58,7 +58,8 @@
                     	<tr th:each="searchMatchTeam : ${searchGameList}">
                     	    <td th:text="${searchMatchTeam.matchDate}"></td>
                             <td th:text="${searchMatchTeam.matchTeam}"></td>
-                            <td th:text="${searchMatchTeam.place}"></td>                                           
+                            <td th:text="${searchMatchTeam.place}"></td>
+                            <td><a th:href="@{/admin/game/delete(id=${game.id})}">削除</a></td>                                            
                     	</tr>
                     </table>
                 </div>    

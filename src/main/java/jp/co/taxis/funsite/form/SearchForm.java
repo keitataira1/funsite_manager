@@ -16,13 +16,7 @@ public class SearchForm {
 		@Pattern(regexp = ".{0,20}")
 		private String searchWord;
 		
-		@NotEmpty
-		@Pattern(regexp = ".{0,20}")
-		private String searchMatchTeam;
-		
-		@NotEmpty
-		@Pattern(regexp = ".{0,20}")
-		private String searchItem;
+	
 		
 		
 

@@ -16,20 +16,22 @@ public class MemberForm {
 
 	//半角大文字などの入力チェック必要
 	@NotEmpty
-	@Pattern(regexp = ".{1,20}")
+	@Pattern(regexp = ".{0,20}",message="メールアドレスは20文字以内です。")
+	@Pattern(regexp = "[0-9a-zA-Z@.]+",message="メールアドレスに使用できない文字が含まれています。")
 	private String mailAddress;
 
 	//半角大文字などの入力チェック必要
 	@NotEmpty
-	@Pattern(regexp = ".{1,10}")
+	@Pattern(regexp = ".{0,10}",message="パスワードは10文字以内です。")
+	@Pattern(regexp = "[0-9a-zA-Z@#%&]+",message="パスワードに使用できない文字が含まれています。")
 	private String password;
 
 	@NotEmpty
-	@Pattern(regexp = ".{1,10}")
+	@Pattern(regexp = ".{0,10}")
 	private String name;
 
 	@NotEmpty
-	@Pattern(regexp = ".{1,10}")
+	@Pattern(regexp = ".{0,10}")
 	private String displayName;
 
 	@NotEmpty

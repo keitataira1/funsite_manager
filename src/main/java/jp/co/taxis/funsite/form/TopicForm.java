@@ -24,7 +24,7 @@ public class TopicForm {
 	private PlayerEntity player;
 
 	@NotEmpty
-	@Pattern(regexp = ".{1,30}")
+	@Pattern(regexp = ".{0,30}")
 	private String topic;
 
 	private String invalidFlg;

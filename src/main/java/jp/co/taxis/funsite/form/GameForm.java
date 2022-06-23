@@ -24,11 +24,11 @@ public class GameForm {
 	private String matchDate;
 
 	@NotEmpty
-	@Pattern(regexp = ".{1,20}")
+	@Pattern(regexp = ".{0,20}")
 	private String matchTeam;
 
 	@NotEmpty
-	@Pattern(regexp = ".{1,20}")
+	@Pattern(regexp = ".{0,20}")
 	private String place;
 
 }
