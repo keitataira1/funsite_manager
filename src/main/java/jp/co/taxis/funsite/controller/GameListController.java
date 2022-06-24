@@ -30,7 +30,7 @@ public class GameListController {
 	 * 一覧画面
 	 */
 	@RequestMapping(value = "game/list", method = { RequestMethod.GET })
-	public String list(@ModelAttribute("searchMatchTeam") SearchForm searchForm, Model model) {
+	public String list(@ModelAttribute("search") SearchForm searchForm, Model model) {
 
 		List<GameEntity> gameList = gameListService.selectAll();
 		if (gameList.isEmpty()) {
@@ -47,7 +47,7 @@ public class GameListController {
 	 * 
 	 */
 	@RequestMapping(value = "game/search", method = { RequestMethod.POST })
-	public String searchList(@ModelAttribute("searchMatchTeam") SearchForm searchForm, BindingResult result, Model model) {
+	public String searchList(@ModelAttribute("search") SearchForm searchForm, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
 			return "admin/game/list";

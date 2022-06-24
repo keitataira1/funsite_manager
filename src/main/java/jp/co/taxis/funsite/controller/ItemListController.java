@@ -31,7 +31,7 @@ public class ItemListController {
 	 */
 
 	@RequestMapping(value = "/item/list", method = { RequestMethod.GET })
-	public String list(@ModelAttribute("itemSearch") SearchForm searchForm,Model model) {
+	public String list(@ModelAttribute("search") SearchForm searchForm,Model model) {
 
 		List<ItemEntity> itemList = itemListService.selectAll();
 		if (itemList.isEmpty()) {
@@ -45,7 +45,7 @@ public class ItemListController {
 	
 
 	@RequestMapping(value = "/item/search", method = { RequestMethod.POST })
-	public String searchList(@ModelAttribute("itemSearch") SearchForm searchForm, BindingResult result, Model model) {
+	public String searchList(@ModelAttribute("search") SearchForm searchForm, BindingResult result, Model model) {
 		
 		if (result.hasErrors()) {
 			return "/admin/item/list";

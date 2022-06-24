@@ -23,7 +23,7 @@
             <div style= "text-align: right;">
 			<a th:href="@{/admin/item/insert/input}">登録</a>
 			</div>
-        <form th:action="@{/admin/item/search}" method="post" th:object="${itemSearch}">
+        <form th:action="@{/admin/item/search}" method="post" th:object="${search}">
             <div style="width:100%;">
             <span th:if="message">[[${message}]]</span>
                 <div>
@@ -54,10 +54,11 @@
                         </tr>                                                    
                     
                     
-                    	<tr th:each="searchItem : ${itemSearchList}">
-                            <td th:text="${searchItem.name}"></td>
+                    	<tr th:each="search : ${itemSearchList}">
+                            <td th:text="${search.name}"></td>
                             <td th:text="${search.itemExplain}"></td>
-                            <td th:text="${searchItem.price}"></td>                                                 
+                            <td th:text="${search.price}"></td>    
+                            <td><a th:href="@{/admin/item/delete(id=${search.id})}">削除</a></td>                                             
                     	</tr>
                     </table>
                 </div>    
