@@ -22,8 +22,14 @@ public class GameInsertService {
 
 	}
 	
-	 public List<GameEntity> getGameAll() {
+	public List<GameEntity> getGameAll() {
 	        return gameRepository.findAll();
-	    }
+	}
+	
+	public GameEntity getGame(Integer id) {
+		GameEntity game = gameRepository.findById(id).orElse(null);
+		return game;
+	}
+
 
 }

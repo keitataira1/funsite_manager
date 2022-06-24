@@ -23,7 +23,7 @@ public class ItemListController {
 
 	@Autowired
 	private ItemListService itemListService;
-
+	
 	@Autowired
 	private MessageSource messageSource;
 
@@ -39,6 +39,7 @@ public class ItemListController {
 			String message = messageSource.getMessage("itemList.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
+		
 		model.addAttribute("itemList", itemList);
 		return "admin/item/list";
 
