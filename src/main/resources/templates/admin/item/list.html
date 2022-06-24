@@ -25,6 +25,7 @@
 			</div>
         <form th:action="@{/admin/item/search}" method="post" th:object="${search}">
             <div style="width:100%;">
+            <div th:if="${#fields.hasErrors('searchWord')}" th:errors="*{searchWord}"></div>
             <span th:if="message">[[${message}]]</span>
                 <div>
                 
