@@ -38,6 +38,6 @@ public class ItemEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "game_id", referencedColumnName = "id")
-	private GameEntity game;
+	private GameEntity gameId;
 
 }

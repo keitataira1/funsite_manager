@@ -27,6 +27,6 @@ public class ItemForm {
 	
 	private String image;
 
-	private GameEntity game;
+	private GameEntity gameId;
 
 }

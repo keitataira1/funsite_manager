@@ -45,6 +45,9 @@
                             <td>
                                 価格
                             </td>
+                            <td>
+                                試合
+                            </td>
                         </tr>
                         <tr th:each="item : ${itemList}">
                             <td th:text="${item.name}"></td>
@@ -57,7 +60,7 @@
                     	<tr th:each="search : ${itemSearchList}">
                             <td th:text="${search.name}"></td>
                             <td th:text="${search.itemExplain}"></td>
-                            <td th:text="${search.price}"></td>    
+                            <td th:text="${search.price}"></td>  
                             <td><a th:href="@{/admin/item/delete(id=${search.id})}">削除</a></td>                                             
                     	</tr>
                     </table>

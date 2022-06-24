@@ -57,7 +57,7 @@
                         </td>
                         <td style="text-align: left;">
                         	<select name="gameId" onchange="changeDate(this.value)">
-                        		<option th:each="gameEntity : ${gameList}" th:value="${gameEntity.id}">[[${gameEntity.matchTeam}]]</option>
+                        		<option th:each="gameEntity : ${gameList}" th:value="${gameEntity.id}">[[${gameEntity.matchTeam}]][[${gameEntity.matchDate}]]</option>
                         	</select>
                         </td>
                     </tr>

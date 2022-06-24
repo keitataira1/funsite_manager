@@ -22,11 +22,6 @@ public class GameInsertService {
 
 	}
 	
-	public GameEntity getGame(Integer id) {
-		GameEntity game = gameRepository.findById(id).orElse(null);
-		return game;
-	}
-	
 	 public List<GameEntity> getGameAll() {
 	        return gameRepository.findAll();
 	    }
