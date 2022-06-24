@@ -48,9 +48,12 @@ public class GameListController {
 	 * 
 	 */
 	@RequestMapping(value = "game/search", method = { RequestMethod.POST })
-	public String searchList(@ModelAttribute("search") @Validated SearchForm searchForm, BindingResult result, Model model) {
+	public String searchList(@ModelAttribute("search") @Validated SearchForm searchForm, BindingResult result,
+			Model model) {
 
 		if (result.hasErrors()) {
+			List<GameEntity> gameList = gameListService.selectAll();
+			model.addAttribute("gameList", gameList);
 			return "admin/game/list";
 		}
 

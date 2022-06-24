@@ -14,12 +14,12 @@ public class UserForm {
 	private Integer id;
 
 	@NotNull
-	@Pattern(regexp = ".{1,20}",message="ログインIDは20文字以内です。")
-	@Pattern(regexp = "[0-9a-zA-Z@]+",message="メールアドレスに使用できない文字が含まれています。")
+	@Pattern(regexp = ".{0,20}",message="ログインIDは20文字以内です。")
+	@Pattern(regexp = "[0-9a-zA-Z@]+",message="ログインIDに使用できない文字が含まれています。")
 	private String login_id;
 
 	@NotNull
-	@Pattern(regexp = ".{1,10}",message="パスワードは10文字以内です。")
+	@Pattern(regexp = ".{0,10}",message="パスワードは10文字以内です。")
 	@Pattern(regexp = "[0-9a-zA-Z@#%&]+",message="パスワードに使用できない文字が含まれています。")
 	private String password;
 

@@ -31,30 +31,26 @@ public class MemberListController {
 	 * 一覧画面
 	 */
 	@RequestMapping(value = "/user/list", method = { RequestMethod.GET })
-	public String list(@ModelAttribute("search") SearchForm searchForm,Model model) {
-		
-		
+	public String list(@ModelAttribute("search") SearchForm searchForm, Model model) {
 
 		List<MemberEntity> memberList = memberListService.selectAll();
 		if (memberList.isEmpty()) {
 			String message = messageSource.getMessage("memberList.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
-		searchForm.getSearchWord();
-
 		model.addAttribute("memberList", memberList);
-
 		return "/admin/user/list";
 
 	}
-	
-	
 
 	@RequestMapping(value = "/user/search", method = { RequestMethod.POST })
-	public String searchList(@ModelAttribute("search") @Validated SearchForm searchForm, BindingResult result, Model model) {
-		
-		
+	public String searchList(@ModelAttribute("search") @Validated SearchForm searchForm, BindingResult result,
+			Model model) {
+
 		if (result.hasErrors()) {
+			List<MemberEntity> memberList = memberListService.selectAll();
+			searchForm.getSearchWord();
+			model.addAttribute("memberList", memberList);
 			return "/admin/user/list";
 		}
 
@@ -63,7 +59,7 @@ public class MemberListController {
 			String message = messageSource.getMessage("memberSearch.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
-		if(searchList.size()>100) {
+		if (searchList.size() > 100) {
 			searchList = null;
 			String message = messageSource.getMessage("memberSearchOver.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
