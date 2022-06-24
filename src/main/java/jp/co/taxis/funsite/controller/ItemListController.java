@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.taxis.funsite.entity.ItemEntity;
+import jp.co.taxis.funsite.form.ItemForm;
 import jp.co.taxis.funsite.form.SearchForm;
 import jp.co.taxis.funsite.service.ItemListService;
 
@@ -32,7 +33,7 @@ public class ItemListController {
 	 */
 
 	@RequestMapping(value = "/item/list", method = { RequestMethod.GET })
-	public String list(@ModelAttribute("search") SearchForm searchForm, Model model) {
+	public String list(@ModelAttribute("search") SearchForm searchForm,@ModelAttribute("item")ItemForm itemForm,Model model) {
 
 		List<ItemEntity> itemList = itemListService.selectAll();
 		if (itemList.isEmpty()) {

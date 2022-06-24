@@ -41,7 +41,8 @@
                         <td>
                             試合
                         </td>
-                        <td style="text-align: left;"><span th:value="${gameList}"></span></td>
+                        <td style="text-align: left;"><span th:text="*{gameId.matchTeam}"></span>
+                                                      <span th:text="*{gameId.matchDate}"></span></td>
                     </tr>
                 </table>
                 <div>
