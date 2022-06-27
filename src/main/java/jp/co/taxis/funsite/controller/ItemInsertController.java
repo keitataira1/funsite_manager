@@ -123,6 +123,7 @@ public class ItemInsertController {
 		item.setName(itemForm.getName());
 		item.setItemExplain(itemForm.getItemExplain());
 		item.setPrice(itemForm.getPrice());
+		item.setImage("/upload_img/" + itemForm.getImageFileName());
 		item.setGameId(itemForm.getGameId());
 
 		// 登録処理
