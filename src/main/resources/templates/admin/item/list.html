@@ -75,10 +75,14 @@
                             <td th:text="${search.name}"></td>
                             <td th:text="${search.itemExplain}"></td>
                             <td th:text="${search.price}"></td> 
-                            <th:block th:if="${item.gameId != null}" >
+                            <th:block th:if="${search.gameId != null}" >
                             	<td th:text="${search.gameId.matchTeam}"></td>
                             	<td th:text="${search.gameId.matchDate}"></td> 
                             </th:block>
+                            <th:block th:if="${search.gameId == null}" > 
+                            	<td >-</td>
+                            	<td >-</td>
+                            </th:block> 
                             <td><a th:href="@{/admin/item/delete(id=${search.id})}">削除</a></td>                                             
                     	</tr>                    	
                     </table>

@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jp.co.taxis.funsite.entity.GameEntity;
 import jp.co.taxis.funsite.entity.ItemEntity;
 import jp.co.taxis.funsite.form.GameForm;
 import jp.co.taxis.funsite.form.ItemForm;
 import jp.co.taxis.funsite.form.SearchForm;
-import jp.co.taxis.funsite.service.GameInsertService;
 import jp.co.taxis.funsite.service.ItemListService;
 
 @Controller
@@ -27,9 +25,6 @@ public class ItemListController {
 	
 	@Autowired
 	private ItemListService itemListService;
-	
-	@Autowired
-	private GameInsertService gameInsertService;
 	
 	@Autowired
 	private MessageSource messageSource;
@@ -41,14 +36,12 @@ public class ItemListController {
 	public String list(@ModelAttribute("search") SearchForm searchForm,@ModelAttribute("item")ItemForm itemForm,@ModelAttribute("game")GameForm gameForm,Model model) {
 		
 		List<ItemEntity> itemList = itemListService.selectAll();
-		List<GameEntity> gameList=gameInsertService.getGameAll();
 		if (itemList.isEmpty()) {
 			String message = messageSource.getMessage("itemList.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
 		
 		model.addAttribute("itemList", itemList);
-		model.addAttribute("gameList", gameList);
 		return "admin/item/list";
 	}
 	
