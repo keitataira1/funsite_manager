@@ -69,13 +69,12 @@ public class PlayerUpdateController {
 			return "admin/player/update/input";
 		}
 
-		// ファイルの入力があるときのみ保存処理を行う。
-		if (playerForm.getImage() != null) {
+		// ファイル名取得
+		MultipartFile file = playerForm.getImage();
+		String fileName = file.getOriginalFilename();
+		playerForm.setImageFileName(fileName);
 
-			// ファイル名取得
-			MultipartFile file = playerForm.getImage();
-			String fileName = file.getOriginalFilename();
-			playerForm.setImageFileName(fileName);
+		if (!(playerForm.getImageFileName().equals(""))) {
 
 			// 拡張子のチェック
 			String extention = fileName.substring(fileName.lastIndexOf("."));

@@ -60,35 +60,39 @@ public class PlayerInsertController {
 		if (result.hasErrors()) {
 			return "admin/player/insert/input";
 		}
-
+	
+		
 		// ファイル名取得
 		MultipartFile file = playerForm.getImage();
 		String fileName = file.getOriginalFilename();
 		playerForm.setImageFileName(fileName);
 
-		// 拡張子のチェック
-		String extention = fileName.substring(fileName.lastIndexOf("."));
-		if (!extention.contentEquals(".jpg") && !extention.contentEquals(".png")) {
-			String message = messageSource.getMessage("file.extention.error", null, Locale.getDefault());
-			model.addAttribute("message", message);
-			return "admin/player/insert/input";
-		}
+		if (!(playerForm.getImageFileName().equals(""))) {
 
-		try {
-			// 保存処理
-			fileUploadService.saveFile(fileName, file.getBytes());
-		} catch (ApplicationException e) {
-			e.printStackTrace();
-			String messageKey = e.getMessage();
-			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
-			model.addAttribute("message", message);
-			return "admin/player/insert/input";
-		} catch (IOException e) {
-			e.printStackTrace();
-			String messageKey = e.getMessage();
-			String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
-			model.addAttribute("message", message);
-			return "admin/player/insert/input";
+			// 拡張子のチェック
+			String extention = fileName.substring(fileName.lastIndexOf("."));
+			if (!extention.contentEquals(".jpg") && !extention.contentEquals(".png")) {
+				String message = messageSource.getMessage("file.extention.error", null, Locale.getDefault());
+				model.addAttribute("message", message);
+				return "admin/player/insert/input";
+			}
+
+			try {
+				// 保存処理
+				fileUploadService.saveFile(fileName, file.getBytes());
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+				String messageKey = e.getMessage();
+				String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+				model.addAttribute("message", message);
+				return "admin/player/insert/input";
+			} catch (IOException e) {
+				e.printStackTrace();
+				String messageKey = e.getMessage();
+				String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+				model.addAttribute("message", message);
+				return "admin/player/insert/input";
+			}
 		}
 
 		// 確認画面の表示だけ
