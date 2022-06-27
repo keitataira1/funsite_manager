@@ -4,6 +4,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jp.co.taxis.funsite.entity.GameEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,8 +27,12 @@ public class ItemForm {
 	@NotNull
 	private Integer price;
 	
-	private String image;
+	private MultipartFile image;
 
 	private GameEntity gameId;
+
+	private String imageFileName;
+
+	private Integer version;
 
 }

@@ -20,7 +20,7 @@
         </ul>
     </nav>
     <main>
-        <form th:action="@{/admin/item/insert/confirm}" method="post" th:object="${item}">
+        <form th:action="@{/admin/item/insert/confirm}" method="post" th:object="${item}"enctype="multipart/form-data">
             <div>
                 <table>
                     <tr>
@@ -68,6 +68,7 @@
                 <div th:if="${#fields.hasErrors('itemExplain')}" th:errors="*{itemExplain}"></div>
                 <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
                 <div th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
+                <span th:if="message">[[${message}]]</span>
              
                 <div>
                     <input type="submit" value="確認" />

@@ -13,57 +13,63 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.co.taxis.funsite.entity.GameEntity;
 import jp.co.taxis.funsite.entity.ItemEntity;
+import jp.co.taxis.funsite.form.GameForm;
 import jp.co.taxis.funsite.form.ItemForm;
 import jp.co.taxis.funsite.form.SearchForm;
+import jp.co.taxis.funsite.service.GameInsertService;
 import jp.co.taxis.funsite.service.ItemListService;
 
 @Controller
 @RequestMapping(value = "admin")
 public class ItemListController {
-
+	
 	@Autowired
 	private ItemListService itemListService;
 	
 	@Autowired
+	private GameInsertService gameInsertService;
+	
+	@Autowired
 	private MessageSource messageSource;
-
+	
 	/**
 	 * 一覧画面
 	 */
-
 	@RequestMapping(value = "/item/list", method = { RequestMethod.GET })
-	public String list(@ModelAttribute("search") SearchForm searchForm,@ModelAttribute("item")ItemForm itemForm,Model model) {
-
+	public String list(@ModelAttribute("search") SearchForm searchForm,@ModelAttribute("item")ItemForm itemForm,@ModelAttribute("game")GameForm gameForm,Model model) {
+		
 		List<ItemEntity> itemList = itemListService.selectAll();
+		List<GameEntity> gameList=gameInsertService.getGameAll();
 		if (itemList.isEmpty()) {
 			String message = messageSource.getMessage("itemList.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
 		
 		model.addAttribute("itemList", itemList);
+		model.addAttribute("gameList", gameList);
 		return "admin/item/list";
-
 	}
-
+	
 	@RequestMapping(value = "/item/search", method = { RequestMethod.POST })
 	public String searchList(@ModelAttribute("search") @Validated SearchForm searchForm, BindingResult result,
 			Model model) {
-
+		
 		if (result.hasErrors()) {
 			List<ItemEntity> itemList = itemListService.selectAll();
 			model.addAttribute("itemList", itemList);
 			return "/admin/item/list";
 		}
-
+		
 		List<ItemEntity> itemSearchList = itemListService.selectLikeItemName(searchForm.getSearchWord());
 		if (itemSearchList.isEmpty()) {
 			String message = messageSource.getMessage("itemSearch.empty.error", null, Locale.getDefault());
 			model.addAttribute("message", message);
 		}
-
+		
 		model.addAttribute("itemSearchList", itemSearchList);
-
+		
 		return "/admin/item/list";
 
 	}

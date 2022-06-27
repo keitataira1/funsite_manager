@@ -35,22 +35,29 @@
                         <td>
                             写真
                         </td>
-                        <td style="text-align: left;"><span th:text="*{image}"></span></td>
+                        <td style="text-align: left;">
+                        	<div th:text="*{imageFileName}"></div>
+                        	<img th:src="@{'/upload_img/' + *{imageFileName}}" />
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             試合
                         </td>
-                        <td style="text-align: left;"><span th:text="*{gameId.matchTeam}"></span>
-                                                      <span th:text="*{gameId.matchDate}"></span></td>
+                        	<td style="text-align: left;">
+                        		<th:block th:if="${gameId != null}" >
+                        		<span th:text="*{gameId.matchTeam}"></span>
+                        		<span th:text="*{gameId.matchDate}"></span>
+                        		</th:block>
+                        	</td>
                     </tr>
                 </table>
                 <div>
 					<input type="hidden" th:field="*{name}" />
 					<input type="hidden" th:field="*{itemExplain}" />
 					<input type="hidden" th:field="*{price}" />
-					<input type="hidden" th:field="*{image}" />
 					<input type="hidden" th:field="*{gameId}" />
+					<input type="hidden" th:field="*{imageFileName}" />
 		
                     <a th:href="@{/admin/item/insert/input}">キャンセル</a><input type="submit" value="登録" />
                 </div>

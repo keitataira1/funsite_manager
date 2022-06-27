@@ -47,24 +47,40 @@
                                 価格
                             </td>
                             <td>
-                                試合
+                                試合(対戦相手)
+                            </td>
+                            <td>
+                                試合日
+                            </td>
+                            <td>
+                                削除
                             </td>
                         </tr>
                         <tr th:each="item : ${itemList}">
                             <td th:text="${item.name}"></td>
                             <td th:text="${item.itemExplain}"></td>
                             <td th:text="${item.price}"></td>
-                            <td th:text="${item.gameId}"></td>                                                                             
+                            <th:block th:if="${item.gameId != null}" >
+                            	<td th:text="${item.gameId.matchTeam}"></td>
+                            	<td th:text="${item.gameId.matchDate}"></td>
+                            </th:block>     
+                            <th:block th:if="${item.gameId == null}" > 
+                            	<td >-</td>
+                            	<td >-</td>
+                            </th:block>                                                                        
                             <td><a th:href="@{/admin/item/delete(id=${item.id})}">削除</a></td>
                         </tr>                                                    
-                    
                     
                     	<tr th:each="search : ${itemSearchList}">
                             <td th:text="${search.name}"></td>
                             <td th:text="${search.itemExplain}"></td>
-                            <td th:text="${search.price}"></td>  
+                            <td th:text="${search.price}"></td> 
+                            <th:block th:if="${item.gameId != null}" >
+                            	<td th:text="${search.gameId.matchTeam}"></td>
+                            	<td th:text="${search.gameId.matchDate}"></td> 
+                            </th:block>
                             <td><a th:href="@{/admin/item/delete(id=${search.id})}">削除</a></td>                                             
-                    	</tr>
+                    	</tr>                    	
                     </table>
                 </div>    
                 </div>

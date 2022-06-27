@@ -1,5 +1,6 @@
 package jp.co.taxis.funsite.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -12,12 +13,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.taxis.funsite.entity.GameEntity;
 import jp.co.taxis.funsite.entity.ItemEntity;
 import jp.co.taxis.funsite.exception.ApplicationException;
 import jp.co.taxis.funsite.form.ItemForm;
+import jp.co.taxis.funsite.sample.FileUploadService;
 import jp.co.taxis.funsite.service.GameInsertService;
 import jp.co.taxis.funsite.service.ItemInsertService;
 
@@ -30,6 +33,9 @@ public class ItemInsertController {
 	
 	@Autowired
 	private GameInsertService gameInsertService;
+	
+	@Autowired
+	private FileUploadService fileUploadService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -60,6 +66,39 @@ public class ItemInsertController {
 		if (result.hasErrors()) {
 			return "admin/item/insert/input";
 		}
+		
+		// ファイル名取得
+				MultipartFile file = itemForm.getImage();
+				String fileName = file.getOriginalFilename();
+				itemForm.setImageFileName(fileName);
+
+				if (!(itemForm.getImageFileName().equals(""))) {
+
+					// 拡張子のチェック
+					String extention = fileName.substring(fileName.lastIndexOf("."));
+					if (!extention.contentEquals(".jpg") && !extention.contentEquals(".png")) {
+						String message = messageSource.getMessage("file.extention.error", null, Locale.getDefault());
+						model.addAttribute("message", message);
+						return "admin/player/insert/input";
+					}
+
+					try {
+						// 保存処理
+						fileUploadService.saveFile(fileName, file.getBytes());
+					} catch (ApplicationException e) {
+						e.printStackTrace();
+						String messageKey = e.getMessage();
+						String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+						model.addAttribute("message", message);
+						return "admin/player/insert/input";
+					} catch (IOException e) {
+						e.printStackTrace();
+						String messageKey = e.getMessage();
+						String message = messageSource.getMessage(messageKey, null, Locale.getDefault());
+						model.addAttribute("message", message);
+						return "admin/player/insert/input";
+					}
+				}
 		
 		// 確認画面の表示だけ
 		return "admin/item/insert/confirm";
