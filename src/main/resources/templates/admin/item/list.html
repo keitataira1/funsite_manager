@@ -65,8 +65,8 @@
                             	<td th:text="${item.gameId.matchDate}"></td>
                             </th:block>     
                             <th:block th:if="${item.gameId == null}" > 
-                            	<td >-</td>
-                            	<td >-</td>
+                            	<td>-</td>
+                            	<td>-</td>
                             </th:block>                                                                        
                             <td><a th:href="@{/admin/item/delete(id=${item.id})}">削除</a></td>
                         </tr>                                                    
