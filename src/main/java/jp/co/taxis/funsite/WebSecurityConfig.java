@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		// テスト用の暗号化しない場合
 		return NoOpPasswordEncoder.getInstance();
-		// return new BCryptPasswordEncoder();
+		//return new BCryptPasswordEncoder();
 	}
 
 	@Override

@@ -1,35 +1,26 @@
 package jp.co.taxis.funsite.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import jp.co.taxis.funsite.form.UserForm;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("admin")
 public class LoginController {
-	
-	@Autowired
-	MessageSource messageSource;
 
-	/**
-	 * ログインのハンドラメソッド
-	 * @return
-	 */
-    @RequestMapping("login")
-    public String login(@Validated UserForm userForm, BindingResult result) {
-    	
-    	
-    	
-        return "admin/login";
-    }
+	@RequestMapping("login")
+	public String login(@RequestParam(name="error",defaultValue="false",required = false)String error,Model model) {
+		
+		if(error.equals("true")) {
+			model.addAttribute("message","ログインIDかパスワードが違います。");
+		}
+		
+		return "admin/login";
+	}
 
-    @RequestMapping("menu")
-    public String menu() {
-        return "admin/menu";
-    }
+	@RequestMapping("menu")
+	public String menu() {
+		return "admin/menu";
+	}
 }
