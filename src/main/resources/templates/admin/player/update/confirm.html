@@ -9,6 +9,9 @@
 
 
 <body>
+	<div>
+		<img src="/img/logo.png" width="80px" style="text-align: right"/>
+	</div>
     <main>
         <form th:action="@{/admin/player/update/update}" method="post" th:object="${player}">
         	<input type="hidden" th:field="*{id}" />
