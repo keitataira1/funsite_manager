@@ -8,7 +8,7 @@
 
 <body>
 	<div>
-		<img src="/img/logo.png" width="80px" style="text-align: right"/>
+		<img src="/img/logo.png" width="80px"/>
 	</div>
     <main>
         <form th:action="@{/admin/item/insert/complete}" method="post" th:object="${item}">
@@ -47,12 +47,12 @@
                         <td>
                             試合
                         </td>
-                        	<td style="text-align: left;">
-                        		<th:block th:if="${gameId != null}" >
-                        			<span th:text="*{gameId.matchTeam}"></span>
-                        			<span th:text="*{gameId.matchDate}"></span>
-                        		</th:block>   
-                        	</td>
+                        <td style="text-align: left;">
+                        	<th:block th:if="${gameId != null}" >
+                        		<td th:text="*{gameId.matchTeam}"></td>
+                        		<td th:text="*{gameId.matchDate}"></td>
+                            </th:block>
+                        </td>
                     </tr>
                 </table>
                 <div>
@@ -61,7 +61,7 @@
 					<input type="hidden" th:field="*{price}" />
 					<input type="hidden" th:field="*{gameId}" />
 					<input type="hidden" th:field="*{imageFileName}" />
-		
+					
                     <a th:href="@{/admin/item/insert/input}">キャンセル</a><input type="submit" value="登録" />
                 </div>
             </div>
